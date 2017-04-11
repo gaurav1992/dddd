@@ -26,6 +26,7 @@ Route::post('app/logout', array('uses' => 'mobile@logout'));
 Route::post('app/driver_position_update', array('uses' => 'mobile@driver_position_update'));
 Route::post('app/get_passenger_ride_info', array('uses' => 'mobile@get_passenger_ride_info'));
 Route::post('app/pickup_request', array('uses' => 'mobile@pickup_request'));
+Route::post('app/pickup_request_new', array('uses' => 'mobile@pickup_request_new'));
 Route::post('app/get_estimated_fare', array('uses' => 'mobile@get_estimated_fare'));
 Route::post('app/device_gcm_token', array('uses' => 'mobile@device_gcm_token'));
 Route::post('app/toggle_profile', array('uses' => 'mobile@toggle_profile'));
@@ -164,8 +165,6 @@ Route::post('app_test/driver_request',array('uses' => 'app_test@driver_request')
 Route::post('app_test/arrived_at_pickup', array('uses' => 'app_test@arrived_at_pickup'));
 Route::post('app_test/become_driver', array('uses' => 'app_test@become_driver'));
 Route::post('app_test/city_json', array('uses' => 'app_test@city_json'));
-Route::post('app_test/pickup_request_new', array('uses' => 'app_test@pickup_request_new'));
-Route::get('app_test/delete_passenger', array('uses' => 'app_test@delete_passenger'));
 
 
 /*---work done by Rubiya----*/
@@ -173,6 +172,3 @@ Route::get('app_test/delete_passenger', array('uses' => 'app_test@delete_passeng
 Route::post('app_test/twilio_token',array('uses' => 'app_test@twilio_token'));
 Route::post('app_test/xml_client',array('uses' => 'app_test@xml_client'));
 Route::get('app_test/status1',array('uses' => 'app_test@status1'));
-Route::get('app_test/queryDriver',array('uses' => 'app_test@queryDriver'));
-Route::get('app_test/queryPassenger',array('uses' => 'app_test@queryPassenger'));
-Route::get('app_test/queryPassenger2',array('uses' => 'app_test@queryPassenger2'));

@@ -1,0 +1,119 @@
+<?php $__env->startSection('drivercustom'); ?>
+<?php echo HTML::script('public/js/framework/drivercustom.js');; ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<div class="container-fluid no-padding" id="inner-header"> <img src="<?php echo asset('public/images/form-head.jpg'); ?>" alt="test" class="img-responsive">
+    <div class="carousel-caption"> </div>
+    <h3 class="page-heading">TIER LEVELS</h3>
+</div>
+<!--  SECTION-1 -->
+<section>
+<?php
+if($myData){
+  $createjoinind_date = new DateTime($myData['created_at']);
+  $newjoinind_date = $createjoinind_date->format('m/d/Y');
+?>  
+  <div class="container mtop-30" id="driverprofileedit">
+    
+    <?php echo $__env->make('frontend.driversidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+    <div class="col-md-8">
+    <h2 class="mt-0"> Tier Levels</h2>
+      <p class="no_bold">Chart your tier levels, and find out about latest tier updates to earn more.</p>
+      <div class="row rate-cls-sty">
+        <div class="col-sm-6 text-center"> 
+			<?php if($driver_tier_levels[0]->acceptance_rate !=''): ?>
+			<span class="acceptance_rate"><?php echo e($driver_tier_levels[0]->acceptance_rate); ?></span>
+			<?php else: ?>
+			<span class="acceptance_rate">0%</span>
+			<?php endif; ?>  Acceptance Rate 
+		</div>
+        <div class="col-sm-6 text-center">  <?php if($driver_tier_levels[0]->cancelation_rate !=''): ?><span class="cancelation_rate"><?php echo e($driver_tier_levels[0]->cancelation_rate); ?></span><?php else: ?><span class="cancelation_rate">0%</span><?php endif; ?> Cancellation Rate </div>
+      </div>
+      
+      <div class="select-date-cls">
+       <div class="col-sm-4 text-right select-title">Your Tier as on</div>
+      <div class=" col-sm-6 col-sm-onset-2">
+     <fieldset class="form-group">
+              <div class='input-group date boder date-picker-one' id='selectpicker3'>
+			   <?php echo Form::open(array('url' => 'tierlevelsweek')); ?>
+
+                  <?php echo Form::text('selectweek',date("Y-m-d"),array('id'=>'sweek','class'=>'form-control','placeholder' => 'Select week','required')); ?>
+
+                  <a class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </a>
+				<?php echo Form::close(); ?>
+
+              </div>
+            </fieldset>
+      </div>
+      
+      </div>
+      
+      <div class="clearfix"></div>
+      <hr/>
+      <table class="table table-referral">
+        <tbody id="chweek">
+          <tr>
+            <td>Tier Levels Achieved</td>
+           <?php if($driver_tier_levels[0]->tiers_level == '0'): ?>
+            <td>Normal </td>
+		    <?php elseif($driver_tier_levels[0]->tiers_level == '1'): ?>
+			 <td>silver </td>
+		    <?php elseif($driver_tier_levels[0]->tiers_level == '2'): ?>
+			 <td>Gold </td>
+		    <?php elseif($driver_tier_levels[0]->tiers_level == '3'): ?>
+			 <td>Platinum </td>
+		    <?php elseif($driver_tier_levels[0]->tiers_level == '4'): ?>
+			 <td>Diamond </td>
+		   <?php else: ?>
+		   <td>No Level</td>
+		<?php endif; ?>
+			
+          </tr>
+          <tr>
+            <td>Active Hours</td>
+           	<?php if($driver_tier_levels[0]->total_active_hours !=''): ?>
+			<td><?php echo e($driver_tier_levels[0]->total_active_hours); ?></td>
+            <?php else: ?> 
+		   <td>0 Hour</td>
+		 <?php endif; ?>
+          </tr>
+          <tr>
+            <td>Active Hours during Rush Hour</td>
+			<?php if($driver_tier_levels[0]->scheduled_hours !=''): ?>
+			<td><?php echo e($driver_tier_levels[0]->scheduled_hours); ?></td>
+            <?php else: ?> 
+		   <td>0 Hour</td>
+		<?php endif; ?>
+          </tr>
+          <tr>
+            <td>Acceptance Rate</td>
+			<?php if($driver_tier_levels[0]->acceptance_rate !=''): ?>
+		   <td><?php echo e($driver_tier_levels[0]->acceptance_rate); ?></td>
+	        <?php else: ?>
+            <td>0% </td>
+		<?php endif; ?>
+          </tr>
+          <tr>
+            <td>Cancellattion</td>
+		<?php if($driver_tier_levels[0]->cancelation_rate !=''): ?>
+            <td><?php echo e($driver_tier_levels[0]->cancelation_rate); ?></td>
+		 <?php else: ?>
+            <td>0% </td>
+		<?php endif; ?>
+          </tr>
+        </tbody>
+      </table>
+      <div class="clearfix"></div>
+    </div>    
+  </div>
+<?php }else{ ?>
+
+<?php } ?>  
+</section>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('frontend.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -90,7 +90,6 @@ class SiteController extends BaseController
 						->orderBy('city_name', 'ASc')
 						->groupBy('city_name')
 						->get();
-
 		
 	   /*MOST-LEAST RIDE CODE START*/
 		$max = -9999999; //will hold max val
@@ -131,9 +130,7 @@ class SiteController extends BaseController
 		/*  Refunds    */
 		/*  Locations    */
 		$sql  = $this->locationQueries(null,null);
-		
-		//echo $sql;exit; 
-
+		$sql .= " GROUP BY dn_cities.id";
 
 		$locData = DB::select(DB::raw($sql));
 		//echo "<pre>";print_r($locData);die;	
@@ -151,7 +148,33 @@ class SiteController extends BaseController
 			$profit+=$v->profit;	
 		}
 		//echo $passenger; die;
-
+		/* $passengers=DB::table('dn_users')
+					->leftJoin('role_user', 'role_user.user_id', '=', 'dn_users.id')		
+					->leftJoin('roles', 'roles.id', '=', 'role_user.role_id')
+					->where('role_user.role_id','3')
+					->count();
+		
+		$drivers=DB::table('dn_users')
+					->leftJoin('role_user', 'role_user.user_id', '=', 'dn_users.id')		
+					->leftJoin('roles', 'roles.id', '=', 'role_user.role_id')
+					->where('role_user.role_id','4')
+					->count();
+		$totalRevenue = DB::table('dn_payments')
+					->select(DB::raw('SUM(amount)  as total'))
+					->leftJoin('dn_rides', 'dn_rides.id', '=', 'dn_payments.ride_id')		
+					->get();
+		$tRevenue=$totalRevenue[0]->total;
+		$tRevenue=number_format((float)$tRevenue, 2, '.', '');
+		$payouts = DB::table('dn_rides')
+					->Select(DB::raw('SUM((2/100) * dn_payments.amount *(ride_billing_info.miles_charges + ride_billing_info.duration_charges - dn_payments.refund_amount)
+					+ride_billing_info.tip + ride_billing_info.pickup_fee) AS payouts'))
+					->LeftJoin('ride_billing_info','dn_rides.id','=','ride_billing_info.ride_id')
+					->LeftJoin('dn_payments','dn_rides.id','=','dn_payments.ride_id')
+					->get();
+		
+		$payouts = $payouts[0]->payouts;
+		$payouts = number_format((float)$payouts, 2, '.', '');	
+		 */
 		$cities= DB::table('dn_cities')
 				->orderby('city','ASC')->lists('city','id');
 		$cities = array(0=>'All Cities') + $cities;		
@@ -1332,7 +1355,7 @@ class SiteController extends BaseController
 			  * MAIN QUERY TO FIND ALL FIELDS (MERGING ALL SUBQUERIES HERE)
 			  **/
 			  //echo $subquery1;exit;
-			$sql = "SELECT dn_cities.id as cityId,dn_cities.city as cityName,$subquery1,$subquery2,$subquery3,$subquery4,$subqueries5  FROM dn_cities where dn_cities.id in (select distinct city from dn_users)";
+			$sql = "SELECT distinct dn_cities.id as cityId,dn_cities.city as cityName,$subquery1,$subquery2,$subquery3,$subquery4,$subqueries5 FROM dn_users LEFT JOIN dn_cities ON dn_users.city = dn_cities.id ";
 			//echo $sql;exit;
 			return $sql ;}
 			

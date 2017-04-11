@@ -1,0 +1,151 @@
+<?php $__env->startSection('customjavascript'); ?>
+<script>
+// var deleteCarUrl = "<?php echo route('deleteCar'); ?>";
+// var indexUrl= "<?php echo route('passengerAjax'); ?>";
+// var homeUrl= "<?php echo route('index'); ?>";
+</script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+
+ 
+    <!-- Main content -->
+    <section class="content"> 
+	<?php if(Session::has('message')): ?>
+		<p class="alert <?php echo e(Session::get('alert-class', 'alert-info')); ?>"><?php echo e(Session::get('message')); ?></p>
+	<?php endif; ?>
+    <!-- Info boxes -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+		
+				<div class="row">
+              
+                <div class="col-sm-12 col-md-7 col-lg-6 col-xs-12 ">
+                <div class="box-body profile-detail center1">
+                    
+                    <div class="form-group">
+                      <label class="col-sm-6 col-md-3 control-label" >Message Date</label>
+                      <div class="col-sm-6 col-md-9">
+                     <p><?php if($user_message_data->message_date=="0000-00-00 00:00:00"): ?> N/A <?php else: ?> <?php echo date('m-d-Y', strtotime($user_message_data->message_date)); ?> <?php endif; ?></p>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-6 col-md-3 control-label" >Status</label>
+                      <div class="col-sm-6 col-md-9">
+                     <p> <?php echo $user_message_data->status; ?></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+                <div class="col-sm-12 col-md-5 col-lg-3 col-xs-12">
+					 <!--Subadmin Permission Code Start-->
+								<?php 
+									$loggedInUserPermission = Session::get('userPermissions'); 
+									if(empty($loggedInUserPermission)){
+									?>
+										<p class="tpbutton btn-toolbar text-center">
+											<?php echo link_to_route('messageAction', 'Delete Message', array('action' => 'nrdelete', 'id' =>  base64_encode(convert_uuencode($user_message_data->message_id))), $attributes = array('class'=>'btn navbar-btn btn-danger' )); ?>
+
+											
+											<?php if($user_message_data->status=='Archive'): ?>
+												<?php echo link_to_route('messageAction', 'archive Message', array('action' => 'nrarchive', 'id' =>  base64_encode(convert_uuencode($user_message_data->message_id))), $attributes = array('class'=>'btn navbar-btn btn-primary disabled' )); ?>
+
+											<?php else: ?>
+												<?php echo link_to_route('messageAction', 'archive Message', array('action' => 'nrarchive', 'id' =>  base64_encode(convert_uuencode($user_message_data->message_id))), $attributes = array('class'=>'btn navbar-btn btn-primary' )); ?>
+
+											<?php endif; ?>            
+										</p>
+									<?php 
+									}else if(!empty($loggedInUserPermission)){
+									?>		
+									<?php	
+									
+										foreach($loggedInUserPermission as $userPermission){
+													
+											if($userPermission->module_slug=="contact_messages" && $userPermission->edit_permission==1){
+											?>
+												<p class="tpbutton btn-toolbar text-center">
+													<?php echo link_to_route('messageAction', 'Delete Message', array('action' => 'nrdelete', 'id' =>  base64_encode(convert_uuencode($user_message_data->message_id))), $attributes = array('class'=>'btn navbar-btn btn-danger' )); ?>
+
+													
+													<?php if($user_message_data->status=='Archive'): ?>
+														<?php echo link_to_route('messageAction', 'archive Message', array('action' => 'nrarchive', 'id' =>  base64_encode(convert_uuencode($user_message_data->message_id))), $attributes = array('class'=>'btn navbar-btn btn-primary disabled' )); ?>
+
+													<?php else: ?>
+														<?php echo link_to_route('messageAction', 'archive Message', array('action' => 'nrarchive', 'id' =>  base64_encode(convert_uuencode($user_message_data->message_id))), $attributes = array('class'=>'btn navbar-btn btn-primary' )); ?>
+
+													<?php endif; ?>            
+												</p>
+											<?php
+											}
+										}
+										?>
+										
+									<?php 
+									} 
+								?>
+								<!--Subadmin Permission Code Start-->
+					
+                </div>
+                
+                
+              <div class="col-xs-12">  <hr/></div>
+                </div>
+                
+                <div class="row">
+					
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						
+						<div class="box-body sub-text">
+							
+							<div class="form-group">
+								
+								<div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+									<label class="control-label" >Subject</label>
+								</div>
+								
+								<div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+									<p>
+										<?php if($user_message_data->subject==''): ?>
+											N/A
+										<?php else: ?>
+											<?php echo $user_message_data->subject; ?>		
+										<?php endif; ?>            
+										
+									</p>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+									<label class="control-label" >Message</label>
+								</div>
+								
+								<div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+								
+									<p>
+										<?php if($user_message_data->message==''): ?>
+											N/A
+										<?php else: ?>
+											<?php echo $user_message_data->message; ?>		
+										<?php endif; ?>            
+										
+									</p>
+									
+								</div>
+							</div> 
+						
+						</div>
+					
+					</div>
+					
+                </div>	
+          </div>
+        </div>
+      </div>
+    </section>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make($layout, array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

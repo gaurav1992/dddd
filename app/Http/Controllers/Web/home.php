@@ -383,6 +383,7 @@ class home extends Controller {
 			     */
 			    public function handleProviderCallback()
 			    {
+			        echo "test";exit;
 			        try {
 			            $user = Socialite::driver('facebook')->user();
 			        } catch (Exception $e) {
@@ -902,11 +903,17 @@ class home extends Controller {
 
 					$license_number = Input::get('license_number');
 					$ssn	= Input::get('SSN');
-					
+					//echo $ssn;exit;
 					//$ssn = \Illuminate\Support\Facades\Crypt::encrypt($encrypted);
+					
+					
+		
+					
+
 					$gender = Input::get('gender');
                     $license_exp_input 	= Input::get('licence_exp');
 					$insurance_exp_input 	= Input::get('insurance_exp');
+
 					$license_exp = date("Y-m-d", strtotime($license_exp_input));
 					$insurance_exp = date("Y-m-d", strtotime($insurance_exp_input));
 
@@ -1002,7 +1009,7 @@ class home extends Controller {
 						    Input::file('profile_pic')->move($destinationPath, $filename);
 						    $driver_profile_pic_path = $destinationPath . $filename;
 						    /*--//upload driver profile image--*/
-							//echo $ssn; exit;
+
 						    if($driver_license_detail){
 			                	DB::table('dn_users_data')->where(['user_id' => $id])->update(['license_number' => $license_number,'transmission' => $car_transmission,'terms_conditions' => '1','driver_profile_pic' => $driver_profile_pic_path,'ssn' => $ssn]);
 			                }else{
@@ -1135,9 +1142,9 @@ class home extends Controller {
 										/*--//upload driver profile image--*/
 								}
 								
-			                	DB::table('dn_users_data')->where(['user_id' => $id])->update(['license_number' => $license_number,'transmission' => $car_transmission]);
+			                	DB::table('dn_users_data')->where(['user_id' => $id])->update(['license_number' => $license_number,'transmission' => $car_transmission,'ssn'=>$ssn]);
 			                }else{
-			                	$insertGetId = DB::table('dn_users_data')->insertGetId(['user_id' => $id,'license_number' => $license_number,'transmission' => $car_transmission]);
+			                	$insertGetId = DB::table('dn_users_data')->insertGetId(['user_id' => $id,'license_number' => $license_number,'transmission' => $car_transmission,'ssn'=>$ssn]);
 			                }
 
 						    DB::table('dn_users')->where(['id' => $id])->update(['full_name' => $full_name,'anniversary' => $newanniversary,'address_1' => $address_1,'address_2'  => $address_2,'city' => $city,'state'  => $state,'zip_code' =>$zip_code,'email'=>$email,'become_driver_request'=>2,'is_suspended'=>3,'is_driver_approved'=>0]); 

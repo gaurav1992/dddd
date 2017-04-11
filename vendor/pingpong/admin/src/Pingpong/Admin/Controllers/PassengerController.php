@@ -910,23 +910,12 @@ class PassengerController extends BaseController {
 	{
 		
 		$data = $request->all();
-
-		$data['usersCount'] = DB::table('role_user')
-						//->select(array('dn_users.id'))
+		$users = DB::table('role_user')
+						->select(array('dn_users.*'))
 						->join('dn_users', 'role_user.user_id', '=', 'dn_users.id')		
-						->where('role_id','3')
-						//->take("10") 
-						->count();
+						->where('role_id','3')->get();
 						//->paginate(config('admin.user.perpage'));
-		//print_r($users );	die;
-		$data['activeUsersCount'] = DB::table('role_user')
-						//->select(array('dn_users.id'))
-						->join('dn_users', 'role_user.user_id', '=', 'dn_users.id')		
-						->where('role_id','3')
-						->where('dn_users.active','1')
-						//->take("10") 
-						->count();
-		//print_r($ActiveUsersCount);die;
+		//print_r(count($users));	die;
 		$states = DB::table('dn_states')->get();
 		if(isset($data['stateCode']))
 		{
@@ -936,7 +925,7 @@ class PassengerController extends BaseController {
 			foreach($cities as $city)
 			{
 				echo "<option class='append' value='$city->id'>".$city->city."</option>";
-			}
+			}exit;
 		}
 		$citys = DB::table('dn_users')
 					->select(array('dn_users.city','dn_cities.*', DB::raw('COUNT(dn_users.id) as no_of_users,dn_users.id as pid')))
@@ -957,8 +946,7 @@ class PassengerController extends BaseController {
 		}else{
 			$cty=(object)array('city'=>'N/A','no_of_users'=>'N/A');
 			@$citiesCount=array('least'=>@$cty,'most'=>$cty);}
-	//echo "fhdhfj";die;
-		return $this->view('users.index', compact('data','citiesCount','states'));
+		return $this->view('users.index', compact('users','citiesCount','states'));
 	}
  
 	/**
@@ -980,9 +968,9 @@ class PassengerController extends BaseController {
 		$billingval1=$data['billingval1'];
 		$billingval2=$data['billingval2'];
 		
-		$orderfields=array('0'=>'dn_users.id','1'=>'unique_code','2'=>'first_name','3'=>'last_name','4'=>'dn_users.created_at','6'=>'email','7'=>'contact_number','8'=>'active','9'=>'is_logged');
+		$orderfields=array('0'=>'id','1'=>'unique_code','2'=>'first_name','3'=>'last_name','4'=>'dn_users.created_at','6'=>'email','7'=>'contact_number','8'=>'active','9'=>'is_logged');
 		//print_r($data['order'][0]); 
-		$field='dn_users.id'; 
+		$field='id';
 		$direction='ASC';
 		
 		/* code for order by data of user*/
@@ -997,88 +985,84 @@ class PassengerController extends BaseController {
 		}
 		
 		/* code for searching of  user*/
-		$sql = 'SELECT distinct dn_users.id FROM dn_users ';
-		$sql1 = 'SELECT  count(distinct dn_users.id) as totalcount FROM dn_users ';
-		
-		$sqlQuery = " LEFT JOIN dn_payments on dn_payments.user_id = dn_users.id ";
-		$sqlQuery .= " LEFT JOIN role_user on role_user.user_id = dn_users.id ";
-		$sqlQuery.= "WHERE 1=1 AND role_user.role_id='3' AND role_user.user_id = dn_users.id";
+		$sql = 'SELECT dn_users.id FROM dn_users ';
+		$sql.= "LEFT JOIN dn_payments on dn_payments.user_id = dn_users.id ";
+		$sql.= "WHERE 1=1 ";
 				
 		if(!empty($startDate) &&  !empty($endDate))
 		{
 			$startDate=$date = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $startDate)));
 			$endDate=date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $endDate)));
-			$sqlQuery .=" AND dn_users.created_at BETWEEN '$startDate' AND '$endDate'";
+			$sql .=" AND dn_users.created_at BETWEEN '$startDate' AND '$endDate'";
 		}
 		
 		if(!empty($billingval1) &&  !empty($billingval2))
 		{
 			
-			$sqlQuery .=" AND dn_payments.amount BETWEEN '$billingval1' AND '$billingval2'";
+			$sql .=" AND dn_payments.amount BETWEEN '$billingval1' AND '$billingval2'";
 		
 		}else if(!empty($billingval1) &&  empty($billingval2)){
 			
-			$sqlQuery .=" AND dn_payments.amount > '$billingval1'";
+			$sql .=" AND dn_payments.amount > '$billingval1'";
 		
 		}else if(empty($billingval1) &&  !empty($billingval2)){
 			
-			$sqlQuery .=" AND dn_payments.amount < '$billingval2'";
+			$sql .=" AND dn_payments.amount < '$billingval2'";
 		
 		}
 		
 		if($data['state']!='')
 		{
 			$state = $data['state'];
-			$sqlQuery .=" AND  state= '$state'";
+			$sql .=" AND  state= '$state'";
 		}
 		if($data['city']!='')
 		{
 			 $city = $data['city'];
-			 $sqlQuery .=" AND  city= '$city'";
+			 $sql .=" AND  city= '$city'";
 		}
 		if($data['state']!='' && $data['city']!='')
 		{
 			$state = $data['state'];
 			$city = $data['city'];
-			$sqlQuery .="AND  state= '$state' AND  city= '$city'";
+			$sql .="AND  state= '$state' AND  city= '$city'";
 		}
 		if(@$searchString!='')
 		{	
 			$search = "%$searchString%";
-			$sqlQuery .=" AND  (unique_code LIKE '$search' or  first_name LIKE '$search' or full_name LIKE '$search' or last_name LIKE '$search' or email LIKE '$search' or contact_number LIKE '$search') ";
+			$sql .=" AND  (unique_code LIKE '$search' or  first_name LIKE '$search' or full_name LIKE '$search' or last_name LIKE '$search' or email LIKE '$search' or contact_number LIKE '$search') ";
 		}
 		
-		$sqlQuery .= " order by ".$field." ".$direction;
-		$totalRecords = 0;
-		$sqlcount = $sql1.$sqlQuery;
-		//echo $sqlcount;
-		$totalRecords=DB::select(DB::raw($sqlcount));
-		//print_r($totalRecords);die;
-		$sqlQuery .= " limit $offset, $limit";
-		$sqldata=$sql.$sqlQuery; 
-		//echo $sqldata;die;
-		$usersIds=DB::select(DB::raw($sqldata));
-		//print_r($usersIds);
+		$sql .= " order by ".$field." ".$direction;
+		//echo $sql; die;
+		$usersIds=DB::select(DB::raw($sql));
 		if(!empty($usersIds))
 		{
 		$usersList=array();
 		foreach($usersIds as $value)
 		{
 			$usersList[]=$value->id;
-		//print_R($usersList);
-		}//print_R($usersList);
+		
+		}
 		}
 		$users = array();
+		$totalRecords = 0;
 		if(!empty($usersList))
 		{
 			/* code for fetching data from dn_users table */
-			 $users = DB::table('dn_users')
+			$users = DB::table('role_user')
 						->select(array('dn_users.*'))
-						->whereIn('id',$usersList)
-						->orderBy($field,$direction)//->tosql();
-						->get();
+						->join('dn_users', 'role_user.user_id', '=', 'dn_users.id')		
+						->where('role_id','3')
+						->whereIn('role_user.user_id',$usersList)
+						->take($limit)->offset($offset) ->orderBy($field,$direction)->get();
 						//print_r($users);
-		//echo $users;
+			$totalRecords = DB::table('role_user')
+						->select(array('dn_users.*'))
+						->join('dn_users', 'role_user.user_id', '=', 'dn_users.id')
+						->where('role_id','3')
+						->whereIn('role_user.user_id',$usersList)->get();
+						// ->paginate(config('admin.user.perpage'));
 		}
 		$Data="";
 		//echo "<pre>"; print_r($users); die;
@@ -1189,8 +1173,8 @@ class PassengerController extends BaseController {
 			//echo '<pre>';print_r($newData);die;
 					return '{
 			  "draw": '.$draw.',
-			  "recordsTotal": '.$totalRecords[0]->totalcount.',
-			  "recordsFiltered":'.$totalRecords[0]->totalcount.',
+			  "recordsTotal": '.count($totalRecords).',
+			  "recordsFiltered":'.count($totalRecords).',
 			  "data": ['.$newData.']
 		}';} else {
 			return '{
@@ -1533,49 +1517,37 @@ class PassengerController extends BaseController {
 			}
 			
 			/* code for searching of  user*/
-			//$sql = 'SELECT id FROM dn_users WHERE 1=1';
-			$sql1 = 'SELECT count(distinct dn_users.id) as totalrecords FROM dn_users ';
-			$sql2 = 'SELECT distinct dn_users.id  FROM dn_users ';
-			$sqlQuery ='';
-			$sqlQuery = " LEFT JOIN role_user on role_user.user_id = dn_users.id ";
-			$sqlQuery.= "WHERE 1=1 AND role_user.role_id='3' AND role_user.user_id = dn_users.id AND dn_users.active='0'";
+			$sql = 'SELECT id FROM dn_users WHERE 1=1';
 			if(!empty($startDate) &&  !empty($endDate))
 			{
 				$startDate=$date = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $startDate)));
 				$endDate=date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $endDate)));
-				$sqlQuery .=" AND  dn_users.created_at BETWEEN '$startDate' AND '$endDate'";
+				$sql .=" AND  created_at BETWEEN '$startDate' AND '$endDate'";
 			}
 			if($data['state']!='')
 			{
 				$state = $data['state'];
-				$sqlQuery .=" AND  state= '$state'";
+				$sql .=" AND  state= '$state'";
 			}
 			if($data['city']!='')
 			{
 				 $city = $data['city'];
-				 $sqlQuery .=" AND  city= '$city'";
+				 $sql .=" AND  city= '$city'";
 			}
 			if($data['state']!='' && $data['city']!='')
 			{
 				$state = $data['state'];
 				$city = $data['city'];
-				$sqlQuery .="AND  state= '$state' AND  city= '$city'";
+				$sql .="AND  state= '$state' AND  city= '$city'";
 			}
 			if(@$searchString!='')
 			{	
 				$search = "%$searchString%";
-				$sqlQuery .=" AND  (unique_code LIKE '$search' or first_name LIKE '$search' or last_name LIKE '$search' or full_name LIKE '$search' or email LIKE '$search' or contact_number LIKE '$search') ";
+				$sql .=" AND  (unique_code LIKE '$search' or first_name LIKE '$search' or last_name LIKE '$search' or full_name LIKE '$search' or email LIKE '$search' or contact_number LIKE '$search') ";
 			}
 			
-			$sqlQuery  .= " order by ".$field." ".$direction;
-			
-			$totalRecords = 0;
-			$sqlcount = $sql1.$sqlQuery;
-			$totalRecords=DB::select(DB::raw($sqlcount));
-			$sqlQuery .= " limit $offset, $limit";
-			$sqldata=$sql2.$sqlQuery; 
-			$usersIds=DB::select(DB::raw($sqldata));
-		
+			$sql .= " order by ".$field." ".$direction;
+			$usersIds=DB::select(DB::raw($sql));
 			if(!empty($usersIds))
 			{
 			$usersList=array();
@@ -1586,16 +1558,26 @@ class PassengerController extends BaseController {
 			}
 			}
 			$users = array();
-			
+			$totalRecords = 0;
 			if(!empty($usersList))
 			{
 				/* code for fetching data from dn_users table */
-				$users = DB::table('dn_users')
+				$users = DB::table('role_user')
 							->select(array('dn_users.*'))
-							->whereIn('dn_users.id',$usersList)
-							->orderBy($field,$direction)->get();
+							->join('dn_users', 'role_user.user_id', '=', 'dn_users.id')
+							//->join('dn_users', 'role_user.user_id', '=', 'dn_users.id')					
+							->where('role_id','3')
+							->where('active','0')
+							->whereIn('role_user.user_id',$usersList)
+							->take($limit)->offset($offset) ->orderBy($field,$direction)->get();
 							//print_r($users);
-				
+				$totalRecords = DB::table('role_user')
+							->select(array('dn_users.*'))
+							->join('dn_users', 'role_user.user_id', '=', 'dn_users.id')
+							->where('role_id','3')
+							->where('active','0')
+							->whereIn('role_user.user_id',$usersList)
+							->paginate(config('admin.user.perpage'));
 			}
 			$Data="";
 			foreach($users as $user)
@@ -1688,8 +1670,8 @@ class PassengerController extends BaseController {
 				//echo '<pre>';print_r($newData);die;
 						return '{
 				  "draw": '.$draw.',
-				  "recordsTotal": '.$totalRecords[0]->totalrecords.',
-				  "recordsFiltered":'.$totalRecords[0]->totalrecords.',
+				  "recordsTotal": '.count($totalRecords).',
+				  "recordsFiltered":'.count($totalRecords).',
 				  "data": ['.$newData.']
 			}';} else {
 				return '{

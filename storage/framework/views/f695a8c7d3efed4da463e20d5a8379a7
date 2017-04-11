@@ -1,0 +1,20 @@
+
+
+<html> 
+<style>
+table td,th{
+  text-align: center;
+}
+</style>
+<body> Total Registered User
+	
+	<?php if(!empty($html)): ?>
+	
+	
+	<?php echo $html;?>
+
+			
+</table> 
+<?php endif; ?> 
+</body> 
+</html>

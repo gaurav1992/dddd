@@ -1,0 +1,82 @@
+<?php $__env->startSection('title', 'Admin-Subadmin List'); ?>
+<?php $__env->startSection('content-header'); ?>
+	<h1 style="text-align:center;">
+		<?php echo isset($title) ? $title : 'Admin-Subadmin List'; ?> 
+	</h1>
+<div style="clear:both"></div>
+<?php echo @$message; ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('customjavascript'); ?>
+<script>
+var suspendUrl = "<?php echo route('adminSuspend'); ?>";
+var indexUrl2= "<?php echo route('adminSubadminajax'); ?>";
+var homeUrl= "<?php echo route('manageAdminSubadmin'); ?>";
+var suspendAdminUrl = "<?php echo route('adminSuspend'); ?>";
+
+</script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<style>
+.dataTables_length{display:none;}
+
+.info-box-text{text-align: center; font-size: 17px; padding-top: 8px;}
+.info-box-number{text-align: center; font-size: 30px;}
+</style>
+<div style="clear:both;margin-bottom:20px;"></div>
+<?php if(Session::has('message')): ?>
+<p class="alert <?php echo e(Session::get('alert-class', 'alert-info')); ?>"><?php echo e(Session::get('message')); ?></p>
+<?php endif; ?>
+	<div class="row">
+        <div class="col-md-12">
+          <div class="box">
+    <div class="table-responsive add-more-btn ">
+		 <!--Subadmin Permission Code Start-->
+		<?php 
+			$loggedInUserPermission = Session::get('userPermissions'); 
+			if(empty($loggedInUserPermission)){
+			?>
+				<a href="<?php echo e(route('addUser')); ?>"  class="btn btn-success add-more-btn-1">Add users <i class="fa fa-plus-circle"></i> </a>
+			<?php 
+			}else if(!empty($loggedInUserPermission)){
+			?>		
+			<?php	
+			
+				foreach($loggedInUserPermission as $userPermission){
+							
+					if($userPermission->module_slug=="admin_user" && $userPermission->edit_permission==1){
+					?>
+						<a href="<?php echo e(route('addUser')); ?>"  class="btn btn-success add-more-btn-1">Add users <i class="fa fa-plus-circle"></i> </a>
+					<?php
+					}
+				}
+				?>
+				
+			<?php 
+			} 
+		?>
+		<!--Subadmin Permission Code Start-->
+		   
+	<table class="table" id="Passengertable" style="width:100%">
+		<thead>
+			<th>ID No</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Join Date</th>
+			<th>Designation</th>
+			<th>Email</th>
+			<th>Phone</th>
+			<th>Status</th>
+			<th>Is Logged In</th>
+			<th class="text-center">Action</th>
+		</thead>
+	</table>
+		</div>
+          </div>
+        </div>
+      </div>
+<?php $__env->stopSection(); ?>
+
+
+
+<?php echo $__env->make($layout, array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

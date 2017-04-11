@@ -36,8 +36,8 @@
               <div class="col-md-7 text-left">
                 <h3 data-animation="animated bounceInDown">Introducing DeziNow </h3>
                 <h4 data-animation="animated bounceInUp">Sign up Now!</h4>
-        <a href="#" class="slider-button" data-animation="animated bounceInRight" data-toggle="modal" data-target="#myModal">App Coming Soon</a>                
-        </div>
+				<a href="#" class="slider-button" data-animation="animated bounceInRight" data-toggle="modal" data-target="#myModal">App Coming Soon</a>                 
+			  </div>
             </div>
           </div>
         </div>

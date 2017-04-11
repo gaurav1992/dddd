@@ -9,16 +9,13 @@ use \Exception;
 /**
  * Firebase PHP Client Library
  *
- * @author Tamas Kalman <ktamas77@gmail.com>
- * @url    https://github.com/ktamas77/firebase-php/
- * @link   https://www.firebase.com/docs/rest-api.html
+ * @author Gaurav Kumar <gaurav.kumar@mobilyte.com>
  */
 
 /**
  * Firebase PHP Class
  *
- * @author Tamas Kalman <ktamas77@gmail.com>
- * @link   https://www.firebase.com/docs/rest-api.html
+ * @author Gaurav Kumar <gaurav.kumar@mobilyte.com>
  */
 class FirebaseLib implements FirebaseInterface
 {

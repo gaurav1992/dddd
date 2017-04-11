@@ -45,7 +45,7 @@
 					secret key : 6LfnDCUTAAAAAPVQw225Xe3bFulIeB1eb5Q05WAG
 					-->
 					<script src='https://www.google.com/recaptcha/api.js'></script>
-					<div class="g-recaptcha" data-sitekey="6Lf9FwoUAAAAADnH4We8r9Qh1Kh1YsCL8NjrF-h9"></div>
+					<div class="g-recaptcha" data-sitekey="6Lf30hMUAAAAAFEjhiEm89lmwF8zt5wo5_-37LDs"></div>
 					<!-- <img class="img-responsive" src="{!! asset('public/images/captcha.jpg') !!}" alt="#"/> -->
 					<button class="btn btn-primary green-btn-s submitContactForm" type="submit">Submit</button>
 				</div>

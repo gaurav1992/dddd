@@ -33,6 +33,7 @@
   display: block;
   font-size: 12.5px;
 }
+
 .top_mg {
   background: #3C8DBC none repeat scroll 0 0 !important;
   border: 0 none !important;
@@ -107,7 +108,7 @@
       <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box"> <span class="info-box-icon bg-aqua"><i class="fa fa-map-o" aria-hidden="true"></i></span>
-            <div class="info-box-content"> <span class="info-box-text">Total Passengers</span> <span class="info-box-number">{{@$data['usersCount']}}</span> <span class="totl_pass">Total Passenger </span> </div>
+            <div class="info-box-content"> <span class="info-box-text">Total Passengers</span> <span class="info-box-number">{{count($users)}}</span> <span class="totl_pass">Total Passenger </span> </div>
             <!-- /.info-box-content --> 
           </div>
           <!-- /.info-box --> 
@@ -115,10 +116,14 @@
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box"> <span class="info-box-icon bg-red"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-            <div class="info-box-content"> <span class="info-box-text">Active Passengers</span> <span class="info-box-number"><?php 
+            <div class="info-box-content"> <span class="info-box-text">Active Passengers</span> <span class="info-box-number"><?php $allActive=0;
 			//print_r(json_decode($Users['data'],true)); die;
-				//print_r($data);
-				echo @$data['activeUsersCount'];
+				foreach ($users as $user){
+					if(trim($user->active) == 1){
+						$allActive = $allActive+1;	
+					}
+				}
+				echo $allActive;
 			?></span> <span class="totl_pass">Total Active of the Month</span> </div>
             <!-- /.info-box-content --> 
           </div>
@@ -149,6 +154,10 @@
 </div>
 	
 <form role="form" class="generate_report">
+
+
+
+
 
   <div class="form-group fl sl_widht  w100">
     <label for="email" class="l_blck">Select Location</label>

@@ -454,7 +454,7 @@ class DriverController extends BaseController
 		$orderfields=array('0'=>'unique_code','1'=>'first_name','2'=>'last_name','3'=>'created_at','5'=>'email','6'=>'contact_number','8'=>'is_logged');
 		//print_r($data['order'][0]); die();
 		
-		$field='dn_users.id';
+		$field='id';
 		$direction='ASC';
 		
 		/* code for order by data of user*/
@@ -471,46 +471,38 @@ class DriverController extends BaseController
 		}
 		
 		/* code for searching of  user*/
-		$sql1 = 'SELECT count(distinct dn_users.id) as totalrecords FROM dn_users  ';
-		$sql2 = 'SELECT distinct dn_users.id FROM dn_users  ';
-		$cmnSql=' ';
-		$cmnSql.=' left join role_user on dn_users.id=role_user.user_id WHERE 1=1 ';
-		$cmnSql.= " AND role_user.role_id='3' AND role_user.user_id = dn_users.id AND dn_users.is_driver_approved ='0' AND dn_users.become_driver_request ='1' ";	
+		$sql = 'SELECT id FROM dn_users WHERE 1=1 ';
+
 		if(!empty($startDate) &&  !empty($endDate))
 		{
 			$startDate=$date = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $startDate)));
 			$endDate=date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $endDate)));
-			$cmnSql .=" AND  dn_users.created_at BETWEEN '$startDate' AND '$endDate'";
+			$sql .=" AND  created_at BETWEEN '$startDate' AND '$endDate'";
 		}
 		if($data['state']!='')
 		{
 			$state = $data['state'];
-			$cmnSql .=" AND  state= '$state'";
+			$sql .=" AND  state= '$state'";
 		}
 		if($data['city']!='')
 		{
 			 $city = $data['city'];
-			 $cmnSql .=" AND  city= '$city'";
+			 $sql .=" AND  city= '$city'";
 		}
 		if($data['state']!='' && $data['city']!='')
 		{
 			$state = $data['state'];
 			$city = $data['city'];
-			$cmnSql .="AND  state= '$state' AND  city= '$city'";
+			$sql .="AND  state= '$state' AND  city= '$city'";
 		}
 		if(@$searchString!='')
 		{	
 			$search = "%$searchString%";
-			$cmnSql .=" AND  (first_name LIKE '$search' or last_name LIKE '$search' or full_name LIKE '$search' or email LIKE '$search'  or contact_number LIKE '$search') ";
+			$sql .=" AND  (first_name LIKE '$search' or last_name LIKE '$search' or full_name LIKE '$search' or email LIKE '$search'  or contact_number LIKE '$search') ";
 		}
-		$totalRecords = 0;
-		$cmnSql .= " order by ".$field." ".$direction;
-		$sqlCount=$sql1.$cmnSql;
-		$totalRecords=DB::select(DB::raw($sqlCount));
-		$cmnSql .= " limit $offset, $limit";
 		
-		$dataSql=$sql2.$cmnSql;
-		$usersIds=DB::select(DB::raw($dataSql));
+		$sql .= " order by ".$field." ".$direction;
+		$usersIds=DB::select(DB::raw($sql));
 		if(!empty($usersIds))
 		{
 			$usersList=array();
@@ -521,7 +513,7 @@ class DriverController extends BaseController
 			}
 		}
 		$users = array();
-		
+		$totalRecords = 0;
 
 		if(!empty($usersList))
 		{
@@ -538,12 +530,10 @@ class DriverController extends BaseController
 	                      	->where( 'dn_users.is_driver_approved', 0 );
 						})
 						->whereIn('role_user.user_id',$usersList)
-						//->take($limit)->offset($offset) 
-						->orderBy($field,$direction)
-						->distinct()->get();
+						->take($limit)->offset($offset) ->orderBy($field,$direction)->get();
 						//print_r($users);
 			
-			/* $totalRecords = DB::table('role_user')
+			$totalRecords = DB::table('role_user')
 						->select(array('dn_users.*'))
 						->join('dn_users', 'role_user.user_id', '=', 'dn_users.id')
 						//->where('role_id','4')
@@ -553,7 +543,7 @@ class DriverController extends BaseController
 	                      	->where( 'dn_users.is_driver_approved', 0 );
 						})
 						->whereIn('role_user.user_id',$usersList)
-						->orderBy($field,$direction)->get(); */
+						->orderBy($field,$direction)->get();
 		}
 		$Data="";
 		foreach($users as $user)
@@ -656,8 +646,8 @@ class DriverController extends BaseController
 			//echo '<pre>';print_r($newData);die;
 					return '{
 			  "draw": '.$draw.',
-			  "recordsTotal": '.$totalRecords[0]->totalrecords.',
-			  "recordsFiltered":'.$totalRecords[0]->totalrecords.',
+			  "recordsTotal": '.count($totalRecords).',
+			  "recordsFiltered":'.count($totalRecords).',
 			  "data": ['.$newData.']
 			}';
 		} 
@@ -810,50 +800,38 @@ class DriverController extends BaseController
 		}
 		
 		/* code for searching of  user*/
-		$sql1 = 'SELECT count(distinct dn_users.id) as totalrecords FROM dn_users  ';
-		$sql2 = 'SELECT distinct dn_users.id FROM dn_users  ';
-		$cmnSql=' ';
-		$cmnSql.=' left join role_user on dn_users.id=role_user.user_id WHERE 1=1 ';
-		$cmnSql.= " AND role_user.role_id='3' AND role_user.user_id = dn_users.id AND dn_users.is_driver_approved ='2' AND dn_users.become_driver_request IN('1','2') ";	
+		$sql = 'SELECT id FROM dn_users WHERE 1=1 ';
+
 		if(!empty($startDate) &&  !empty($endDate))
 		{
 			$startDate=$date = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $startDate)));
 			$endDate=date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $endDate)));
-			$cmnSql .=" AND  created_at BETWEEN '$startDate' AND '$endDate'";
+			$sql .=" AND  created_at BETWEEN '$startDate' AND '$endDate'";
 		}
 		if($data['state']!='')
 		{
 			$state = $data['state'];
-			$cmnSql .=" AND  state= '$state'";
+			$sql .=" AND  state= '$state'";
 		}
 		if($data['city']!='')
 		{
 			 $city = $data['city'];
-			 $cmnSql .=" AND  city= '$city'";
+			 $sql .=" AND  city= '$city'";
 		}
 		if($data['state']!='' && $data['city']!='')
 		{
 			$state = $data['state'];
 			$city = $data['city'];
-			$cmnSql .="AND  state= '$state' AND  city= '$city'";
+			$sql .="AND  state= '$state' AND  city= '$city'";
 		}
 		if(@$searchString!='')
 		{	
 			$search = "%$searchString%";
-			$cmnSql .=" AND  (first_name LIKE '$search' or last_name LIKE '$search' or full_name LIKE '$search' or email LIKE '$search' or contact_number LIKE '$search') ";
+			$sql .=" AND  (first_name LIKE '$search' or last_name LIKE '$search' or full_name LIKE '$search' or email LIKE '$search' or contact_number LIKE '$search') ";
 		}
 		
-		$cmnSql .= " order by ".$field." ".$direction;
-		
-		$totalRecords = 0;
-		
-		$sqlCount=$sql1.$cmnSql;
-		$totalRecords=DB::select(DB::raw($sqlCount));
-		$cmnSql .= " limit $offset, $limit";
-		
-		$dataSql=$sql2.$cmnSql;
-		$usersIds=DB::select(DB::raw($dataSql));
-		//$usersIds=DB::select(DB::raw($sql));
+		$sql .= " order by ".$field." ".$direction;
+		$usersIds=DB::select(DB::raw($sql));
 		if(!empty($usersIds))
 		{
 			$usersList=array();
@@ -864,7 +842,7 @@ class DriverController extends BaseController
 			}
 		}
 		$users = array();
-		
+		$totalRecords = 0;
 
 		if(!empty($usersList))
 		{
@@ -879,12 +857,12 @@ class DriverController extends BaseController
 							$query->where( 'role_id', '3' )
 	                      	->whereIn( 'dn_users.become_driver_request', [1,2] )
 	                      	->where( 'dn_users.is_driver_approved', 2 );
-						})->orderBy($field,$direction)->distinct()->get();
-						//->whereIn('role_user.user_id',$usersList)
-						// ->paginate(config('admin.user.perpage'));
+						})
+						->whereIn('role_user.user_id',$usersList)
+						->paginate(config('admin.user.perpage'));
 						//print_r($users);
 			
-			/* $totalRecords = DB::table('role_user')
+			$totalRecords = DB::table('role_user')
 						->select(array('dn_users.*'))
 						->join('dn_users', 'role_user.user_id', '=', 'dn_users.id')
 						//->where('role_id','3')
@@ -894,7 +872,7 @@ class DriverController extends BaseController
 	                      	->where( 'dn_users.is_driver_approved', 2 );
 						})
 						->whereIn('role_user.user_id',$usersList)
-						->paginate(config('admin.user.perpage')); */
+						->paginate(config('admin.user.perpage'));
 		}
 		$Data="";
 		foreach($users as $user)
@@ -982,8 +960,8 @@ class DriverController extends BaseController
 			//echo '<pre>';print_r($newData);die;
 					return '{
 			  "draw": '.$draw.',
-			  "recordsTotal": '.$totalRecords[0]->totalrecords.',
-			  "recordsFiltered":'.$totalRecords[0]->totalrecords.',
+			  "recordsTotal": '.count($totalRecords).',
+			  "recordsFiltered":'.count($totalRecords).',
 			  "data": ['.$newData.']
 			}';
 		} 
@@ -1082,52 +1060,42 @@ class DriverController extends BaseController
 					}
 				}
 			}
-			$comnSql='';
-			/* code for searching of  user*/
-			$sqlCount = 'SELECT count(distinct dn_users.id) as totalrows FROM dn_users ';
-			$sqlData = 'SELECT distinct dn_users.id FROM dn_users ';
-			$comnSql .= " LEFT JOIN role_user on role_user.user_id = dn_users.id ";
 			
-			$comnSql.='left join dn_driver_requests on dn_driver_requests.user_id= dn_users.id left join dn_users_data on dn_users_data.user_id=dn_users.id WHERE 1=1 ';
-			$comnSql.= " AND role_user.role_id='4' AND role_user.user_id = dn_users.id AND dn_users.is_driver_approved ='1' ";	
+			/* code for searching of  user*/
+			$sql = 'SELECT dn_users.id FROM dn_users left join dn_driver_requests on dn_driver_requests.user_id= dn_users.id left join dn_users_data on dn_users_data.user_id=dn_users.id WHERE 1=1 ';
+				
 			// $sql = 'LEFT JOIN dn_rides ON dn_rides.driver_id = dn_users.id ';
 			if(!empty($startDate) &&  !empty($endDate))
 			{
 				$startDate=$date = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $startDate)));
 				$endDate=date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $endDate)));
-				$comnSql .=" AND  dn_users.created_at BETWEEN '$startDate' AND '$endDate'";
+				$sql .=" AND  dn_users.created_at BETWEEN '$startDate' AND '$endDate'";
 			}
 			if($data['state']!='')
 			{
 				$state = $data['state'];
-				$comnSql .=" AND  dn_users.state= '$state'";
+				$sql .=" AND  dn_users.state= '$state'";
 			}
 			if($data['city']!='')
 			{
 				 $city = $data['city'];
-				 $comnSql .=" AND  dn_users.city= '$city'";
+				 $sql .=" AND  dn_users.city= '$city'";
 			}
 			if($data['state']!='' && $data['city']!='')
 			{
 				$state = $data['state'];
 				$city = $data['city'];
-				$comnSql .="AND  dn_users.state= '$state' AND  dn_users.city= '$city'";
+				$sql .="AND  dn_users.state= '$state' AND  dn_users.city= '$city'";
 			}
 			if(@$searchString!='') 
 			{	
 				$search = "%$searchString%";
-				$comnSql .=" AND  (dn_users.first_name LIKE '$search' or dn_users.last_name LIKE '$search' or dn_users.full_name LIKE '$search'  or dn_users.contact_number LIKE '$search' or dn_users.unique_code LIKE '$search' or dn_users.email LIKE '$search') ";
+				$sql .=" AND  (dn_users.first_name LIKE '$search' or dn_users.last_name LIKE '$search' or dn_users.full_name LIKE '$search'  or dn_users.contact_number LIKE '$search' or dn_users.unique_code LIKE '$search' or dn_users.email LIKE '$search') ";
 			}
 			
-			$comnSql .= " order by ".$field." ".$direction;
-			$totalRecords = 0;
-			$sqlCount = $sqlCount.$comnSql;
-			$totalRecords = DB::select(DB::raw($sqlCount));
-			//print_r($totalRecords);die;
-			$comnSql .= " limit $offset, $limit";
-			$sqlData = $sqlData.$comnSql;
+			$sql .= " order by ".$field." ".$direction;
 			//echo $sql;die;
-			$usersIds=DB::select(DB::raw($sqlData));
+			$usersIds=DB::select(DB::raw($sql));
 			if(!empty($usersIds))
 			{
 			$usersList=array();
@@ -1138,7 +1106,7 @@ class DriverController extends BaseController
 			}
 			}
 			$users = array();
-			
+			$totalRecords = 0;
 			if(!empty($usersList))
 			{
 				/* code for fetching data from dn_users table */
@@ -1153,10 +1121,9 @@ class DriverController extends BaseController
 							->where('role_id','4')
 							->where('dn_users.is_driver_approved','1')
 							->whereIn('role_user.user_id',$usersList)
-							//->take($limit)->offset($offset) ->orderBy($field,$direction)
-							->distinct()->get();
+							->take($limit)->offset($offset) ->orderBy($field,$direction)->get();
 							//print_r($users);die;
-				/* $totalRecords = DB::table('role_user')
+				$totalRecords = DB::table('role_user')
 							->select(array('dn_users.*'))
 							->join('dn_users', 'role_user.user_id', '=', 'dn_users.id')
 							->leftjoin('dn_driver_requests', 'dn_driver_requests.user_id', '=', 'dn_users.id')	
@@ -1164,7 +1131,7 @@ class DriverController extends BaseController
 							->where('role_id','4')
 							->where('dn_users.is_driver_approved','1')
 							->whereIn('role_user.user_id',$usersList)
-							->paginate(config('admin.user.perpage')); */
+							->paginate(config('admin.user.perpage'));
 			}
 			$Data="";
 			foreach($users as $user)
@@ -1349,8 +1316,8 @@ class DriverController extends BaseController
 			
 			if(!empty($Data)){	
 			$Data['draw']=$draw;
-			$Data['recordsTotal']=$totalRecords[0]->totalrows;
-			$Data['recordsFiltered']=$totalRecords[0]->totalrows;
+			$Data['recordsTotal']=count($totalRecords);
+			$Data['recordsFiltered']=count($totalRecords);
 			return(json_encode($Data));
 			} else {
 				return '{
@@ -1649,7 +1616,7 @@ class DriverController extends BaseController
 			$searchString=$data['search']['value'];
 		    $startDate=$data['startDate'];
 			$endDate=$data['endDate'];
-			$orderfields=array('0'=>'dn_users.unique_code','1'=>'dn_users.first_name','2'=>'dn_users.last_name','3'=>'dn_users.created_at','5'=>'dn_users.email','6'=>'dn_users.contact_number','8'=>'dn_users.is_logged');
+			$orderfields=array('0'=>'unique_code','1'=>'first_name','2'=>'last_name','3'=>'created_at','5'=>'email','6'=>'contact_number','8'=>'is_logged');
 			//print_r($data['order'][0]);
 			$field='id';
 			$direction='ASC';
@@ -1666,45 +1633,37 @@ class DriverController extends BaseController
 			}
 			
 			/* code for searching of  user*/
-			$sql1 = 'SELECT count(distinct dn_users.id) as totalrecords FROM dn_users ';
-			$sql2 = 'SELECT distinct dn_users.id FROM dn_users ';
-			$sqlQuery = " LEFT JOIN role_user on role_user.user_id = dn_users.id ";
-			$sqlQuery.= "WHERE 1=1 AND role_user.role_id='5' AND role_user.user_id = dn_users.id ";
+			$sql = 'SELECT id FROM dn_users WHERE 1=1';
 			if(!empty($startDate) &&  !empty($endDate))
 			{
 				$startDate=$date = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $startDate)));
 				$endDate=date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $endDate)));
-				$sqlQuery .=" AND  dn_users.created_at BETWEEN '$startDate' AND '$endDate'";
+				$sql .=" AND  created_at BETWEEN '$startDate' AND '$endDate'";
 			}
 			if($data['state']!='')
 			{
 				$state = $data['state'];
-				$sqlQuery .=" AND  dn_users.state= '$state'";
+				$sql .=" AND  state= '$state'";
 			}
 			if($data['city']!='')
 			{
 				 $city = $data['city'];
-				 $sqlQuery .=" AND  dn_users.city= '$city'";
+				 $sql .=" AND  city= '$city'";
 			}
 			if($data['state']!='' && $data['city']!='')
 			{
 				$state = $data['state'];
 				$city = $data['city'];
-				$sqlQuery .="AND  dn_users.state= '$state' AND  dn_users.city= '$city'";
+				$sql .="AND  state= '$state' AND  city= '$city'";
 			}
 			if(@$searchString!='')
 			{	
 				$search = "%$searchString%";
-				$sqlQuery .=" AND  (first_name LIKE '$search' or last_name LIKE '$search' or full_name LIKE '$search' or email LIKE '$search'  or contact_number LIKE '$search' ) "; 
+				$sql .=" AND  (first_name LIKE '$search' or last_name LIKE '$search' or full_name LIKE '$search' or email LIKE '$search'  or contact_number LIKE '$search' ) "; 
 			}
 			
-			$sqlQuery .= " order by ".$field." ".$direction;
-			$totalRecords = 0;
-			$sqlcount = $sql1.$sqlQuery;
-			$totalRecords=DB::select(DB::raw($sqlcount));
-			$sqlQuery .= " limit $offset, $limit";
-			$sqldata=$sql2.$sqlQuery; 
-			$usersIds=DB::select(DB::raw($sqldata));
+			$sql .= " order by ".$field." ".$direction;
+			$usersIds=DB::select(DB::raw($sql));
 			if(!empty($usersIds))
 			{
 			$usersList=array();
@@ -1715,7 +1674,7 @@ class DriverController extends BaseController
 			}
 			}
 			$users = array();
-			
+			$totalRecords = 0;
 			if(!empty($usersList))
 			{
 				/* code for fetching data from dn_users table */
@@ -1725,16 +1684,14 @@ class DriverController extends BaseController
 							//->join('dn_users', 'role_user.user_id', '=', 'dn_users.id')					
 							->where('role_id','5')
 							->whereIn('role_user.user_id',$usersList)
-							//->take($limit)->offset($offset)
-							->orderBy($field,$direction)
-							->distinct()->get();
+							->take($limit)->offset($offset) ->orderBy($field,$direction)->get();
 							//print_r($users);
-				/* $totalRecords = DB::table('role_user')
+				$totalRecords = DB::table('role_user')
 							->select(array('dn_users.*'))
 							->join('dn_users', 'role_user.user_id', '=', 'dn_users.id')
 							->where('role_id','5')
 							->whereIn('role_user.user_id',$usersList)
-							->paginate(config('admin.user.perpage')); */
+							->paginate(config('admin.user.perpage'));
 			}
 			$Data="";
 			foreach($users as $user)
@@ -1801,8 +1758,8 @@ class DriverController extends BaseController
 				//echo '<pre>';print_r($newData);die;
 						return '{
 				  "draw": '.$draw.',
-				  "recordsTotal": '.$totalRecords[0]->totalrecords.',
-				  "recordsFiltered":'.$totalRecords[0]->totalrecords.',
+				  "recordsTotal": '.count($totalRecords).',
+				  "recordsFiltered":'.count($totalRecords).',
 				  "data": ['.$newData.']
 			}';} else {
 				return '{

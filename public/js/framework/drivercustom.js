@@ -42,17 +42,17 @@ $( document ).on( "change", "#sweek", function(){
     success: function(response) {
   console.log(response['0']);
   if(response['0']){
-	  var tierLevel ='Silver';
-	  if(response['0'].tiers_level==1){
-		tierLevel='Silver';
-	  }else if(response['0'].tiers_level==2){
-		tierLevel='Gold';
-	  }else if(response['0'].tiers_level==3){
-		tierLevel='Platinum';
-	  }else if(response['0'].tiers_level==4){
-		tierLevel='Diamond';
-	  }
-	   
+    var tierLevel ='Silver';
+    if(response['0'].tiers_level==1){
+    tierLevel='Silver';
+    }else if(response['0'].tiers_level==2){
+    tierLevel='Gold';
+    }else if(response['0'].tiers_level==3){
+    tierLevel='Platinum';
+    }else if(response['0'].tiers_level==4){
+    tierLevel='Diamond';
+    }
+     
      $('#chweek').html('<tr><td>Tier Levels achived</td><td>' + tierLevel + '</td></tr><tr><td>Active Hours</td><td>'+response['0'].total_active_hours +'</td></tr><tr><td>Active Hours during Rush Hour</td><td>'+ response['0'].scheduled_hours +'</td></tr><tr><td>Acceptance Rate</td><td>'+ response['0'].acceptance_rate +'</td> </tr><tr><td>Cancellattion</td><td>'+ response['0'].cancelation_rate +'</td></tr>');
      $('.acceptance_rate').html(response['0'].acceptance_rate);
      $('.cancelation_rate').html(response['0'].cancelation_rate);
@@ -156,14 +156,14 @@ $( document ).on( "click", ".rideaddress", function(){
     type: "post",
     dataType: "json",
     url: "rideAddres", //Relative or absolute path to response.php file
-	beforeSend:function() {
-						$('body').append('<div id="divLoading" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.8;"><p style="position: absolute; color: White; top: 50%; left: 45%;">Loading, please wait...<img src="http://pulse.sindlab.com.pk//images/ajax-loading.gif"></p></div>');
-	
-					},
+  beforeSend:function() {
+            $('body').append('<div id="divLoading" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.8;"><p style="position: absolute; color: White; top: 50%; left: 45%;">Loading, please wait...<img src="http://pulse.sindlab.com.pk//images/ajax-loading.gif"></p></div>');
+  
+          },
     data: {'_token': token,'id':rideId},
     success: function(response) {
     //console.log(response);
-	
+  
     var ride_pick_data= response.pickup_formatted_address.split(",");
     var ride_pick_firstline=ride_pick_data.slice(0,3);
    var ride_pick_second_line=ride_pick_data.slice(3);
@@ -173,13 +173,13 @@ $( document ).on( "click", ".rideaddress", function(){
    var img = response.ride_map_image;
            if($.trim(img) == "")
             {
-				
-			  $("#rideimage").show();
+        
+        $("#rideimage").show();
               $( "#noMap" ).html( " ");
-			  $('#rideimage img').attr('src',nomapurl);
+        $('#rideimage img').attr('src',nomapurl);
              // $("#rideimage").hide();
              // $( "#noMap" ).html( '<div class="col-sm-6" style="display:inline;text-align:center;"> <h1>Map NOT Found</h1></div>');
-			 //$( "#noMap" ).html( "<h1 >Map NOT Found</h1>");
+       //$( "#noMap" ).html( "<h1 >Map NOT Found</h1>");
             }
             else{
               $("#rideimage").show();
@@ -201,7 +201,7 @@ if(response != ''){
   $('#dropOff').html(ride_des_firstline+' , '+ride_des_second_line+ ' , ' +response.des_city+' , '+response.des_state);
   
 
-	
+  
   $('#receipt-report').html('<div class="btn-cls-down"> \
      <hr/> \
     <div class="col-sm-6 text-center"><a class="btn green-btn-s" href="#" role="button">Report Found Time</a></div>\
@@ -212,7 +212,7 @@ if(response != ''){
      $("#address").hide()
         $('#ride').html('<tr><td class="col-sm-6"> No pickup Found </td><td class="col-sm-6">No drop Found</td></tr>');
      }
-	 $('#divLoading').remove();
+   $('#divLoading').remove();
    }
  });
 });
@@ -221,7 +221,7 @@ if(response != ''){
 //for findthe  Receipt address
 //var me = getUrlVars()["id"];
 $( document ).on( "click", ".rideaddress", function(){
-	
+  
  $("#address").show()
   var rideId=$(this).prop('id');
   //console.log(rideId);
@@ -231,13 +231,13 @@ $( document ).on( "click", ".rideaddress", function(){
     type: "post",
     dataType: "json",
     url: "receipt", //Relative or absolute path to response.php file
-	beforeSend:function() {
-						$('body').append('<div id="divLoading" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.8;"><p style="position: absolute; color: White; top: 50%; left: 45%;">Loading, please wait...<img src="http://pulse.sindlab.com.pk//images/ajax-loading.gif"></p></div>');
-	
-					},
+  beforeSend:function() {
+            $('body').append('<div id="divLoading" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.8;"><p style="position: absolute; color: White; top: 50%; left: 45%;">Loading, please wait...<img src="http://pulse.sindlab.com.pk//images/ajax-loading.gif"></p></div>');
+  
+          },
     data: {'_token': token,'id':rideId},
      success: function(response) { 
-	 $('#divLoading').remove();
+   $('#divLoading').remove();
     if(response.id){
     $('#receipt').html('<tr><td class="col-sm-6">' + response.miles  + '  Miles</td><td class="col-sm-6">' + response.miles_charges + ' $</td></tr> \
     <tr><td class="col-sm-6">'+ response.duration  +'Minutes</td> <td class="col-sm-6">' + response.duration_charges  + ' $</td></tr> \
@@ -245,15 +245,15 @@ $( document ).on( "click", ".rideaddress", function(){
     <tr><td class="col-sm-6">Dezi Fee</td> <td class="col-sm-6">' + response.service_fee  + ' $</td> </tr> \
     <tr><td class="col-sm-6">Pick up Free</td> <td class="col-sm-6">' +response.pickup_fee  + ' $</td></tr> \
     <tr><td></td><td></td> </tr><tr><td class="col-sm-6">Total Bill </td><td class="col-sm-6">' + response.total_charges + ' $</td></tr>');
-	
-	$('#distance').html( response.miles + " Miles");
-	$('#distanCharges').html( response.miles_charges );
-	$('#time').html(response.duration+ " Minutes ");
-	$('#timeCharges').html(response.duration_charges);
-	$('#subtotal').html(response.subtotal);
-	$('#deziFee').html(response.service_fee);
-	$('#pickupFee').html(response.pickup_fee);
-	$('#TotalEarning').html(response.total_charges);
+  
+  $('#distance').html( response.miles + " Miles");
+  $('#distanCharges').html( response.miles_charges );
+  $('#time').html(response.duration+ " Minutes ");
+  $('#timeCharges').html(response.duration_charges);
+  $('#subtotal').html(response.subtotal);
+  $('#deziFee').html(response.service_fee);
+  $('#pickupFee').html(response.pickup_fee);
+  $('#TotalEarning').html(response.total_charges);
 
     $('#receipt-report').html('<div class="btn-cls-down"> \
        <hr/> \
@@ -300,22 +300,22 @@ $( document ).on( "click", "#bankdetail", function(){
 
 $('#customers').hide();
 function weeklyReport() {
-	$('body').append('<div id="divLoading" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.8;"><p style="position: absolute; color: White; top: 50%; left: 45%;">Loading, please wait...<img src="http://pulse.sindlab.com.pk//images/ajax-loading.gif"></p></div>');
-	
-	$('#customers').show();
-	var doc = new jsPDF();
-	var specialElementHandlers = {
+  $('body').append('<div id="divLoading" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.8;"><p style="position: absolute; color: White; top: 50%; left: 45%;">Loading, please wait...<img src="http://pulse.sindlab.com.pk//images/ajax-loading.gif"></p></div>');
+  
+  $('#customers').show();
+  var doc = new jsPDF();
+  var specialElementHandlers = {
     '#editor': function (element, renderer) {
         return true;
     }
-	};
-	
-	var pik_up=$('.pik_up').text();
-	doc.text(15, 25, "Ride Details"); 
-	var imageUrl = $('#mapFrame').attr('src');
-	
+  };
+  
+  var pik_up=$('.pik_up').text();
+  doc.text(15, 25, "Ride Details"); 
+  var imageUrl = $('#mapFrame').attr('src');
+  
     var convertType = 'Canvas';
-	convertImgToDataURLviaCanvas(imageUrl, function(base64Img) {
+  convertImgToDataURLviaCanvas(imageUrl, function(base64Img) {
     $('.output').find('.textbox').val(base64Img)
       .end()
       .find('.link')
@@ -332,27 +332,27 @@ function weeklyReport() {
       .text(convertType)
       .end()
       .hide()
-	});
-	
-	
-	//var a = $('[active_contact][serial=1] '+img)[0];
-	//console.log(getBase64Image(a));
-	setTimeout(function(){ 
-	
-	var data_img_url = $.trim($(".data_img_url").val());
-	console.log(data_img_url);
-	doc.addImage(data_img_url, 'PNG', 15, 40, 155, 80); 
-	
-	doc.fromHTML($('#customers').get(0), 15, 120, {
+  });
+  
+  
+  //var a = $('[active_contact][serial=1] '+img)[0];
+  //console.log(getBase64Image(a));
+  setTimeout(function(){ 
+  
+  var data_img_url = $.trim($(".data_img_url").val());
+  console.log(data_img_url);
+  doc.addImage(data_img_url, 'PNG', 15, 40, 155, 80); 
+  
+  doc.fromHTML($('#customers').get(0), 15, 120, {
         'width': 180,
             'elementHandlers': specialElementHandlers
     });
-	
-	
-	$('#customers').hide();
-	$('#divLoading').remove();
-	doc.save('invoice');
-	}, 2000);
+  
+  
+  $('#customers').hide();
+  $('#divLoading').remove();
+  doc.save('invoice');
+  }, 2000);
 }
 
  

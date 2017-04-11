@@ -52,7 +52,7 @@ var homeUrl= "{!! route('index') !!}";
 			
 					<?php   
 					if ($user->role_id == 3) { 
-						echo "Passenger";  
+						echo "Passenger"; 
 					}elseif ( $user->role_id == 4 ) { 
 						echo "Driver"; 
 					}elseif ( $user->role_id == 2 ) { 

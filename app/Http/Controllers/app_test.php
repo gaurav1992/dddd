@@ -1484,20 +1484,20 @@ class app_test extends Controller
 			/*
 			Create session id for server to prevent multiple request for same driver 
 			*/
-
+<<<<<<< .mine
 			session_id("driverid");	
             $first_near_driver = reset($driver_dist);
 			session_start();
-
+||||||| .r1452
 			session_id("driverid");
 			
 				
             $first_near_driver = reset($driver_dist);
 			session_start();
-
+=======
 			
 			$first_near_driver = reset($driver_dist);
-
+>>>>>>> .r1486
 			
 			foreach(@$_SESSION['allocated_driver'] as $ky=>$vl){
 				if($first_near_driver['driver_id']==@$vl['drId']){
@@ -1549,9 +1549,9 @@ class app_test extends Controller
                         'pickup_time' => date('Y-m-d H:i:s')]);
             }
             $to = $first_near_driver['driver_id'];
-
+            $update_firebase = ['driver_available_is_hired'=>'true_1','is_hired'=>1];
             DB::table('missed_ride_request')->insertGetId(['ride_id' => $ride_id, 'driver_id' => $first_near_driver['driver_id'],'request_time'=>date('Y-m-d H:i:s')]);
-            //$firebase->update($DEFAULT_PATH . '/drivers/' .$to , array('driver_available_is_hired'=>'true_1','is_hired'=>1));
+            $firebase->update($DEFAULT_PATH . '/drivers/' .$to , array('driver_available_is_hired'=>'true_1','is_hired'=>1));
             //device id for gcm
             //passenger data which shown on driver end
             $passenger_data = ['first_name' => $passenger_info['first_name'], 'last_name' => $passenger_info['last_name'], 'profile_pic' => $passenger_info['profile_pic'], 'car_detail' => $car_detail, 'eta' => $ETA, 'pickup_address' => ['latitude' => $pickup_latitude, 'longitude' => $pickup_longitude], 'ride_id' => $ride_id, 'contact_number' => $passenger_info['contact_number']];
@@ -1572,215 +1572,8 @@ class app_test extends Controller
         }
 
     }
+   
 
-    public function pickup_request_new(Request $request)
-    {
-        /**
-         *Removing the drivers added before 1 minute in session array
-         *
-         */
-
-        session_id("driverid");
-        session_start();
-        if(!empty($_SESSION['allocated_driver'] )){
-            foreach($_SESSION['allocated_driver'] as $key=>$value){
-                if((time() - $value['TimeStamp']) >=20){
-                    // echo "search key value: ";print_r(array_search(@$value['TimeStamp'],$_SESSION['allocated_driver'][$key]['TimeStamp']));
-                    // echo "<hr>";
-                    if ((@$value['TimeStamp']==$_SESSION['allocated_driver'][$key]['TimeStamp']) && (@$value['drId']==$_SESSION['allocated_driver'][$key]['drId'])) {
-                        unset($_SESSION['allocated_driver'][$key]);
-                    }
-                }/* else{
-
-					echo "with in 60";
-				} */
-            }
-        }
-        if ($error = $this->key($request->input('token'))) {
-            return response()->json(['not valid key'], 200);
-        }
-        $user_id = $request->input('user_id');
-        if ($data = $this->check_empty($user_id, 'Please provide user_id'))
-            return response()->json($data, 200);
-        $check_payment = DB::table('dn_rides')->select('id')->where(array('passenger_id' => $user_id,'bill_generated' => '1'))->whereIn('payment_status', array(0, 2))->orderBy('id', 'desc')->get();
-        if(!empty($check_payment)){
-            $bill_payment  = DB::table('ride_billing_info')->select('total_charges')->where('ride_id', $check_payment[0]->id)->first();
-
-            $bill_payment = $bill_payment->total_charges;
-            return response()->json(['status' => 5, 'message' => 'Previous Ride payment was failed due to some reasons, Please Re-Pay by changing your payment method and tap Paybill button to enjoy future rides.','amount' => $bill_payment,'ride_id'=>$check_payment[0]->id]);
-
-        }
-        //check blocked user
-        if ($user = $this->is_blocked($user_id)) {
-            return response()->json($user);
-        }
-        $pickup_latitude = $request->input('pickup_latitude');
-        if ($data = $this->check_empty($pickup_latitude, 'Please provide pickup_latitude'))
-            return response()->json($data, 200);
-        $pickup_longitude = $request->input('pickup_longitude');
-        if ($data = $this->check_empty($pickup_longitude, 'Please provide pickup_longitude'))
-            return response()->json($data, 200);
-        $destination_latitude = $request->input('destination_latitude');
-        if ($data = $this->check_empty($destination_latitude, 'Please provide destination'))
-            return response()->json($data, 200);
-        $destination_longitude = $request->input('destination_longitude');
-        if ($data = $this->check_empty($destination_longitude, 'Please provide destination'))
-            return response()->json($data, 200);
-
-        $ride_id = $request->input('ride_id');
-
-        $payment_detail = DB::table('dn_payment_accounts')->select('id','account_type', 'card_type', 'account_email', 'image_url', 'masked_number')->where(['user_id'=>$user_id,'is_delete'=>'0','is_default'=>'1'])->first();
-        if (empty($payment_detail)) {
-            return response()->json(['status' => 0, 'message' => 'No payment method found']);
-        }
-
-        $car_detail = DB::table('dn_user_cars')->select('id','make', 'number', 'transmission', 'model')->where(['user_id'=>$user_id,'is_delete'=>'0','is_default'=>'1'])->first();
-        if (empty($car_detail)) {
-            return response()->json(['status' => 0, 'message' => 'No car found']);
-        }
-        $time=time()-15;
-        $from = date('Y-m-d H:i:s',$time);
-        $timeTo=time();
-        $to = date('Y-m-d H:i:s',$timeTo);
-        $user_ride_check=DB::table('dn_rides')
-            ->select('*')
-            ->where('passenger_id', $user_id)
-            ->whereBetween('created_at', array($from,$to))
-            ->get();
-        if(!empty($user_ride_check)){
-            return response()->json(['status' => 0, 'message' => 'Your last request is in Process. Please try again.']);
-        }
-
-
-
-        $transmission = $car_detail->transmission;
-        $passenger_info = (array)DB::table('dn_users')->select('first_name', 'last_name', 'profile_pic', DB::raw('concat( country_phone_code, "", contact_number) as contact_number'))->where('id', $user_id)->first();
-        //nearby driver search
-        $radius = 8;  //miles radius to search
-        $const = $this->firebaseConstant();
-        $DEFAULT_PATH = '/DeziNow';
-        $firebase = new \Firebase\FirebaseLib($const['DEFAULT_URL'], $const['DEFAULT_TOKEN']);
-        // --- reading the stored string ---
-        $drivers = $request->input('drivers_info');
-
-        if ($drivers) {
-            $driver_arr = (array)json_decode($drivers);
-            $driver_dist = array();
-
-            foreach ($driver_arr as $driver_id => $driver) {
-
-                if ($driver_id != $user_id && ($driver->driver_transmission == 'both' OR $driver->driver_transmission == "$transmission") ) {
-                    $driver_rating = DB::table('dn_rating')->select('rating')->where(['passenger_id' => $user_id, 'driver_id' => $driver->driver_id, 'rate_by' => '4'])->orderBy('rating', 'ASC')->first();
-
-                    if (!empty($driver_rating)) {
-                        $driver_rating = $driver_rating->rating;
-                    } else {
-                        $driver_rating = 4; // at first ride assume rating above 2
-                    }
-
-                    $passanger_rating = DB::table('dn_rating')->select('rating')->where(['passenger_id' => $user_id, 'driver_id' => $driver->driver_id, 'rate_by' => '3'])->orderBy('rating', 'ASC')->first();
-                    if (!empty($passanger_rating)) {
-                        $passanger_rating = $passanger_rating->rating;
-                    } else {
-                        $passanger_rating = 4; // at first ride assume rating above 2
-                    }
-                    $driver_suspended = DB::table('dn_users')->select('is_suspended')->where(['id' => $driver->driver_id, 'is_suspended' => 0])->first();
-                    $driver_revoked = DB::table('role_user')->select('role_id')->where(['user_id' => $driver->driver_id, 'role_id' => 5])->first();
-                    $const = $this->firebaseConstant();
-                    $DEFAULT_PATH = '/DeziNow';
-                    $firebase = new \Firebase\FirebaseLib($const['DEFAULT_URL'], $const['DEFAULT_TOKEN']);
-                    $driver_available_is_hired = str_replace('"', "", $firebase->get($DEFAULT_PATH . "/drivers/" . $driver->driver_id . '/driver_available_is_hired'));
-
-                    if ($driver_available_is_hired == "true_0" && $driver_revoked == NULL && $driver_suspended->is_suspended==0 && ($passanger_rating > 2 AND $driver_rating > 2)) {
-
-                        $driver_dist[] = [
-                                    'driver_id' => $driver->driver_id,
-                                    'latitude' => $driver->driver_latitude,
-                                    'longitude' => $driver->driver_longitude,
-                                ];
-                    }
-                }
-            }
-
-            if (empty($driver_dist)) {
-
-                //no driver found
-                return response()->json(['status' => 4, 'message' => 'No driver found']);
-            }
-
-            if (!empty($ride_id)) {
-                $unanswered_drivers = DB::table('missed_ride_request')->select('driver_id')->where(['ride_id' => $ride_id])->get();
-                foreach ($unanswered_drivers as $u_driver) {
-                    foreach ($driver_dist as $k => $dr_dist) {
-                        if ($dr_dist['driver_id'] == $u_driver->driver_id) {
-                            unset($driver_dist[$k]);
-                        }
-                    }
-                }
-                if (empty($driver_dist)) {
-                    return response()->json(['status' => 4, 'message' => 'No driver found']);
-                }
-            }
-            foreach(@$_SESSION['allocated_driver'] as $ky=>$vl){
-                if($driver_dist[0]['driver_id']==@$vl['drId']){
-                    return response()->json(['status' => 4, 'message' => 'No driver found']);
-
-                }
-            }
-            $arr=array (
-                'drId'=>$driver_dist[0]['driver_id'],
-                'TimeStamp'=>time()
-            );
-            $_SESSION['allocated_driver'][]=$arr;
-             //insert ride information
-            if(empty($ride_id)) {
-                $insert_data = [
-                    'driver_id' => $driver_dist[0]['driver_id'],
-                    'passenger_id' => $user_id,
-                    'driver_latitude' => $driver_dist[0]['latitude'],
-                    'driver_longitude' => $driver_dist[0]['longitude'],
-                    'pickup_latitude' => $pickup_latitude,
-                    'pickup_longitude' => $pickup_longitude,
-                    'destination_latitude' => $destination_latitude,
-                    'destination_longitude' => $destination_longitude,
-                    'pickup_time' => date('Y-m-d H:i:s'),
-                    'car_id' => $car_detail->id,
-                    'payment_id' => $payment_detail->id,
-                    'created_at' => date('Y-m-d H:i:s')
-                ];
-                $ride_id = DB::table('dn_rides')->insertGetId($insert_data);
-            }else{
-
-                DB::table('dn_rides')
-                    ->where(['id' => $ride_id])
-                    ->update(['driver_id' => $driver_dist[0]['driver_id'],
-                        'driver_latitude' => $driver_dist[0]['latitude'],
-                        'driver_longitude' => $driver_dist[0]['longitude'],
-                        'pickup_time' => date('Y-m-d H:i:s')]);
-            }
-            $to = $driver_dist[0]['driver_id'];
-            DB::table('missed_ride_request')->insertGetId(['ride_id' => $ride_id, 'driver_id' => $driver_dist[0]['driver_id'],'request_time'=>date('Y-m-d H:i:s')]);
-            $firebase->update($DEFAULT_PATH . '/drivers/' .$to , array('driver_available_is_hired'=>'true_1','is_hired'=>1));
-            //device id for gcm
-            //passenger data which shown on driver end
-            $passenger_data = ['first_name' => $passenger_info['first_name'], 'last_name' => $passenger_info['last_name'], 'profile_pic' => $passenger_info['profile_pic'], 'car_detail' => $car_detail, 'pickup_address' => ['latitude' => $pickup_latitude, 'longitude' => $pickup_longitude], 'ride_id' => $ride_id, 'contact_number' => $passenger_info['contact_number']];
-            //receiver ids array
-
-
-            $check_notification = $this->sendGoogleCloudMessage('Passenger Request for ride', '1', $passenger_data, $to, $user_id, $ride_id);
-            if (!$check_notification) {
-                return response()->json(['status' => 0, 'message' => 'Please try again.']);
-            }
-
-
-            return response()->json(['status' => 1, 'message' => 'success', 'ride_id' => $ride_id, 'driver_id' => $to]);
-
-        } else {
-            //no driver found
-            return response()->json(['status' => 4, 'message' => 'No driver found']);
-        }
-
-    }
 
 
 
@@ -3691,7 +3484,6 @@ class app_test extends Controller
 
     }
     /**
-     *
      ***********************************************************
      *  Function Name : endride_info
      *  Functionality : get the single ride info to the user.
@@ -5032,7 +4824,7 @@ class app_test extends Controller
 
     private function sendGoogleCloudMessage($title, $type, $data, $to, $from, $ride_id = '')
     {
-        $apiKey = 'AIzaSyB-jqJ2r2acnn2QTpyjnEoRDJWvRf14aqw';   //// firebase server key
+        $apiKey = 'AIzaSyAxF9DbLm0wEu2ZOsqzWimrbSIpAVxdRrA';   //// firebase server key
         $url = 'https://fcm.googleapis.com/fcm/send';
         $badge = 0;
         $sound = 'default';
@@ -5177,7 +4969,7 @@ class app_test extends Controller
     private function firebaseConstant(){
 
         $DEFAULT_URL = 'https://dezinowdev-64eac.firebaseio.com/';
-        $DEFAULT_TOKEN = 'Pmz0GmyhiG5zadghI04Hf9CnuDfB3CZtMzSwVtq3';
+        $DEFAULT_TOKEN = '6HcHm9JebJ0CidszHrQVW6PgSlc9tr9HoSKIsjMP';
         return ['DEFAULT_URL' => $DEFAULT_URL, 'DEFAULT_TOKEN' => $DEFAULT_TOKEN];
     }
     /**
@@ -5715,390 +5507,4 @@ class app_test extends Controller
         $timestamp = $dt->getTimestamp();
         return $dt->setTimezone(new DateTimezone($tz_to))->setTimestamp($timestamp)->format($format);
     }
-
-   public function queryDriver(){
-        $count=1;
-        for ($x = 0; $x <= 20; $x++) {
-
-            $email='manjeet1'.$count.'@yopmail.com';
-            $unique_code=(300000+$count);
-            $role_id=4;
-            $passenger_referral_code='PSNEW'.(909+$count);
-
-            $id=DB::table('dn_users')->insertGetId(
-                [
-                'unique_code' => $unique_code,
-                 'profile_status' => 1,
-                 'first_name' => 'Gaurav',
-                 'last_name' => 'RIDER',
-                 'full_name' => 'Gaurav RIDER',
-                 'dob' => '1990-02-17',
-                 'gender' => 'male',
-                 'profile_pic' => 'uploads/profile-img/bd8d1a7e09a996fc08521e97693643c8.jpg',
-                 'anniversary' => '1990-02-17',
-                 'state' => 'AK',
-                 'city' => 78,
-                 'address_1' => 'g',
-                 'address_2' =>'g',
-                 'zip_code' => '133145',
-                 'time_zone' => 'Asia/Kolkata',
-                 'country_code' => '',
-                 'contact_number' => '8046435285',
-                 'country_phone_code' => '+1',
-                 'is_social' => '0',
-                 'last_ip' => '',
-                 'last_login' => '',
-                 'remember_token' => '',
-                 'access_token' => '',
-                 'password_token' => '',
-                 'password_token_expired' => 0,
-                 'social_id' => '',
-                 'name' => '',
-                 'email' => $email,
-                 'password' => '$2y$10$XMSpciu.PdQz.JSGHScCXuDq0U3eye9/0ML.g0ruFdcVTdYL2TPGK',
-                 'device_token' => '5bf2bb2de39761ae',
-                 'active' => '1',
-                 'is_suspended' => 0,
-                 'become_driver_request' => '1',
-                 'driver_requested_on' => '2017-01-26 21:49:37',
-                 'is_driver_approved' => '1',
-                 'driver_approved_on' => '2017-01-26 21:50:20',
-                 'driver_verified_by' => 1,
-                 'passenger_referral_code' => $passenger_referral_code,
-                 'anniversary_promo_check' => 0,
-                 'birthday_promo_check' => 0,
-                 'is_logged' => 'true',
-                 'created_at' => '2017-01-17 12:04:05',
-                 'updated_at' => '2017-01-17 04:04:05'
-                 ]
-            );
-            $dn_users_data=DB::table('dn_users_data')->insertGetId(
-                [
-                    'user_id' => $id,
-                    'transmission' => 'both',
-                    'navigation_system' => 'google_map',
-                    'active' => '1',
-                    'tiers_level' => '1',
-                    'license_number' => '3214697',
-                    'ssn' => '653219874',
-                    'referral_code' => 'DR32568',
-                ]
-            );
-            $dn_driver_requests_id=DB::table('dn_driver_requests')->insertGetId(
-                [
-
-                'user_id' => $id,
-                 'license_verification' => 'uploads/drivers-documents/ecaede1c8b47c028a568c6fad3b86a33.png',
-                 'proof_of_insurance' => 'uploads/drivers-documents/cf1c65559e10a33ce51e4c32847f0b7f.png',
-                 'licence_expiration' => '2017-04-28',
-                 'insurance_expiration' => '2017-02-28',
-                 'car_transmission' => 'both',
-                 'navigation' => '',
-                 'driver_records' => '[{"question":"Have you had more than one accident in the last
-                    three years?","answer":"1"},{"question":"Have you ever had more than two
-                    points on your driver\\u2019s license?","answer":"1"},{"question":"Have you
-                    ever had more than one moving violation in last two
-                    years?","answer":"1"},{"question":"Have you been ever arrested for a
-                    DUI\\/OVI?","answer":"1"},{"question":"Have you ever been convicted for a
-                    crime?","answer":"1"},{"question":"Have you been driving for less than 2
-                    years?","answer":"1"},{"question":"Are you less than 21 years of
-                    age?","answer":"1"},{"question":"Can you drive a manual(stick)
-                    transmission?","answer":"1"},{"question":"Do you have a commercial driver`s
-                    license?","answer":"1"},{"question":"How did you hear about
-                    DeziNow?","answer":"Hhh"}]',
-                 'approved_by' => '0',
-                 'created_at' => '2017-01-27 05:49:37',
-                 ]
-            );
-
-            DB::table('role_user')->insertGetId(['role_id' => $role_id, 'user_id' => $id]);
-
-            $const = $this->firebaseConstant();
-            $DEFAULT_PATH = '/DeziNow';
-            $firebase = new \Firebase\FirebaseLib($const['DEFAULT_URL'], $const['DEFAULT_TOKEN']);
-
-            $user_info = [
-                'driver_available' => true,
-                'driver_available_is_hired' => 'true_0',
-                'is_hired' => 0,
-                'latitude' => 30.7086432,
-                'longitude'=>76.7020541,
-                'transmission'=>'both',
-                'updated_at' => 'Driver build from query'
-            ];
-            $firebase->set($DEFAULT_PATH . '/drivers/' .$id , $user_info);
-             $count++;
-
-        } //Loop close 
-        echo "25000 driver added successfully with its profile detail.";
-    }
-
-    function queryPassenger(){  
-        $count=1;
-        for ($x = 0; $x <= 65000; $x++) {
-
-            $email='neha'.$count.'@yopmail.com';
-            $unique_code=(400000+$count);
-            $role_id=3;
-            $passenger_referral_code='PSNEW'.(606+$count);
-
-            $id=DB::table('dn_users')->insertGetId(
-                [
-                'unique_code' => $unique_code,
-                 'profile_status' => 1,
-                 'first_name' => 'neha',
-                 'last_name' => 'RIDER',
-                 'full_name' => 'neha RIDER',
-                 'dob' => '1986-02-17',
-                 'gender' => 'female',
-                 'profile_pic' => 'uploads/profile-img/bd8d1a7e09a996fc08521e97693643c8.jpg',
-                 'anniversary' => '1986-02-17',
-                 'state' => 'AK',
-                 'city' => 78,
-                 'address_1' => 'g',
-                 'address_2' =>'g',
-                 'zip_code' => '133145',
-                 'time_zone' => 'Asia/Kolkata',
-                 'country_code' => '',
-                 'contact_number' => '8046435285',
-                 'country_phone_code' => '+1',
-                 'is_social' => '0',
-                 'last_ip' => '',
-                 'last_login' => '',
-                 'remember_token' => '',
-                 'access_token' => '',
-                 'password_token' => '',
-                 'password_token_expired' => 0,
-                 'social_id' => '',
-                 'name' => '',
-                 'email' => $email,
-                 'password' => '$2y$10$XMSpciu.PdQz.JSGHScCXuDq0U3eye9/0ML.g0ruFdcVTdYL2TPGK',
-                 'device_token' => '5bf2bb2de39761ae',
-                 'active' => '1',
-                 'is_suspended' => 0,
-                 'become_driver_request' => '0',
-                 'driver_requested_on' => '0000-00-00 00:00:00',
-                 'is_driver_approved' => '0',
-                 'driver_approved_on' => '0000-00-00 00:00:00',
-                 'driver_verified_by' => 0,
-                 'passenger_referral_code' => $passenger_referral_code,
-                 'anniversary_promo_check' => 0,
-                 'birthday_promo_check' => 0,
-                 'is_logged' => 'true',
-                 'created_at' => '2017-01-17 12:04:05',
-                 'updated_at' => '2017-01-17 04:04:05'
-                 ]
-            );
-
-            $dn_favorite_places_id=DB::table('dn_favorite_places')->insertGetId(
-                [
-                'user_id' => $id,
-                 'place_name' => 'HOME',
-                 'address' => 'E-37, Phase 8, Industrial Area, Sahibzada Ajit Singh Nagar, Punjab 160071, India',
-                 'city' => 'Sahibzada Ajit Singh Nagar',
-                 'state' => 'Punjab',
-                 'zip' => '160071',
-                 'latitude' => '30.707771482368333',
-                 'longitude' => '76.70294762543926',
-                 'is_default' => '1',
-                 'created_at' => '2017-02-16 03:06:27',
-                 'updated_at' => '0000-00-00 00:00:00'
-            
-                 ]
-            );
-
-
-
-            $dn_user_cars_id=DB::table('dn_user_cars')->insertGetId(
-                [
-                'user_id' => $id,
-                 'make' => 'honda',
-                 'transmission' => 'automatic',
-                 'number' => 'HR AB40 42020',
-                 'model' => 'city',
-                 'year' => '2017',
-                 'is_default' => '1',
-                 'is_delete' => '0',
-                 'added_at' => '2017-02-16 03:07:27'
-            
-                 ]
-            );
-
-            $dn_payment_accounts_id=DB::table('dn_payment_accounts')->insertGetId(
-                [
-                'user_id' => $id,
-                 'account_type' => 'paypal',
-                 'card_type' => '',
-                 'account_email' => 'bt_buyer_us@paypal.com',
-                 'card_identifier' => '',
-                 'masked_number' => '',
-                 'payment_token' => 'k7mbg4',
-                 'expiration_date' => '',
-                 'image_url' => 'https://assets.braintreegateway.com/payment_method_logo/paypal.png?environment=sandbox',
-                 'card_last_4' => '',
-                 'expired' => '',
-                 'payroll' => '',
-                 'is_default' => '1',
-                 'is_delete' => '0',
-                 'created_at' => '2017-02-16 03:07:27',
-                 'updated_at' => '2017-02-16 03:07:27'
-            
-                 ]
-            );
-
-            DB::table('role_user')->insertGetId(['role_id' => $role_id,
-            'user_id' => $id]);
-
-           $count++;
-         
-
-        } //Loop close
-        echo "25000 passenger added successfully with its fav place, car, payment and profile detail.";
-    }
-    function queryPassenger2(){
-        $count=1;
-        for ($x = 0; $x <= 100000; $x++) {
-
-            $email='taran'.$count.'@yopmail.com';
-            $unique_code=(400000+$count);
-            $role_id=3;
-            $passenger_referral_code='PSNEW'.(606+$count);
-
-            $id=DB::table('dn_users')->insertGetId(
-                [
-                    'unique_code' => $unique_code,
-                    'profile_status' => 1,
-                    'first_name' => 'taran',
-                    'last_name' => 'RIDER',
-                    'full_name' => 'taran RIDER',
-                    'dob' => '1989-02-17',
-                    'gender' => 'female',
-                    'profile_pic' => 'uploads/profile-img/bd8d1a7e09a996fc08521e97693643c8.jpg',
-                    'anniversary' => '1989-02-17',
-                    'state' => 'AK',
-                    'city' => 78,
-                    'address_1' => 'g',
-                    'address_2' =>'g',
-                    'zip_code' => '133145',
-                    'time_zone' => 'Asia/Kolkata',
-                    'country_code' => '',
-                    'contact_number' => '8046435285',
-                    'country_phone_code' => '+1',
-                    'is_social' => '0',
-                    'last_ip' => '',
-                    'last_login' => '',
-                    'remember_token' => '',
-                    'access_token' => '',
-                    'password_token' => '',
-                    'password_token_expired' => 0,
-                    'social_id' => '',
-                    'name' => '',
-                    'email' => $email,
-                    'password' => '$2y$10$XMSpciu.PdQz.JSGHScCXuDq0U3eye9/0ML.g0ruFdcVTdYL2TPGK',
-                    'device_token' => '5bf2bb2de39761ae',
-                    'active' => '1',
-                    'is_suspended' => 0,
-                    'become_driver_request' => '0',
-                    'driver_requested_on' => '0000-00-00 00:00:00',
-                    'is_driver_approved' => '0',
-                    'driver_approved_on' => '0000-00-00 00:00:00',
-                    'driver_verified_by' => 0,
-                    'passenger_referral_code' => $passenger_referral_code,
-                    'anniversary_promo_check' => 0,
-                    'birthday_promo_check' => 0,
-                    'is_logged' => 'true',
-                    'created_at' => '2017-01-17 12:04:05',
-                    'updated_at' => '2017-01-17 04:04:05'
-                ]
-            );
-
-            $dn_favorite_places_id=DB::table('dn_favorite_places')->insertGetId(
-                [
-                    'user_id' => $id,
-                    'place_name' => 'HOME',
-                    'address' => 'E-37, Phase 8, Industrial Area, Sahibzada Ajit Singh Nagar, Punjab 160071, India',
-                    'city' => 'Sahibzada Ajit Singh Nagar',
-                    'state' => 'Punjab',
-                    'zip' => '160071',
-                    'latitude' => '30.707771482368333',
-                    'longitude' => '76.70294762543926',
-                    'is_default' => '1',
-                    'created_at' => '2017-02-16 03:06:27',
-                    'updated_at' => '0000-00-00 00:00:00'
-
-                ]
-            );
-
-
-
-            $dn_user_cars_id=DB::table('dn_user_cars')->insertGetId(
-                [
-                    'user_id' => $id,
-                    'make' => 'honda',
-                    'transmission' => 'automatic',
-                    'number' => 'HR AB40 42020',
-                    'model' => 'city',
-                    'year' => '2017',
-                    'is_default' => '1',
-                    'is_delete' => '0',
-                    'added_at' => '2017-02-16 03:07:27'
-
-                ]
-            );
-
-            $dn_payment_accounts_id=DB::table('dn_payment_accounts')->insertGetId(
-                [
-                    'user_id' => $id,
-                    'account_type' => 'paypal',
-                    'card_type' => '',
-                    'account_email' => 'bt_buyer_us@paypal.com',
-                    'card_identifier' => '',
-                    'masked_number' => '',
-                    'payment_token' => 'k7mbg4',
-                    'expiration_date' => '',
-                    'image_url' => 'https://assets.braintreegateway.com/payment_method_logo/paypal.png?environment=sandbox',
-                    'card_last_4' => '',
-                    'expired' => '',
-                    'payroll' => '',
-                    'is_default' => '1',
-                    'is_delete' => '0',
-                    'created_at' => '2017-02-16 03:07:27',
-                    'updated_at' => '2017-02-16 03:07:27'
-
-                ]
-            );
-
-            DB::table('role_user')->insertGetId(['role_id' => $role_id,
-                'user_id' => $id]);
-
-            $count++;
-
-
-        } //Loop close
-        echo "25000 passenger added successfully with its fav place, car, payment and profile detail.";
-    }
-    function delete_passenger(){
-        $sql_query="SELECT email, COUNT( * ) AS NUM
-FROM dn_users
-GROUP BY email
-HAVING NUM >1
-ORDER BY NUM DESC";
-
-        $driver_records = DB::select(DB::raw($sql_query));
-
-        foreach ($driver_records as $k => $email) {
-            $user_ids = DB::table('dn_users')->select('id')->where(array('email' => $email->email))->get();
-            foreach ($user_ids as $k => $user_id) {
-                DB::table('dn_users')->where(['id' => $user_id->id])->delete();
-                DB::table('dn_user_cars')->where(['user_id' => $user_id->id])->delete();
-                DB::table('dn_users_data')->where(['user_id' => $user_id->id])->delete();
-                DB::table('dn_favorite_places')->where(['user_id' => $user_id->id])->delete();
-                DB::table('dn_payment_accounts')->where(['user_id' => $user_id->id])->delete();
-                DB::table('dn_driver_requests')->where(['user_id' => $user_id->id])->delete();
-            }
-
-        }
-        echo "ho gya";
-    }
-
-    }
+}

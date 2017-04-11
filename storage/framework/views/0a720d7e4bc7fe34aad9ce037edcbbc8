@@ -4,14 +4,14 @@
 
 <div id="inner-header" style="margin-top:0px;height: 115px;" class="container-fluid no-padding"> <img class="img-responsive" alt="test" src="<?php echo asset('public/images/form-head.jpg'); ?>">
 	<div class="carousel-caption"> </div>
-	<h3 class="page-heading">Terms and Conditions</h3>
+	<h3 class="page-heading2">Terms and Conditions</h3>
 </div>
 
 <section>
   <div class="container privacyPage" id="about-us">
-	<div class="page-header text-center info-text">
+	<div class="page-header2 text-center info-text">
 		<h2>Terms and Conditions</h2>
-		<p style="padding-top:10px;" class="">DeziNow collects information about you when you use our mobile applications, websites, and other online products and services (collectively, the “Services”) and through other interactions and communications you have with us. This Privacy Statement applies to information collected and used by DeziNow (DeziNow referred to herein collectively as “DeziNow” or “we”). Please review this privacy policy periodically as we may revise it without notice. This privacy policy was last revised on September 15 , 2016. Each time you use DeziNow or provide us with information, by doing so you are accepting the practices described in this privacy policy at that time..
+		<p class="pd_tp">DeziNow collects information about you when you use our mobile applications, websites, and other online products and services (collectively, the “Services”) and through other interactions and communications you have with us. This Privacy Statement applies to information collected and used by DeziNow (DeziNow referred to herein collectively as “DeziNow” or “we”). Please review this privacy policy periodically as we may revise it without notice. This privacy policy was last revised on September 15 , 2016. Each time you use DeziNow or provide us with information, by doing so you are accepting the practices described in this privacy policy at that time..
 		</p>
 	</div>
 	
