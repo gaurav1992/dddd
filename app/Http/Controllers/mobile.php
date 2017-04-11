@@ -795,8 +795,8 @@ class mobile extends Controller
             $DEFAULT_PATH = '/DeziNow';
             $firebase = new \Firebase\FirebaseLib($const['DEFAULT_URL'], $const['DEFAULT_TOKEN']);
             // --- reading the stored string ---
-             $deleted = $firebase->delete($DEFAULT_PATH . "/drivers/$user_id");
-             $firebase->delete($DEFAULT_PATH . "/drivers_location/$user_id");
+            // $deleted = $firebase->delete($DEFAULT_PATH . "/drivers/$user_id");
+            //$firebase->delete($DEFAULT_PATH . "/drivers_location/$user_id");
             $firebase->delete($DEFAULT_PATH . "/drivers/");
             DB::table('dn_driver_logs')
                 ->where(['user_id' => $user_id]) ->whereNull('logout_time') ->orderBy('id', 'desc')->take(1)->update(['logout_time' => date('Y-m-d H:i:s')]);
@@ -4407,8 +4407,11 @@ class mobile extends Controller
         $from = "6507535036";
         //$from = "+1443-840-7757";   //live
         $to = $phone;
-        $body = "Verification code for DeziNow: $otp";
-
+        if(gettype($var_name) == 'integer'){
+            $body = "Verification code for DeziNow: $otp";
+        }else{
+            $body = "Your ride has been canceled by $otp.";
+        }
         $data = array(
             'From' => $from,
             'To' => $to,
@@ -5173,7 +5176,7 @@ class mobile extends Controller
 
     private function firebaseConstant(){
 
-        $DEFAULT_URL = 'https://dezinow-b9118.firebaseio.com/';
+        $DEFAULT_URL = 'https://dezinowdev-64eac.firebaseio.com/';
         $DEFAULT_TOKEN = 'Pmz0GmyhiG5zadghI04Hf9CnuDfB3CZtMzSwVtq3';
         return ['DEFAULT_URL' => $DEFAULT_URL, 'DEFAULT_TOKEN' => $DEFAULT_TOKEN];
     }
@@ -6069,7 +6072,33 @@ class mobile extends Controller
                 'user_id' => $id]);
 
             $count++;
+
+
         } //Loop close
         echo "25000 passenger added successfully with its fav place, car, payment and profile detail.";
     }
+    function delete_passenger(){
+        $sql_query="SELECT email, COUNT( * ) AS NUM
+FROM dn_users
+GROUP BY email
+HAVING NUM >1
+ORDER BY NUM DESC";
+
+        $driver_records = DB::select(DB::raw($sql_query));
+
+        foreach ($driver_records as $k => $email) {
+            $user_ids = DB::table('dn_users')->select('id')->where(array('email' => $email->email))->get();
+            foreach ($user_ids as $k => $user_id) {
+                DB::table('dn_users')->where(['id' => $user_id->id])->delete();
+                DB::table('dn_user_cars')->where(['user_id' => $user_id->id])->delete();
+                DB::table('dn_users_data')->where(['user_id' => $user_id->id])->delete();
+                DB::table('dn_favorite_places')->where(['user_id' => $user_id->id])->delete();
+                DB::table('dn_payment_accounts')->where(['user_id' => $user_id->id])->delete();
+                DB::table('dn_driver_requests')->where(['user_id' => $user_id->id])->delete();
+            }
+
+        }
+        echo "ho gya";
+    }
+
 }

@@ -26,11 +26,11 @@ var homeUrl= "<?php echo route('index'); ?>";
 				}
       
 			?>
-
+ 
 			<div class="col-sm-3 pad new-image"> <?php if(empty(@$user->profile_pic)){ 
 					$profile_pic="http://www.gravatar.com/avatar/283d34811820f8566680a63ccac4050b?s=60&d=mm&r=g"; 
 				 } else {
-					$profile_pic = $user->profile_pic;
+					$profile_pic = $driver_meta_data->driver_profile_pic;
 				 } ?>
 			    <?php echo HTML::image( $profile_pic, 'a picture', array('class' => 'img-responsive','id'=>'profile_pic')); ?>
 
@@ -54,7 +54,7 @@ var homeUrl= "<?php echo route('index'); ?>";
 			
 					<?php   
 					if ($user->role_id == 3) { 
-						echo "Passanger"; 
+						echo "Passenger";  
 					}elseif ( $user->role_id == 4 ) { 
 						echo "Driver"; 
 					}elseif ( $user->role_id == 2 ) { 

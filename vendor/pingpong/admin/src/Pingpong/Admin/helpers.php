@@ -83,7 +83,7 @@ if (! function_exists('admin_asset')) {
      */
     function admin_asset($url, $secure = false)
     {
-        return asset("https://dezinow.com/public/packages/pingpong/admin/" . $url, $secure);
+        return asset("public/packages/pingpong/admin/" . $url, $secure);
     }
 }
 

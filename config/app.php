@@ -26,7 +26,7 @@ return [
 	|
 	*/
 
-	'url' => 'https://dezinow.com/',
+	'url' => '',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -203,6 +203,7 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+        //'Socialize' => 'Laravel\Socialite\Facades\Socialite',
 		'Image' => 'Intervention\Image\Facades\Image',
 		'Socialite' => 'Laravel\Socialite\Facades\Socialite',
 		'Excel' => 'Maatwebsite\Excel\Facades\Excel',

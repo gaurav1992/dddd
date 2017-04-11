@@ -4,22 +4,22 @@
   <script type="text/javascript">
     var editPhone = "{!! route('editPhone') !!}";
     var confirmOTP = "{!! route('confirmOTP') !!}";
-    var getcityurl= "{!! route('getcity') !!}";
+	  var getcityurl= "{!! route('getcity') !!}";
     var CSRF_TOKEN= "{!! csrf_token() !!}";
-  $(document).ready(function(){
-    
-    $(".cancel,.user-profile,.edicontactNumber").hide();
-    $(".EDITBtnPassenger1").click(function(){
-       $("#profileEdit").html("EDIT PROFILE");
-      $(".cancel,.user-profile,.edicontactNumber").show();
+	$(document).ready(function(){
+		
+		$(".cancel,.user-profile,.edicontactNumber").hide();
+		$(".EDITBtnPassenger1").click(function(){
+			 $("#profileEdit").html("EDIT PROFILE");
+			$(".cancel,.user-profile,.edicontactNumber").show();
        $('input[type=email]').removeAttr('readonly');
        $('input[name=first_name],input[name=last_name]').removeAttr('readonly');
        $('#payoutState').removeAttr('disabled');
        $('#payoutCity').removeAttr('disabled');
        $('#datepickericon').show();
        $('#anniversary').removeAttr('disabled');
-    });
-  });
+		});
+	});
 
 
   $( document ).on( "change", "#payoutState", function(){
@@ -149,7 +149,7 @@
             <?php if ($first_name == ''){ ?>
               {!! Form::text('first_name',$first_name,array('id'=>'','class'=>'form-control','placeholder' => 'First Name','disabled')) !!}
             <?php }else{ ?>
-              {!! Form::text('first_name',$first_name,array('id'=>'','class'=>'form-control','placeholder' => 'First Name','disabled')) !!}
+            	{!! Form::text('first_name',$first_name,array('id'=>'','class'=>'form-control','placeholder' => 'First Name','disabled')) !!}
             <?php } ?>
             </fieldset>
           </div>
@@ -159,7 +159,7 @@
             <?php if ($first_name == ''){ ?>
               {!! Form::text('last_name',$last_name,array('id'=>'','class'=>'form-control','placeholder' => 'Last Name','disabled')) !!}
             <?php }else{ ?>
-               {!! Form::text('last_name',$last_name,array('id'=>'','class'=>'form-control','placeholder' => 'Last Name','disabled')) !!}
+            	 {!! Form::text('last_name',$last_name,array('id'=>'','class'=>'form-control','placeholder' => 'Last Name','disabled')) !!}
             <?php } ?> 
             </fieldset>
           </div>
@@ -277,14 +277,14 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-    
+	  
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body EditPhoneNumber">
-    <h2 class="mt-0"> Edit Phone Details </h2>
+	  <h2 class="mt-0"> Edit Phone Details </h2>
       <p class="alert alert-class" id="verificationMessage"></p>
         {!! Form::open(array('url' => 'editPhone','class' => 'form','id'=>'editPhoneNumber')) !!}
-     <fieldset>
+		 <fieldset>
               <div class="panel-body" style="background:transparent; padding:0 0 0 0;" >
                 
                     <div class="form-group">
@@ -302,14 +302,14 @@
               <img src="{!! asset('public/img/loader.gif') !!}" alt="test" class="img-responsive lodingImg">
             </div>
           <button class="btn btn-primary green-btn-s updatePhone" style="margin-top:0px !important;" type="submit">Send verification code</button> 
-        </fieldset>     
+        </fieldset>		  
         {!! Form::close() !!} 
           @if(Session::has('message'))
               <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
           @endif            
           <hr/>
           <p class="alert alert-class" id="otpConfirmMessage"></p>   
-              
+        		  
           {!! Form::open(array('url' => 'confirmOTP','class' => 'form code','id'=>'confirmOTP')) !!}
             <fieldset>
               <div class="form-group">
@@ -322,7 +322,7 @@
                 <img src="{!! asset('public/img/loader.gif') !!}" alt="test" class="img-responsive lodingImg"  style="display:inline-block;">
               </div>
               <div class="form-group">
-         <div class="input-group">
+			   <div class="input-group">
                 {!! Form::submit('Confirm', array('class'=>'btn btn-primary green-btn-s btn-block confirmOTP')) !!}
                </div>
               </div>

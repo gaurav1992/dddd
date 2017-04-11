@@ -2,7 +2,7 @@
 
 	@section('maplocation')
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>
+	<script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>
 	<!--<script type="text/javascript" src='http://maps.google.com/maps/api/js?key=AIzaSyDXG6rAyP0RS6__od-9Rd_ZM0gXp2wN3Tk&libraries=places'></script>-->
 	  {!! HTML::script('public/js/framework/locationpicker.jquery.js'); !!}
 	  {!! HTML::script('public/js/framework/mapPicker.js'); !!}

@@ -31,10 +31,9 @@
               
               if(empty($user_detail)) {
             ?>
-             <li class="<?php echo Request::is('becomedriver') ? 'active' : ''; ?>"><a href="<?php echo asset('/becomedriver'); ?>">Become a Driver </a></li>
-               
-            <?php } else { ?> 
-            <li class="<?php echo Request::is('becomedriver') ? 'active' : ''; ?>"><a href="<?php echo asset('/editdriver'); ?>">Switch to Driver </a></li> 
+             <li class="<?php echo Request::is('becomedriver') ? 'active' : ''; ?>"><a href="<?php echo asset('/becomedriver'); ?>">Become a Driver </a></li>   
+            <?php }else{ ?> 
+             <li class="<?php echo Request::is('becomedriver') ? 'active' : ''; ?>"><a href="<?php echo asset('/editdriver'); ?>">Switch to Driver </a></li>   
              
             <?php } ?>
           <?php } ?>  

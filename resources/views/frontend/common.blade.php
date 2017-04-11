@@ -231,9 +231,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           $id = Auth::id();
             $user_detail = $users = DB::table('role_user')
               ->select(array('dn_users.*'))
-              ->join('dn_users', 'role_user.user_id', '=', 'dn_users.id')  
+              ->leftjoin('dn_users', 'role_user.user_id', '=', 'dn_users.id')  
               ->where('dn_users.id' ,$id) 
-              ->where('role_id' ,'4')
+              ->where('role_user.role_id' ,'4')
               ->get();
              if(empty($user_detail)) {
           ?>

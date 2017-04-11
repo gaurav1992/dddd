@@ -855,7 +855,7 @@ class DriverController extends BaseController
 						//driver users role_id = 4 = Driver
 						->where( function ($query) { 
 							$query->where( 'role_id', '3' )
-	                      	->whereIn( 'dn_users.become_driver_request', [1,2] )
+	                      	->where( 'dn_users.become_driver_request', [1,2] )
 	                      	->where( 'dn_users.is_driver_approved', 2 );
 						})
 						->whereIn('role_user.user_id',$usersList)
@@ -868,7 +868,7 @@ class DriverController extends BaseController
 						//->where('role_id','3')
 						->where( function ($query) { 
 							$query->where( 'role_id', '3' )
-	                      	->where( 'dn_users.become_driver_request', [1,2])
+	                      	->where( 'dn_users.become_driver_request', [1,2] )
 	                      	->where( 'dn_users.is_driver_approved', 2 );
 						})
 						->whereIn('role_user.user_id',$usersList)
@@ -1365,7 +1365,7 @@ class DriverController extends BaseController
 					$zip_code 	= Input::get('zip_code');
 					$full_name = Input::get('first_name')." ".Input::get('last_name');
 					$first_name = Input::get('first_name');
-					$last_name = Input::get('last_name');
+					$last_name = Input::get('last_name'); 
 					//echo  $license_exp; die;
 					$car_transmission = Input::get('car_transmission');
 					
@@ -1406,7 +1406,7 @@ class DriverController extends BaseController
 			                	$insertGetId = DB::table('dn_users_data')->insertGetId(['user_id' => $id,'license_number' => $license_number,'transmission' => $car_transmission,'ssn'=>$ssn]);
 			                }
 							
-						    DB::table('dn_users')->where(['id' => $id])->update(['first_name'=>$first_name,'last_name'=>$last_name,'full_name' => $full_name,'anniversary' => $newanniversary,'dob'=>$dob,'address_1' => $address_1,'address_2'  => $address_2,'city' => $city,'state'  => $state,'zip_code' =>$zip_code,'email'=>$email,'become_driver_request'=>2,'is_suspended'=>0,'is_driver_approved'=>1]); 
+						    DB::table('dn_users')->where(['id' => $id])->update(['first_name'=>$first_name,'last_name'=>$last_name,'full_name' => $full_name,'anniversary' => $newanniversary,'address_1' => $address_1,'address_2'  => $address_2,'city' => $city,'state'  => $state,'zip_code' =>$zip_code,'email'=>$email,'become_driver_request'=>2]); 
 
 							if($driver_detail){
 				            	if ($license_verification) {
@@ -1502,8 +1502,6 @@ class DriverController extends BaseController
 	}
 	
 	
-
-
 	public function revoke(Request $request)
 	{
 		$data = $request->all();

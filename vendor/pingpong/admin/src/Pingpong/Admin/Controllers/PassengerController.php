@@ -910,12 +910,23 @@ class PassengerController extends BaseController {
 	{
 		
 		$data = $request->all();
-		$users = DB::table('role_user')
-						->select(array('dn_users.*'))
+
+		$data['usersCount'] = DB::table('role_user')
+						//->select(array('dn_users.id'))
 						->join('dn_users', 'role_user.user_id', '=', 'dn_users.id')		
-						->where('role_id','3')->get();
+						->where('role_id','3')
+						//->take("10") 
+						->count();
 						//->paginate(config('admin.user.perpage'));
-		//print_r(count($users));	die;
+		//print_r($users );	die;
+		$data['activeUsersCount'] = DB::table('role_user')
+						//->select(array('dn_users.id'))
+						->join('dn_users', 'role_user.user_id', '=', 'dn_users.id')		
+						->where('role_id','3')
+						->where('dn_users.active','1')
+						//->take("10") 
+						->count();
+		//print_r($ActiveUsersCount);die;
 		$states = DB::table('dn_states')->get();
 		if(isset($data['stateCode']))
 		{
@@ -925,7 +936,7 @@ class PassengerController extends BaseController {
 			foreach($cities as $city)
 			{
 				echo "<option class='append' value='$city->id'>".$city->city."</option>";
-			}exit;
+			}
 		}
 		$citys = DB::table('dn_users')
 					->select(array('dn_users.city','dn_cities.*', DB::raw('COUNT(dn_users.id) as no_of_users,dn_users.id as pid')))
@@ -946,7 +957,8 @@ class PassengerController extends BaseController {
 		}else{
 			$cty=(object)array('city'=>'N/A','no_of_users'=>'N/A');
 			@$citiesCount=array('least'=>@$cty,'most'=>$cty);}
-		return $this->view('users.index', compact('users','citiesCount','states'));
+	//echo "fhdhfj";die;
+		return $this->view('users.index', compact('data','citiesCount','states'));
 	}
  
 	/**
@@ -968,9 +980,9 @@ class PassengerController extends BaseController {
 		$billingval1=$data['billingval1'];
 		$billingval2=$data['billingval2'];
 		
-		$orderfields=array('0'=>'id','1'=>'unique_code','2'=>'first_name','3'=>'last_name','4'=>'dn_users.created_at','6'=>'email','7'=>'contact_number','8'=>'active','9'=>'is_logged');
+		$orderfields=array('0'=>'dn_users.id','1'=>'unique_code','2'=>'first_name','3'=>'last_name','4'=>'dn_users.created_at','6'=>'email','7'=>'contact_number','8'=>'active','9'=>'is_logged');
 		//print_r($data['order'][0]); 
-		$field='id';
+		$field='dn_users.id';
 		$direction='ASC';
 		
 		/* code for order by data of user*/
@@ -986,29 +998,13 @@ class PassengerController extends BaseController {
 		
 		/* code for searching of  user*/
 		$sql = 'SELECT dn_users.id FROM dn_users ';
-		$sql.= "LEFT JOIN dn_payments on dn_payments.user_id = dn_users.id ";
-		$sql.= "WHERE 1=1 ";
+		$sql.= "WHERE dn_payments.user_id in (select id from dn_users where 1=1 ";
 				
 		if(!empty($startDate) &&  !empty($endDate))
 		{
 			$startDate=$date = date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $startDate)));
 			$endDate=date('Y-m-d H:i:s', strtotime(str_replace('-', '/', $endDate)));
 			$sql .=" AND dn_users.created_at BETWEEN '$startDate' AND '$endDate'";
-		}
-		
-		if(!empty($billingval1) &&  !empty($billingval2))
-		{
-			
-			$sql .=" AND dn_payments.amount BETWEEN '$billingval1' AND '$billingval2'";
-		
-		}else if(!empty($billingval1) &&  empty($billingval2)){
-			
-			$sql .=" AND dn_payments.amount > '$billingval1'";
-		
-		}else if(empty($billingval1) &&  !empty($billingval2)){
-			
-			$sql .=" AND dn_payments.amount < '$billingval2'";
-		
 		}
 		
 		if($data['state']!='')
@@ -1032,10 +1028,27 @@ class PassengerController extends BaseController {
 			$search = "%$searchString%";
 			$sql .=" AND  (unique_code LIKE '$search' or  first_name LIKE '$search' or full_name LIKE '$search' or last_name LIKE '$search' or email LIKE '$search' or contact_number LIKE '$search') ";
 		}
-		
 		$sql .= " order by ".$field." ".$direction;
-		//echo $sql; die;
+		$sql .= ")";
+		if(!empty($billingval1) &&  !empty($billingval2))
+		{
+			
+			$sql .=" AND dn_payments.amount BETWEEN '$billingval1' AND '$billingval2'";
+		
+		}else if(!empty($billingval1) &&  empty($billingval2)){
+			
+			$sql .=" AND dn_payments.amount > '$billingval1'";
+		
+		}else if(empty($billingval1) &&  !empty($billingval2)){
+			
+			$sql .=" AND dn_payments.amount < '$billingval2'";
+		
+		}
+
+		
+		echo $sql; die;
 		$usersIds=DB::select(DB::raw($sql));
+		print_r($usersIds);die;
 		if(!empty($usersIds))
 		{
 		$usersList=array();

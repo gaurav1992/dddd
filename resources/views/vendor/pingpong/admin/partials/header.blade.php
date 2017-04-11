@@ -53,7 +53,9 @@
                     </li>
                     <!-- Menu Footer-->
                     <li class="user-footer">
-                     
+                        <div class="pull-left">
+                            <a href="{!! route('admin.settings') !!}" class="btn btn-default btn-flat">Settings</a>
+                        </div>
                         <div class="pull-right">
                             <a href="{!! route('admin.logout') !!}" class="btn btn-default btn-flat">Sign out</a>
                         </div>

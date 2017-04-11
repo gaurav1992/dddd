@@ -1,27 +1,27 @@
-@extends('frontend.common')   
+@extends('frontend.common')	  
 @section('customjavascript')
 <?php  $states = DB::table('dn_states')->get(); ?>
 <script type="text/javascript">
 var getcityurl= "{!! route('getcity') !!}";
 var CSRF_TOKEN= "{!! csrf_token() !!}";
 $(document).ready(function(){
-  
-  
+	
+	
 $('.editTime,.cancel').hide();
 $('.editDriverProfile').on('click',function(){
     $("#EditDriverProfile").html("EDIT DRIVER PROFILE");
-      $('.showtime').hide();
-    $('.editTime,.cancel').show();
-    $('.uploadFile').removeAttr('disabled');
-    $('#emailDriver').removeAttr('readonly');
+	    $('.showtime').hide();
+		$('.editTime,.cancel').show();
+		$('.uploadFile').removeAttr('disabled');
+		$('#emailDriver').removeAttr('readonly');
 		//$('#licence_exp').val('');
 		//$('#insurance_exp').val('');
 
-    
+		
 });
-  
-  
-  
+	
+	
+	
 });
 
 $( document ).on( "change", "#stateIds", function(){
@@ -293,45 +293,45 @@ $( document ).on( "change", "#stateIds", function(){
           <div class="col-md-6 showtime smallScreen_padzero">
           <label for="state">State:</label>
             <fieldset class="form-group">
-        <?php $statename = DB::table('dn_states')->select('state')->where('state_code',@$state)->first(); $statecode=$state; ?>
+				<?php $statename = DB::table('dn_states')->select('state')->where('state_code',@$state)->first(); $statecode=$state; ?>
               {!! Form::text('state',@$statename->state,array('id'=>'','class'=>'form-control','placeholder' => 'State','disabled')) !!}
             </fieldset>
           </div>
-      <div class="col-md-6 showtime smallScreen_padzero">
+		  <div class="col-md-6 showtime smallScreen_padzero">
         <label for="city">City:</label>
             <fieldset class="form-group">
-      <?php $cityName = DB::table('dn_cities')->select('city')->where('id',@$city)->first();  ?>
+			<?php $cityName = DB::table('dn_cities')->select('city')->where('id',@$city)->first();  ?>
               {!! Form::text('city',@$cityName->city,array('id'=>'','class'=>'form-control','placeholder' => 'City','disabled')) !!}
             </fieldset>
           </div>
-       <div class="col-md-6 editTime smallScreen_padzero">
-      <label for="state">State:</label>
-      <fieldset class="form-group">
-      <select id="stateIds" name="state" class="form-control" > 
-          <option value="">---State---</option>
-          <?php   ?>
-          @foreach($states as $state)
+		   <div class="col-md-6 editTime smallScreen_padzero">
+			<label for="state">State:</label>
+			<fieldset class="form-group">
+			<select id="stateIds" name="state" class="form-control" > 
+				  <option value="">---State---</option>
+				  <?php   ?>
+				  @foreach($states as $state)
             @if(@$statename->state == @$state->state)
-            <option  value="{{$state->state_code}}" selected> {{@$state->state}}</option>
+  				  <option  value="{{$state->state_code}}" selected> {{@$state->state}}</option>
             @else
              <option  value="{{$state->state_code}}"> {{@$state->state}}</option>
             @endif
-          @endforeach
-      </select>
-        
-      </fieldset>
-      </div>
-      <div class="col-md-6 editTime smallScreen_padzero">
-        <label for="city">City:</label>
+				  @endforeach
+			</select>
+			  
+			</fieldset>
+			</div>
+			<div class="col-md-6 editTime smallScreen_padzero">
+				<label for="city">City:</label>
           <?php 
-              $citynameb = DB::table('dn_cities')->select('city','id')->where('state_code',@$statecode)->get();
+		          $citynameb = DB::table('dn_cities')->select('city','id')->where('state_code',@$statecode)->get();
 
             ?>
-          
+					
           <fieldset class="form-group">
-        <select id="cityIds" name="city" class="form-control"> 
-          <option value="">---City---</option>
-    @if(!empty(@$citynameb))
+			  <select id="cityIds" name="city" class="form-control"> 
+				  <option value="">---City---</option>
+		@if(!empty(@$citynameb))
            @foreach($citynameb as $citsy)
             @if($cityName->city == $citsy->city)
             <option  value="{{$citsy->id}}" selected> {{$citsy->city}}</option>
@@ -339,11 +339,11 @@ $( document ).on( "change", "#stateIds", function(){
              <option  value="{{$citsy->id}}"> {{$citsy->city}}</option>
             @endif
           @endforeach
-      @endif
-        </select> 
-          </fieldset>
-      </div>
-      
+		  @endif
+			  </select> 
+					</fieldset>
+			</div>
+		  
 
         <div class="col-md-6 smallScreen_padzero">
         <label for="zip_code">Zip Code:</label>
@@ -426,7 +426,7 @@ $( document ).on( "change", "#stateIds", function(){
                <a href="{!! asset($license_verification) !!}" download>Download</a>
                 <div class="form-group browsefile">
                   <div class="input-group col-xs-12">
-                    <input type="text" name="licVer" readonly placeholder="Driver License" disabled class="form-control input-lg DriverLicense">
+                    <input type="text" name="licVer" value="{!!  pathinfo($license_verification, PATHINFO_FILENAME) .'.'. pathinfo($license_verification, PATHINFO_EXTENSION)  !!}"  readonly placeholder="Driver License" disabled class="form-control input-lg DriverLicense">
                     <label for="license_verification" class="btn uploadBtn">Upload</label>
                     <input type="file" disabled style="visibility:hidden; height: 1px; margin: 0;padding: 0;" name="license_verification" id="license_verification" class="license_verification uploadFile" data-max-size="4000000" disabled>
                   </div>

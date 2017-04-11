@@ -1355,7 +1355,7 @@ class SiteController extends BaseController
 			  * MAIN QUERY TO FIND ALL FIELDS (MERGING ALL SUBQUERIES HERE)
 			  **/
 			  //echo $subquery1;exit;
-			$sql = "SELECT distinct dn_cities.id as cityId,dn_cities.city as cityName,$subquery1,$subquery2,$subquery3,$subquery4,$subqueries5 FROM dn_users LEFT JOIN dn_cities ON dn_users.city = dn_cities.id ";
+			$sql = "SELECT dn_cities.id as cityId,dn_cities.city as cityName,$subquery1,$subquery2,$subquery3,$subquery4,$subqueries5  FROM dn_cities where dn_cities.id in (select distinct city from dn_users)";
 			//echo $sql;exit;
 			return $sql ;}
 			

@@ -36,7 +36,8 @@ Route::group(['prefix' => config('admin.prefix', 'admin'), 'namespace' => 'Pingp
 	Route::any('/location', ['as' => 'admin.locationUrl', 'uses' => 'SiteController@location']);
 	Route::any('/Dlocation', ['as' => 'admin.DlocationUrl', 'uses' => 'SiteController@Dlocation']);
     // settings
- 
+    Route::get('settings', ['as' => 'admin.settings', 'uses' => 'SiteController@settings']);
+    Route::post('settings', ['as' => 'admin.settings.update', 'uses' => 'SiteController@updateSettings']);
 
 	//Routing for Admin panel
 	Route::post('users/suspend', ['as' => 'suspend', 'uses' => 'PassengerController@suspend']); 
