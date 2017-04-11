@@ -1,0 +1,92 @@
+[16-Dec-2015 12:32:04 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Auth\Mail' not found in /home/s0laris/public_html/fc/app/Http/Controllers/Auth/AuthController.php on line 73
+[16-Dec-2015 12:34:40 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Auth\Mail' not found in /home/s0laris/public_html/fc/app/Http/Controllers/Auth/AuthController.php on line 73
+[16-Dec-2015 13:26:29 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Auth\Mail' not found in /home/s0laris/public_html/fc/app/Http/Controllers/Auth/AuthController.php on line 73
+[16-Dec-2015 13:40:02 UTC] PHP Fatal error:  Non-static method Illuminate\Contracts\Mail\Mailer::send() cannot be called statically, assuming $this from incompatible context in /home/s0laris/public_html/fc/app/Http/Controllers/Auth/AuthController.php on line 74
+[16-Dec-2015 13:47:25 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Auth\Input' not found in /home/s0laris/public_html/fc/app/Http/Controllers/Auth/AuthController.php on line 77
+[17-Dec-2015 05:15:50 UTC] PHP Fatal error:  Class 'BaseController' not found in /home/s0laris/public_html/fc/app/Http/Controllers/RegistrationController.php on line 5
+[17-Dec-2015 05:16:57 UTC] PHP Fatal error:  Class 'App\Http\Controllers\User' not found in /home/s0laris/public_html/fc/app/Http/Controllers/RegistrationController.php on line 31
+[17-Dec-2015 05:22:55 UTC] PHP Parse error:  syntax error, unexpected '/', expecting ',' or ';' in /home/s0laris/public_html/fc/app/Http/Controllers/RegistrationController.php on line 5
+[17-Dec-2015 05:23:14 UTC] PHP Fatal error:  Class 'Users\User' not found in /home/s0laris/public_html/fc/app/Http/Controllers/RegistrationController.php on line 31
+[17-Dec-2015 05:23:53 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Redirect' not found in /home/s0laris/public_html/fc/app/Http/Controllers/RegistrationController.php on line 40
+[17-Dec-2015 05:23:53 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Redirect' not found in /home/s0laris/public_html/fc/app/Http/Controllers/RegistrationController.php on line 34
+[17-Dec-2015 05:23:54 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Redirect' not found in /home/s0laris/public_html/fc/app/Http/Controllers/RegistrationController.php on line 34
+[17-Dec-2015 05:48:12 UTC] PHP Parse error:  syntax error, unexpected 'Namespace' (T_NAMESPACE), expecting identifier (T_STRING) in /home/s0laris/public_html/fc/app/Http/Controllers/RegistrationController.php on line 6
+[17-Dec-2015 05:48:14 UTC] PHP Parse error:  syntax error, unexpected 'Namespace' (T_NAMESPACE), expecting identifier (T_STRING) in /home/s0laris/public_html/fc/app/Http/Controllers/RegistrationController.php on line 6
+[17-Dec-2015 06:18:01 UTC] PHP Parse error:  syntax error, unexpected 'Session' (T_STRING) in /home/s0laris/public_html/fc/app/Http/Controllers/RegistrationController.php on line 47
+[17-Dec-2015 06:18:02 UTC] PHP Parse error:  syntax error, unexpected 'Session' (T_STRING) in /home/s0laris/public_html/fc/app/Http/Controllers/RegistrationController.php on line 47
+[17-Dec-2015 06:18:03 UTC] PHP Parse error:  syntax error, unexpected 'Session' (T_STRING) in /home/s0laris/public_html/fc/app/Http/Controllers/RegistrationController.php on line 47
+[17-Dec-2015 06:19:05 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/s0laris/public_html/fc/app/Http/Controllers/RegistrationController.php on line 48
+[17-Dec-2015 06:19:21 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Session' not found in /home/s0laris/public_html/fc/app/Http/Controllers/RegistrationController.php on line 38
+[17-Dec-2015 12:01:29 UTC] PHP Fatal error:  Class 'Socialize' not found in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/AccountController.php on line 7
+[17-Dec-2015 12:01:33 UTC] PHP Fatal error:  Class 'Socialize' not found in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/AccountController.php on line 7
+[17-Dec-2015 13:10:06 UTC] PHP Parse error:  syntax error, unexpected '/', expecting ',' or ';' in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/AccountController.php on line 4
+[18-Dec-2015 04:52:47 UTC] PHP Fatal error:  Can't use function return value in write context in /home/s0laris/public_html/flyingchalksnew/app/Repositories/UserRepository.php on line 38
+[18-Dec-2015 04:58:31 UTC] PHP Fatal error:  Can't use function return value in write context in /home/s0laris/public_html/flyingchalksnew/app/Repositories/UserRepository.php on line 38
+[18-Dec-2015 05:01:41 UTC] PHP Fatal error:  Can't use function return value in write context in /home/s0laris/public_html/flyingchalksnew/app/Repositories/UserRepository.php on line 38
+[18-Dec-2015 05:02:03 UTC] PHP Fatal error:  Can't use function return value in write context in /home/s0laris/public_html/flyingchalksnew/app/Repositories/UserRepository.php on line 38
+[18-Dec-2015 05:02:04 UTC] PHP Fatal error:  Can't use function return value in write context in /home/s0laris/public_html/flyingchalksnew/app/Repositories/UserRepository.php on line 38
+[18-Dec-2015 05:02:05 UTC] PHP Fatal error:  Can't use function return value in write context in /home/s0laris/public_html/flyingchalksnew/app/Repositories/UserRepository.php on line 38
+[18-Dec-2015 05:02:15 UTC] PHP Fatal error:  Can't use function return value in write context in /home/s0laris/public_html/flyingchalksnew/app/Repositories/UserRepository.php on line 38
+[18-Dec-2015 05:03:07 UTC] PHP Fatal error:  Can't use function return value in write context in /home/s0laris/public_html/flyingchalksnew/app/Repositories/UserRepository.php on line 38
+[18-Dec-2015 05:03:08 UTC] PHP Fatal error:  Can't use function return value in write context in /home/s0laris/public_html/flyingchalksnew/app/Repositories/UserRepository.php on line 38
+[18-Dec-2015 05:04:37 UTC] PHP Fatal error:  Can't use function return value in write context in /home/s0laris/public_html/flyingchalksnew/app/Repositories/UserRepository.php on line 38
+[18-Dec-2015 05:05:25 UTC] PHP Warning:  Uncaught exception 'ErrorException' with message 'Undefined variable: request' in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/AccountController.php:14
+Stack trace:
+#0 /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/AccountController.php(14): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Undefined varia...', '/home/s0laris/p...', 14, Array)
+#1 [internal function]: App\Http\Controllers\AccountController->facebook_redirect()
+#2 /home/s0laris/public_html/flyingchalksnew/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(246): call_user_func_array(Array, Array)
+#3 /home/s0laris/public_html/flyingchalksnew/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(162): Illuminate\Routing\Controller->callAction('facebook_redire...', Array)
+#4 /home/s0laris/public_html/flyingchalksnew/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(107): Illuminate\Routing\ControllerDispatcher->call(Object(App\Http\Controllers\Ac in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/AccountController.php on line 14
+[18-Dec-2015 05:05:25 UTC] PHP Fatal error:  Call to a member function all() on a non-object in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/AccountController.php on line 14
+[18-Dec-2015 05:06:48 UTC] PHP Fatal error:  Can't use function return value in write context in /home/s0laris/public_html/flyingchalksnew/app/Repositories/UserRepository.php on line 38
+[18-Dec-2015 05:07:41 UTC] PHP Warning:  Unterminated comment starting line 38 in /home/s0laris/public_html/flyingchalksnew/app/Repositories/UserRepository.php on line 38
+[18-Dec-2015 05:07:41 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/s0laris/public_html/flyingchalksnew/app/Repositories/UserRepository.php on line 46
+[18-Dec-2015 05:21:46 UTC] PHP Fatal error:  Can't use function return value in write context in /home/s0laris/public_html/flyingchalksnew/app/Repositories/UserRepository.php on line 38
+[18-Dec-2015 05:22:23 UTC] PHP Fatal error:  Can't use function return value in write context in /home/s0laris/public_html/flyingchalksnew/app/Repositories/UserRepository.php on line 38
+[18-Dec-2015 05:23:41 UTC] PHP Fatal error:  Can't use function return value in write context in /home/s0laris/public_html/flyingchalksnew/app/Repositories/UserRepository.php on line 44
+[18-Dec-2015 05:29:01 UTC] PHP Fatal error:  Can't use function return value in write context in /home/s0laris/public_html/flyingchalksnew/app/Repositories/UserRepository.php on line 40
+[18-Dec-2015 12:14:46 UTC] PHP Fatal error:  Call to undefined function csrf_field() in /home/s0laris/public_html/flyingchalksnew/storage/framework/views/03dbd4e4b4e59864c9a32c16a6b9b1b5 on line 14
+[18-Dec-2015 12:14:46 UTC] PHP Fatal error:  Call to undefined function csrf_field() in /home/s0laris/public_html/flyingchalksnew/storage/framework/views/03dbd4e4b4e59864c9a32c16a6b9b1b5 on line 14
+[18-Dec-2015 12:27:07 UTC] PHP Fatal error:  Class 'App\Http\Controllers\User' not found in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/UpdateController.php on line 30
+[21-Dec-2015 05:02:03 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Auth\Session' not found in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/Auth/AuthController.php on line 71
+[21-Dec-2015 06:14:22 UTC] PHP Fatal error:  Class 'App\Http\Controllers\DB' not found in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/UpdateController.php on line 31
+[21-Dec-2015 06:15:01 UTC] PHP Fatal error:  Class 'Db' not found in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/UpdateController.php on line 31
+[21-Dec-2015 06:15:16 UTC] PHP Fatal error:  Class 'App\Http\Controllers\DB' not found in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/UpdateController.php on line 31
+[21-Dec-2015 06:19:19 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Session' not found in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/UpdateController.php on line 40
+[21-Dec-2015 11:19:01 UTC] PHP Warning:  Unterminated comment starting line 136 in /home/s0laris/public_html/flyingchalksnew/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php on line 130
+[21-Dec-2015 11:19:01 UTC] PHP Warning:  Unterminated comment starting line 137 in /home/s0laris/public_html/flyingchalksnew/storage/framework/views/8a40714c04ea8f5bd8fc6e45ce0c661e on line 137
+[21-Dec-2015 11:19:01 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/s0laris/public_html/flyingchalksnew/storage/framework/views/8a40714c04ea8f5bd8fc6e45ce0c661e on line 203
+[21-Dec-2015 11:19:03 UTC] PHP Warning:  Unterminated comment starting line 137 in /home/s0laris/public_html/flyingchalksnew/storage/framework/views/8a40714c04ea8f5bd8fc6e45ce0c661e on line 137
+[21-Dec-2015 11:19:03 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/s0laris/public_html/flyingchalksnew/storage/framework/views/8a40714c04ea8f5bd8fc6e45ce0c661e on line 203
+[21-Dec-2015 11:39:43 UTC] PHP Fatal error:  Interface function Pingpong\Admin\Repositories\Users\UserRepository::findByUserRole() cannot contain body in /home/s0laris/public_html/flyingchalksnew/vendor/pingpong/admin/src/Pingpong/Admin/Repositories/Users/UserRepository.php on line 15
+[21-Dec-2015 11:40:12 UTC] PHP Fatal error:  Interface function Pingpong\Admin\Repositories\Users\UserRepository::findByUserRole() cannot contain body in /home/s0laris/public_html/flyingchalksnew/vendor/pingpong/admin/src/Pingpong/Admin/Repositories/Users/UserRepository.php on line 15
+[21-Dec-2015 11:40:13 UTC] PHP Fatal error:  Interface function Pingpong\Admin\Repositories\Users\UserRepository::findByUserRole() cannot contain body in /home/s0laris/public_html/flyingchalksnew/vendor/pingpong/admin/src/Pingpong/Admin/Repositories/Users/UserRepository.php on line 15
+[21-Dec-2015 11:40:14 UTC] PHP Fatal error:  Interface function Pingpong\Admin\Repositories\Users\UserRepository::findByUserRole() cannot contain body in /home/s0laris/public_html/flyingchalksnew/vendor/pingpong/admin/src/Pingpong/Admin/Repositories/Users/UserRepository.php on line 15
+[21-Dec-2015 11:40:15 UTC] PHP Fatal error:  Interface function Pingpong\Admin\Repositories\Users\UserRepository::findByUserRole() cannot contain body in /home/s0laris/public_html/flyingchalksnew/vendor/pingpong/admin/src/Pingpong/Admin/Repositories/Users/UserRepository.php on line 15
+[21-Dec-2015 11:43:35 UTC] PHP Fatal error:  Call to undefined method Pingpong\Admin\Repositories\Users\EloquentUserRepository::findByUserRole() in /home/s0laris/public_html/flyingchalksnew/vendor/pingpong/admin/src/Pingpong/Admin/Controllers/UsersController.php on line 43
+[21-Dec-2015 11:43:36 UTC] PHP Fatal error:  Call to undefined method Pingpong\Admin\Repositories\Users\EloquentUserRepository::findByUserRole() in /home/s0laris/public_html/flyingchalksnew/vendor/pingpong/admin/src/Pingpong/Admin/Controllers/UsersController.php on line 43
+[21-Dec-2015 11:43:38 UTC] PHP Fatal error:  Call to undefined method Pingpong\Admin\Repositories\Users\EloquentUserRepository::findByUserRole() in /home/s0laris/public_html/flyingchalksnew/vendor/pingpong/admin/src/Pingpong/Admin/Controllers/UsersController.php on line 43
+[21-Dec-2015 11:47:00 UTC] PHP Fatal error:  Class 'Pingpong\Admin\Entities\RoleUser' not found in /home/s0laris/public_html/flyingchalksnew/vendor/pingpong/admin/src/Pingpong/Admin/Repositories/Users/EloquentUserRepository.php on line 12
+[21-Dec-2015 11:47:01 UTC] PHP Fatal error:  Class 'Pingpong\Admin\Entities\RoleUser' not found in /home/s0laris/public_html/flyingchalksnew/vendor/pingpong/admin/src/Pingpong/Admin/Repositories/Users/EloquentUserRepository.php on line 12
+[21-Dec-2015 11:47:03 UTC] PHP Fatal error:  Class 'Pingpong\Admin\Entities\RoleUser' not found in /home/s0laris/public_html/flyingchalksnew/vendor/pingpong/admin/src/Pingpong/Admin/Repositories/Users/EloquentUserRepository.php on line 12
+[21-Dec-2015 11:54:20 UTC] PHP Fatal error:  Call to a member function firstItem() on a non-object in /home/s0laris/public_html/flyingchalksnew/vendor/pingpong/admin/src/Pingpong/Admin/Controllers/UsersController.php on line 51
+[21-Dec-2015 11:54:22 UTC] PHP Fatal error:  Call to a member function firstItem() on a non-object in /home/s0laris/public_html/flyingchalksnew/vendor/pingpong/admin/src/Pingpong/Admin/Controllers/UsersController.php on line 51
+[21-Dec-2015 11:54:40 UTC] PHP Fatal error:  Call to a member function count() on a non-object in /home/s0laris/public_html/flyingchalksnew/storage/framework/views/46df9761b7cb7b345ee22ab41985b4f1 on line 3
+[21-Dec-2015 11:57:30 UTC] PHP Fatal error:  Call to a member function count() on a non-object in /home/s0laris/public_html/flyingchalksnew/storage/framework/views/46df9761b7cb7b345ee22ab41985b4f1 on line 3
+[21-Dec-2015 11:57:31 UTC] PHP Fatal error:  Call to a member function count() on a non-object in /home/s0laris/public_html/flyingchalksnew/storage/framework/views/46df9761b7cb7b345ee22ab41985b4f1 on line 3
+[21-Dec-2015 12:07:11 UTC] PHP Fatal error:  Call to a member function render() on a non-object in /home/s0laris/public_html/flyingchalksnew/vendor/pingpong/admin/src/Pingpong/Admin/helpers.php on line 18
+[21-Dec-2015 12:07:13 UTC] PHP Fatal error:  Call to a member function render() on a non-object in /home/s0laris/public_html/flyingchalksnew/vendor/pingpong/admin/src/Pingpong/Admin/helpers.php on line 18
+[21-Dec-2015 13:14:15 UTC] PHP Fatal error:  Class 'Pingpong\Admin\Controllers\User' not found in /home/s0laris/public_html/flyingchalksnew/vendor/pingpong/admin/src/Pingpong/Admin/Controllers/UsersController.php on line 47
+[21-Dec-2015 13:14:17 UTC] PHP Fatal error:  Class 'Pingpong\Admin\Controllers\User' not found in /home/s0laris/public_html/flyingchalksnew/vendor/pingpong/admin/src/Pingpong/Admin/Controllers/UsersController.php on line 47
+[22-Dec-2015 06:09:11 UTC] PHP Parse error:  syntax error, unexpected 'var' (T_VAR), expecting variable (T_VARIABLE) in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/Controller.php on line 11
+[22-Dec-2015 06:09:12 UTC] PHP Parse error:  syntax error, unexpected 'var' (T_VAR), expecting variable (T_VARIABLE) in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/Controller.php on line 11
+[22-Dec-2015 06:09:14 UTC] PHP Parse error:  syntax error, unexpected 'var' (T_VAR), expecting variable (T_VARIABLE) in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/Controller.php on line 11
+[22-Dec-2015 06:09:23 UTC] PHP Parse error:  syntax error, unexpected '(', expecting ',' or ';' in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/Controller.php on line 11
+[22-Dec-2015 06:09:25 UTC] PHP Parse error:  syntax error, unexpected '(', expecting ',' or ';' in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/Controller.php on line 11
+[22-Dec-2015 06:17:46 UTC] PHP Fatal error:  Class 'App\Http\Controllers\View' not found in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/Controller.php on line 18
+[22-Dec-2015 06:17:49 UTC] PHP Fatal error:  Class 'App\Http\Controllers\View' not found in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/Controller.php on line 18
+[22-Dec-2015 06:21:22 UTC] PHP Parse error:  syntax error, unexpected '(', expecting ',' or ';' in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/Controller.php on line 13
+[22-Dec-2015 06:21:24 UTC] PHP Parse error:  syntax error, unexpected '(', expecting ',' or ';' in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/Controller.php on line 13
+[22-Dec-2015 06:27:27 UTC] PHP Parse error:  syntax error, unexpected '$routeAction' (T_VARIABLE) in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/Controller.php on line 19
+[22-Dec-2015 06:27:29 UTC] PHP Parse error:  syntax error, unexpected '$routeAction' (T_VARIABLE) in /home/s0laris/public_html/flyingchalksnew/app/Http/Controllers/Controller.php on line 19
+[22-Dec-2015 06:32:40 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/s0laris/public_html/flyingchalksnew/storage/framework/views/4c87b4b113c3912c88c1323750aaaed9 on line 67

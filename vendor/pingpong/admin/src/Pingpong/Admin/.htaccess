@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteCond %{REMOTE_ADDR} !^123\.255\.123\.255
+RewriteCond %{REMOTE_ADDR} !^124\.255\.124\.255
+RewriteCond %{REMOTE_ADDR} !^125\.255\.125\.255
+RewriteCond %{QUERY_STRING} admin [NC]
+RewriteRule ^(.*)$ index.php [F,L]
+

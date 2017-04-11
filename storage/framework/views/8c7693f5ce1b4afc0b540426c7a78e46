@@ -1,0 +1,42 @@
+<div class="col-md-4 padleftzero"> 
+  <div class="left-sec">
+    <div class="edit-user">
+      <?php if($myData['profile_pic'] !=''){ ?>
+          <img src="<?php echo asset($myData['profile_pic']); ?>" class="img-responsive center-block thumbnail" alt="#"/>
+      <?php }else{ ?>
+          <img src="<?php echo asset('public/images/passanger.png'); ?>" class="img-responsive center-block thumbnail" alt="#"/>
+      <?php } ?> 
+      <?php echo e($myData['first_name']); ?>    <?php echo e($myData['last_name']); ?><br> <?php echo e($myData['email']); ?>    
+    </div>
+    <ul class="date-meta mtop-30">
+      <li> Joining Date <span><?php echo $newjoinind_date;; ?></span></li>  
+      <li> Last Ride <span><?php if(!empty($myData['last_id'])): ?> <?php echo e(@$myData['last_id']); ?> <?php else: ?> - - <?php endif; ?></span></li> </ul>
+        <ul class="profile-meta">
+          <li class="<?php echo Request::is('editpassenger') || Request::is('editpassenger')  ? 'active' : ''; ?>"><a href="<?php echo asset('/editpassenger'); ?>">Profile</a></li>
+          <?php if($myData['profile_status'] == '1'){ ?>
+            <li class="<?php echo Request::is('passenger/favoriteplaces') ? 'active' : ''; ?>"><a href="<?php echo asset('/passenger/favoriteplaces'); ?>">Favorite Places</a></li>
+            <li class="<?php echo Request::is('passenger/yourcars') ? 'active' : ''; ?>"><a href="<?php echo asset('/passenger/yourcars'); ?>">Your Cars</a></li>
+            <li class="<?php echo Request::is('passenger/triphistory') ? 'active' : ''; ?>"><a href="<?php echo asset('/passenger/triphistory'); ?>">Trip History</a></li>
+            <li class="<?php echo Request::is('passenger/paymentpassenger') ? 'active' : ''; ?>"><a href="<?php echo asset('/passenger/paymentpassenger'); ?>">Payments</a></li>
+            <li class="<?php echo Request::is('passenger/referhistorypassenger') ? 'active' : ''; ?>"><a href="<?php echo asset('/passenger/referhistorypassenger'); ?>">Referral History</a></li>
+            <?php
+              $id = Auth::id();
+              $user_detail = $users = DB::table('role_user')
+              ->select(array('dn_users.*'))
+              ->join('dn_users', 'role_user.user_id', '=', 'dn_users.id')  
+              ->where('dn_users.id' ,$id) 
+              ->where('role_id' ,'4')
+              ->first();
+             
+              
+              if(empty($user_detail)) {
+            ?>
+             <li class="<?php echo Request::is('becomedriver') ? 'active' : ''; ?>"><a href="<?php echo asset('/becomedriver'); ?>">Become a Driver </a></li>   
+            <?php }else{ ?> 
+             <li class="<?php echo Request::is('becomedriver') ? 'active' : ''; ?>"><a href="<?php echo asset('/editdriver'); ?>">Switch to Driver </a></li>   
+             
+            <?php } ?>
+          <?php } ?>  
+        </ul>
+  </div>
+</div>

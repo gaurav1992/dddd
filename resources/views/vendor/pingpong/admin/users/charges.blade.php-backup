@@ -1,0 +1,90 @@
+@extends($layout)
+
+@section('content-header')
+	<h1 style="text-align:center;">
+		{!! $title or 'Charges' !!} 
+
+	</h1>
+<div style="clear:both"></div>
+{!!@$message!!}
+@stop
+
+
+@section('content')
+<div class="content-part">
+{!! Form::open(array('id' => 'addUserForm','id' => 'addUserForm','name'=>'addUserForm','files' => true)) !!}
+<h1>Passenger User Referral</h1>
+        <div class="col-sm-2 pad">
+      <label><input type="checkbox"class="checkbox" name="referal_enable" id="referal_enable">Enable</label>
+</div>
+    <div class="col-sm-4 pad">
+       Amount received for referal
+		</div>
+		<div class="col-sm-6 pad">
+        <input type="text" class="form-control dezi-text-1 same-control" name="referal_credit" id="referal_credit" placeholder="DeziCredit">
+      </div>
+      <tr>
+        <div class="col-sm-2 pad">
+      <label><input type="checkbox"class="checkbox">Enable</label>
+</div>
+ <div class="col-sm-4 pad">
+        Amount for Anniversary:
+		</div>
+		  <div class="col-sm-3 pad">
+        <td><input type="text" class="form-control same-control" id="text" placeholder="DeziCredit"style="text-align:center;"></td>
+		</div>
+        <div class="col-sm-3 pad">
+        <td><input type="text" class="form-control same-control" id="text" placeholder="DeziCredit"style="text-align:right;"></td>
+		</div>
+      <div class="col-sm-2 pad ">
+      <label><input type="checkbox"class="checkbox">Enable</label>
+</div>
+ <div class="col-sm-4 pad">
+        Amount for Birthday:
+		</div>
+      <div class="col-sm-3 pad">
+        <input type="text" class="form-control same-control" id="text" placeholder="DeziCredit"style="text-align:center;">
+		</div>
+        <div class="col-sm-3 pad">
+        <input type="text" class="form-control same-control" id="text" placeholder="DeziCredit"style="text-align:right;">
+		</div>
+		        <div class="col-sm-2 pad">
+      <label><input type="checkbox" class="checkbox">Enable</label>
+</div>
+		 <div class="col-sm-4 pad">
+        New Rider Promotion:
+		</div>
+		  <div class="col-sm-3 pad">
+        <input type="text" class="form-control same-control" id="text" placeholder="DeziCredit"style="text-align:center;">
+		</div>
+        <div class="col-sm-3 pad">
+        <input type="text" class="form-control same-control" id="text" placeholder="DeziCredit"style="text-align:right;">
+		</div>
+<h1>Create Promo Code</h1>
+	     <div class="col-sm-2 pad">
+      <label><input type="checkbox"class="checkbox">Enable</label>
+        </div>
+		<div class="col-sm-6 pad">
+        <input type="text" class="form-control credit same-control" id="text" placeholder="DeziCredit"style="text-align:right;">
+		</div>
+		<div class="col-sm-4 pad">
+		<label>Credit:</label>
+        <input type="text" class="form-control same-control" id="text" placeholder="DeziCredit "style="margin-left:12px;text-align:right;">
+      </div>
+<div class="col-sm-4 anii">
+			<div class="form-group dis-block">
+			<label class="l_blck" for="Anniversary">till</label>
+			<input name="Anniversary" id="Anniversary" placeholder="MM/DD/YYYY" value="" readonly="true" type="text"class="same-control">
+			<i aria-hidden="true" class="fa fa-calendar custom_cal"></i> </div>
+	   </div>
+	    <button type="submit" class="btn btn-default">Add New Promo</button>
+		<div class="col-sm-12 trigger-main">
+		<button type="submit" class="btn btn-default trigger-but1">Save</button>
+		<button type="submit" class="btn btn-default trigger-but2">Cancel</button>
+		</div>
+    {!! Form::close() !!}
+</div>
+
+@stop
+
+

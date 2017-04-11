@@ -1,0 +1,63 @@
+.heading a{text-decoration:none;color: #fff;}
+.heading a:hover{text-decoration:none;color: #fff;}
+label.error{color:red;font-style: normal;font-weight: normal;margin-bottom:0 !important;}
+#usersignup .form-group {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.regBtn {
+	margin-top:0 !important;
+}
+.alert-danger ul li {
+    list-style: none;
+}
+
+.resetMid{  min-height: 550px !important;}
+.text-center{text-transform: capitalize;}
+.pro-img {
+	height:200px !important;
+	width:200px !important;
+	padding:5px !important;
+}
+.pro-left img {
+	max-width:100%;
+	max-height:100%;
+	border-radius:50%;
+}
+.pError {
+	display:inline;
+}
+.asteriskMark {
+	display: block;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.selectMenu {
+    border: 2px solid #ebebeb !important;
+    border-radius: 2px !important;
+    color: #000 !important;
+    height: 50px !important;
+    margin-top: 0 !important;
+    text-align: left !important;
+    width: 100% !important;
+	background: none !important;
+}
+.input-group-addon {
+	background:rgba(0, 0, 0, 0) linear-gradient(135deg, rgba(255, 156, 63, 1) 0%, rgba(255, 123, 0, 1) 100%) repeat scroll 0 0 !important;
+	padding: 6px 15px !important;
+}
+.input-group-addon .caret{
+	border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 10px dashed;
+	color:white;
+	
+}
+.input-group-addon .glyphicon-remove {
+	color:white;
+}
+
+.input-group .form-control:first-child, .input-group-addon:first-child, .input-group-btn:first-child > .btn, .input-group-btn:first-child > .btn-group > .btn, .input-group-btn:first-child > .dropdown-toggle, .input-group-btn:last-child > .btn-group:not(:last-child) > .btn, .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle)
+{
+	border-right:0 !important;
+}

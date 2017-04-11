@@ -1,0 +1,191 @@
+/* COMMON CSS */
+
+.float-none { float: none !important; }
+.no-margin { margin: 0px !important; }
+.no-padding{ padding: 0px !important; }
+.hide-this{ display: none !important; }
+
+.price_schdule{ display: none; position: relative;}
+
+.close-me{
+    color: #fff;
+    background: red;
+    padding: 5px 10px;
+    font-weight: bold;
+    display: block;
+    float: right;
+    cursor: pointer;
+}
+
+.close-me:hover{
+    background: #000;
+}
+
+.dataTables_length { display: none; }
+
+.dataTables_filter{
+	 margin: 20px 10px;
+    text-align: center;
+}
+
+.az-alert-modal{ z-index: 9999; }
+.info-box-text{text-align: center; font-size: 17px; padding-top: 8px;}
+.info-box-number{text-align: center; font-size: 22px;}
+.totl_pass{text-align: center; font-size: 10px; display: block;}
+.dataTables_wrapper .dataTables_paginate {width:100%; text-align:center; margin-bottom:10px; margin-top:10px; }
+.dataTables_info{display:none;}
+.paginate_button {background-color:#FFFFFF;}
+.dataTables_wrapper .dataTables_paginate .paginate_button :hover{background-color:#EEEEEE;}
+span.label-info.label > a , span.label-success.label > a{   color: #fff;}
+
+#generate-payment-receipt:hover{
+    color: #000;
+}
+
+#loadering {
+    background: url("../images/bg_preloader.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 100%;
+
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+#loadering img {
+left: 50%;
+margin: -50px 0 0 -50px;
+position: absolute;
+top: 50%;
+}
+
+.carReport{width:100% !important;}
+.carsReport{margin-left:10%;}
+.error{color:red;}
+
+/* ***** TABS ***** */
+.myTabs{
+
+}
+
+.myTabs .tabs:hover{
+	color: #1e282c;
+	background: #fff;
+	border: 1px solid #1e282c;
+}
+.myTabs .tabs{
+	float: left;
+    display: block;
+    background: #1e282c;
+    color: #fff;
+    padding: 3px 5px;
+    margin-right: 2px;
+    border: 1px solid #1e282c;
+    border-top-right-radius: 10px;
+    cursor: pointer;
+}
+
+.myTabs .tabs span{
+
+}
+#rideHistory_filter {
+    display: none;
+}
+.all-city-section{
+    clear: both;
+}
+
+.credit-edit,.ssnEdit {
+    cursor: pointer;
+    background: #00c0ef;
+    color: #fff;
+    padding: 4px;
+    border-radius: 5px;
+}
+.az-relative { position: relative; }
+.credit-edit-callout,.ssnEditformdiv{
+    display: none;
+    position: absolute;
+    z-index: 999;
+}
+.credit-edit-callout .close-me {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    color: #fff;
+    background: rgba(224,0,0,1);
+    padding: 2px 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.refund-section {
+    clear: both;
+    margin: 20px 0px 20px 0px;
+    float: left;
+    width: 100%;
+    background: rgba(224,224,224,0.7);
+    border: 1px solid rgba(224,173,173,1);
+}
+
+/* Mathematical Expressions style */
+
+.az-exp, .az-exp-row, .az-exp-left, .az-exp-right{
+    display: block;
+}
+
+.az-exp{
+    border: 1px solid rgba(224,163,163,0.7);
+    float: left;
+    padding: 5px;
+    margin: 5px;
+    position: relative;
+}
+.az-exp-row{
+    width: 100%;
+    padding: 2px;
+    float: left;
+}
+.az-exp-left{
+    float: left;
+    width: 50%;
+}
+.az-exp-right{
+    float: right;
+    width: 50%;
+}
+.exp-result{ }
+
+.exp-info{
+    background: rgba(0,0,224,0.2);
+}
+
+.my-loader {
+    display: none;
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid rgba(0,0,224,0.7);
+    border-right: 10px solid rgba(0,124,0,0.7);
+    border-bottom: 10px solid rgba(224,0,0,0.7);
+    border-left: 10px solid rgba(0,0,0,0.7);
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* /Mathematical Expressions style */

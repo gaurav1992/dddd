@@ -1,0 +1,46 @@
+
+<link href="{!! admin_asset('components/bootstrap/dist/css/bootstrap.min.css') !!}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<!-- Ionicons -->
+<link href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet" type="text/css"/>
+<!-- iCheck -->
+<link rel="stylesheet" href="{!! admin_asset('adminlte/plugins/iCheck/flat/blue.css') !!}">
+<!-- Morris chart -->
+<link rel="stylesheet" href="{!! admin_asset('adminlte/plugins/morris/morris.css') !!}">
+<!-- jvectormap -->
+<link rel="stylesheet" href="{!! admin_asset('adminlte/plugins/jvectormap/jquery-jvectormap-1.2.2.css') !!}">
+<!-- Date Picker -->
+<link rel="stylesheet" href="{!! admin_asset('adminlte/plugins/datepicker/datepicker3.css') !!}">
+<!-- Daterange picker -->
+<link rel="stylesheet" href="{!! admin_asset('adminlte/plugins/daterangepicker/daterangepicker-bs3.css') !!}">
+<!-- bootstrap wysihtml5 - text editor -->
+<link rel="stylesheet" href="{!! admin_asset('adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') !!}">
+
+
+<!-- Theme style -->
+<link href="{!! admin_asset('adminlte/css/AdminLTE.css') !!}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{!! admin_asset('adminlte/css/_all-skins.min.css') !!} ">
+<link href="{!! admin_asset('adminlte/css/bootstrap-combobox.css') !!}" rel="stylesheet" type="text/css"/>
+<link href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+<link href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css"/>
+<link href="https://nightly.datatables.net/buttons/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
+<link href="{!! admin_asset('css/custom.css') !!}" rel="stylesheet" type="text/css"/>
+<link href="{!! admin_asset('css/admin_custom.css') !!}" rel="stylesheet" type="text/css"/>
+<link href="{!! admin_asset('css/wickedpicker.css') !!}" rel="stylesheet" type="text/css"/>
+<link href="{!! admin_asset('css/cleanslate.css') !!}" rel="stylesheet" type="text/css"/>
+<link href="{!! admin_asset('css/jquery.weekLine.css') !!}" rel="stylesheet" type="text/css"/>
+
+
+<style type="text/css">
+	.data_perpage .dataTables_length{
+		display: block;
+	}
+</style>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->

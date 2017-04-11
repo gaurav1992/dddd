@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
+    <title>Administrator | <?php echo $__env->yieldContent('title', 'DeziNow'); ?></title>
+    
+    <?php echo $__env->make('admin::partials.style', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->yieldContent('style'); ?>
+	<script>
+	var loadingImage="<?php echo URL::to('/'); ?>/public/packages/pingpong/admin/images/ajax-loader.gif";
+
+	</script>
+	
+</head>
+
+<body class="skin-blue sidebar-mini">
+<div class="wrapper">
+    <?php echo $__env->make('admin::partials.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->make('admin::partials.sidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+        <!-- Right side column. Contains the navbar and content of the page -->
+        <aside class="right-side">
+            <!-- Content Header (Page header) -->
+
+            <section class="content-header">
+                <?php echo $__env->yieldContent('content-header'); ?>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <?php echo $__env->make('admin::partials.flashes', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php echo $__env->make('admin::partials.azmodal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php echo $__env->yieldContent('content'); ?>
+            </section>
+            
+        </aside>
+        <!-- /.right-side -->
+   
+    <!-- ./wrapper -->
+</div>	
+
+    <!-- add new calendar event modal -->
+	
+    <?php echo $__env->make('admin::partials.script', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<?php echo $__env->yieldContent('customjavascript'); ?>
+    <?php echo $__env->yieldContent('script'); ?>
+	
+	<script>
+	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+	</script>
+
+    <!-- Button trigger notification modal -->
+    <!-- Modal -->
+    <!-- Button trigger modal -->
+
+</body>
+</html>
+<?php $loggedInUserPermission = Session::get('userPermissions');?>	
+	<?php if(!empty($loggedInUserPermission)): ?>
+		<?php foreach($loggedInUserPermission as $userPermission): ?>
+		
+			<?php if($userPermission->module_slug=="reports" && $userPermission->view_permission==0): ?>
+				Hello:<?php echo e($userPermission->module_slug.$userPermission->view_permission); ?>	
+					<script>
+					$(document).ready(function(){
+						
+						$('.genRepoBtn').remove();
+					});
+					</script>
+			<?php endif; ?>
+		<?php endforeach; ?>
+	<?php endif; ?>

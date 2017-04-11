@@ -1,0 +1,22 @@
+#login-box h1 {
+    color: #fff;
+    display: block;
+    font-size: 3em;
+    font-weight: bold;
+    height: 60px;
+    line-height: 1.3em;
+    outline: medium none;
+    padding: 0;
+    text-align: center;
+    
+}
+label.error {
+    color: red;
+    font-weight: normal;
+}
+.label-success {
+    background-color: #5cb85c;
+    float: left;
+    margin: 3px 0;
+    padding: 0.5em 0.5em 0.7em;
+}

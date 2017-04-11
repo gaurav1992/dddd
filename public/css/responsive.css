@@ -1,0 +1,36 @@
+
+
+.peers-area{ clear:left; margin:0 0 30px 0;}
+.user-info-area p.pro-button {position:absolute; bottom:0px; margin:10px 0 0 0px;}
+
+.profile-bio .g-profile{ margin:35px 0 0 0;}
+.edit-area-2{ margin:0 0 0 20px; }
+
+/*Exchange head*/
+.exchnage-head{width:100%; float:left;}
+.exchange-head h1{ float:left;}
+.exchange-head p{ text-align:right; float:right; }
+
+@media only screen and (min-width:981px) and (max-width:1024px){
+.profile-details { padding:30px 0 30px 0;}	
+}
+
+@media only screen and (min-width:768px) and (max-width:980px){
+.user-info-area{ min-height:0px; padding:0 0 30px 0;}	
+.profile-details { padding:30px 0 30px 0;}
+}
+@media only screen and (min-width:641px) and (max-width:767px){
+.user-info-area{ min-height:0px; padding:0 0 30px 0;}	
+.profile-details { padding:30px 0 30px 0;}
+}
+@media only screen and (min-width:481px) and (max-width:640px){
+.user-info-area{ min-height:0px; padding:0 0 30px 0;}	
+.profile-details { padding:30px 0 30px 0;}
+}
+
+@media only screen and (min-width:320px) and (max-width:480px){
+.user-info-area{ min-height:0px; padding:0 0 30px 0;}
+.profile-bio p{ height:auto;}		
+.profile-details { padding:30px 0 30px 0;}
+.user-info-area p.pro-button {position:static;}
+}

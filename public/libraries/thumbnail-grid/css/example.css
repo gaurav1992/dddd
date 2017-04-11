@@ -1,0 +1,219 @@
+
+#country-gallery ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.gallery-items {
+    font-size: 0;
+}
+
+.gallery-item {
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px 5px 0 5px;
+    /*height: 250px;*/
+    -webkit-transition: height 500ms ease;
+    -o-transition: height 500ms ease;
+    transition: height 500ms ease;
+}
+
+.gallery-expander {
+    position: absolute;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    max-height: 0;
+    -webkit-transition: max-height 500ms ease;
+    -o-transition: max-height 500ms ease;
+    transition: max-height 500ms ease;
+}
+
+.gallery-contents {
+    position: relative;
+}
+
+.gallery-contents:after {
+    display: block;
+    position: absolute;
+    /*bottom: 0px;*/
+    bottom: -20px;
+    /*top:auto;*/
+    /*left: 50%;*/
+    left: 40%;
+    margin: -15px 0 0 -15px;
+    width: 0;
+    height: 0;
+    content: '';
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom-style: solid;
+    border-bottom-width: 0px;
+    -webkit-transition: border-bottom-width 500ms ease;
+    -o-transition: border-bottom-width 500ms ease;
+    transition: border-bottom-width 500ms ease;
+}
+
+.gallery-item.active .gallery-contents:after {
+    border-bottom-width: 30px;
+}
+.gallery-item {
+    text-align: left;
+    font-size: 25px;
+    /*margin: 0 10px;*/
+    padding: 10px 0;
+    margin: 2px 5px 10px;
+}
+.gallery-item .thumbnail {
+    position: relative;
+    /*width: 300px;*/
+    /*height: 300px;*/
+    width: 7em;
+    overflow: hidden;
+    cursor: pointer;
+    margin-bottom:0px;
+}
+
+.gallery-item .thumbnail > img {
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*margin-top: -300px;*/
+    /*max-width: 300px;*/
+}
+.gallery-item .img-thumbnail {
+    border: none;
+    padding: 0px;
+}
+.gallery-item hr{
+    margin: 10px 0;
+}
+.gallery-item .title {
+    /*font-size: 0.8em;*/
+    text-align: center;
+    /*margin-top: 20px;*/
+    /*padding-bottom: 20px;*/
+    font-weight: 300;
+    font-size: 0.8em;
+}
+
+.gallery-contents:after {
+    /*border-bottom-color: #F6F3ED;*/
+    border-bottom-color: #ddd;
+}
+
+.gallery-expander {
+    /*background: #F6F3ED;*/
+    background: #ddd;
+    margin-top: 5px;
+}
+
+.gallery-expander-contents {
+    margin: 0 auto;
+    /*width: 1000px;*/
+    width: 100%;
+    padding: 20px 0;
+}
+.gallery-expander-contents .row{
+    margin:0.5em;
+}
+
+@media (min-width: 640px) and (max-width: 999px) {
+
+    .gallery-expander-contents {
+        width: 640px;
+    }
+}
+
+@media (max-width: 639px) {
+
+    .gallery-expander-contents {
+        width: 100%;
+    }
+}
+
+.gallery-expander-contents:after {
+    clear: both;
+    display: table;
+    content: '';
+}
+
+.gallery-expander-contents > div.col {
+    float: left;
+    width: 480px;
+}
+
+@media (min-width: 640px) and (max-width: 999px) {
+
+    .gallery-expander-contents > div.col {
+        width: 310px;
+    }
+}
+
+@media (max-width: 639px) {
+
+    .gallery-expander-contents > div.col {
+        float: none;
+        padding: 25px 20px 0;
+        width: auto;
+    }
+}
+
+.gallery-expander-contents > div.col + div.col {
+    margin-left: 40px;
+}
+
+@media (min-width: 640px) and (max-width: 999px) {
+
+    .gallery-expander-contents > div.col + div.col {
+        margin-left: 20px;
+    }
+}
+
+@media (max-width: 639px) {
+
+    .gallery-expander-contents > div.col + div.col {
+        margin-left: 0px;
+    }
+}
+
+.gallery-expander-contents div.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.gallery-expander-contents div.title {
+    font-weight: 500;
+    /*color: #D28A3C;*/
+}
+
+.gallery-expander-contents div.contents {
+    margin-top: 10px;
+    /*border-top: 1px solid #BCB098;*/
+    /*border-bottom: 1px solid #BCB098; */
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+    padding: 10px 0;
+    font-size: 14px;
+    line-height: 24px;
+    color: #797262;
+}
+
+.gallery-expander-contents div.image > img {
+    width: 100%;
+    display: block;
+}
+
+.gallery-expander-contents button{
+    font-weight: 700;
+    font-size: 16px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 10px 20px;
+    border: 3px solid #333;
+    display: inline-block;
+    margin: 30px 0 0;
+    outline: none;
+}

@@ -1,0 +1,83 @@
+
+<?php $__env->startSection('content'); ?>
+<div class="container-fluid no-padding" id="inner-header"> <img src="<?php echo asset('public/images/form-head.jpg'); ?>" alt="test" class="img-responsive">
+    <div class="carousel-caption"> </div>
+    <h3 class="page-heading">SIGN-UP</h3>
+</div>
+<!--  SECTION-1 -->
+<!--  SECTION-1 -->
+<?php @$becomedriver = Session::get('becomedriver'); ?>
+<section>
+  <div class="container sing-up" id="forgot-pass">    
+        <div class="row">
+            <div class="center col-sm-5 top-space">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="text-center">
+                          <?php if(Auth::check()) { ?>
+                            <p class="alert <?php echo e(Session::get('alert-class', 'alert-info')); ?>">You are already login!!</p><br/>
+                          <?php }else{ ?>
+                            <?php if(Session::has('message')): ?>
+                                <p class="alert <?php echo e(Session::get('alert-class', 'alert-info')); ?>"><?php echo e(Session::get('message')); ?></p>
+                            <?php endif; ?>
+                            <br/>
+                          <a href="<?php echo asset('/login'); ?>" class="fb-link">Already have an account? Login here </a>
+                            <div class="panel-body">
+                                <?php echo Form::open(array('url' => 'signup','class' => 'form','id'=>'SignUpForm')); ?>
+
+                                 <input type="hidden" placeholder="becomedriver" class="form-control"  name="becomeD" value="<?php echo @$becomedriver; ?>">
+                                <fieldset>
+                                  <div class="form-group">
+                                    <div class="input-group boder">
+                                      <span class="input-group-addon fb-sing">
+                                      <span class="fb-icon"><i class="fa fa-facebook-official" aria-hidden="true"></i></span></span>
+                                      <a class="btn btn-lg btn-primary btn-block fb" href="login/facebook">Continue with Facebook</a>
+                                    </div>
+                                  </div>
+                                  <h5>Or</h5>
+                                  <div class="form-group">
+                                      <div class="icon-addon addon-lg">
+                                          <?php echo Form::email('email','',array('id'=>'email','class'=>'form-control','placeholder' => 'Email')); ?>
+
+                                          <label for="email" class="glyphicon glyphicon-envelope" rel="tooltip" title="email"></label>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <div class="icon-addon addon-lg">
+                                          <input type="password" placeholder="Password" class="form-control" id="password" name="password">
+                                          <label for="password" class="glyphicon glyphicon-lock" rel="tooltip" title="password"></label>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <div class="icon-addon addon-lg">
+                                          <input type="password" placeholder="Confirm Password" class="form-control" id="password_confirmation" name="password_confirmation">
+                                          <label for="password" class="glyphicon glyphicon-lock" rel="tooltip" title="password"></label>
+                                      </div>
+                                  </div>
+                                    <div class="form-group">
+                                        <div class="icon-addon addon-lg">
+                                            <input type="text" placeholder="Referral Code" class="form-control" id="referral_code" name="referral_code">
+                                            <label for="referral_code" class="glyphicon glyphicon-usd" rel="tooltip" title="referral_code"></label>
+                                        </div>
+                                    </div>
+                                 <div class="form-group"> <a class="signup_margin" href="<?php echo asset('public/customer-terms-service-agreement.pdf'); ?>" target="blank">By signing up, I agree to the Terms and Conditions</a></div>
+                                  <div class="form-group">
+                                    <div class="loactionadata" style="display:none;">
+                                    </div> 
+                                    <?php echo Form::submit('Confirm', array('class'=>'btn btn-lg btn-primary btn-block GRN')); ?>
+
+                                  </div>
+                                </fieldset>
+                              <?php echo Form::close(); ?>    
+                            <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+  </div>
+</section>
+<?php echo $__env->make('frontend.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

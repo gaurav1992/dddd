@@ -1,0 +1,5 @@
+<h1>Hi !</h1>
+<h2>Welcome to DeziNow</h2>
+<p>Your Account is created</p>
+<p>Email: <?php echo e($email); ?></p>
+<p>Password: <?php echo e($password); ?></p>

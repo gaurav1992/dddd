@@ -1,0 +1,887 @@
+Array
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:213_twilio
+    [CallStatus] => ringing
+    [CallSid] => CAe200d9724d325b902a62d8170fdbc10d
+    [To] => +919041021276
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<br/>-----------------------------------------------------------------------------------------------------------<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.mobilytedev.com/deziNow/logs/logfile.php?x=35036&amp;y=021276"><Number>+919041021276</Number></Dial></Response>
+<br/>-----------------------------------------------------------------------------------------------------------ringing<br/>-----------------------------------------------------------------------------------------------------------Array
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:213_twilio
+    [CallStatus] => ringing
+    [CallSid] => CAa797f76be88a4824eff69519e7fe550f
+    [To] => +919041021276
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<br/>-----------------------------------------------------------------------------------------------------------<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.mobilytedev.com/deziNow/logs/logfile.php?x=35036&amp;y=021276"><Number>+919041021276</Number></Dial></Response>
+<br/>-----------------------------------------------------------------------------------------------------------ringing<br/>-----------------------------------------------------------------------------------------------------------Array
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:213_twilio
+    [CallStatus] => ringing
+    [CallSid] => CAea74251cf6f0d15f6a3245f80a192a3c
+    [To] => +919041021276
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<br/>-----------------------------------------------------------------------------------------------------------<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.mobilytedev.com/deziNow/logs/logfile.php?x=35036&amp;y=021276"><Number>+919041021276</Number></Dial></Response>
+<br/>-----------------------------------------------------------------------------------------------------------ringing<br/>-----------------------------------------------------------------------------------------------------------Array
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:213_twilio
+    [CallStatus] => ringing
+    [CallSid] => CAc35599ddf988382603efe386bb6da310
+    [To] => +919041572826
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<br/>-----------------------------------------------------------------------------------------------------------<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.mobilytedev.com/deziNow/logs/logfile.php?x=35036&amp;y=572826"><Number>+919041572826</Number></Dial></Response>
+<br/>-----------------------------------------------------------------------------------------------------------ringing<br/>-----------------------------------------------------------------------------------------------------------Array
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:213_twilio
+    [CallStatus] => ringing
+    [CallSid] => CAb0cb0d3402f57f6a1f4633110583afad
+    [To] => +919041021276
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<br/>-----------------------------------------------------------------------------------------------------------<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.mobilytedev.com/deziNow/logs/logfile.php?x=35036&amp;y=021276"><Number>+919041021276</Number></Dial></Response>
+<br/>-----------------------------------------------------------------------------------------------------------ringing<br/>-----------------------------------------------------------------------------------------------------------Array
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:213_twilio
+    [CallStatus] => ringing
+    [CallSid] => CA22bd2389473642a9ba147ae6f88f7d10
+    [To] => +919041021276
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<br/>-----------------------------------------------------------------------------------------------------------<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.mobilytedev.com/deziNow/logs/logfile.php?fromNo=+16507535036&amp;toNo=+919041021276"><Number>+919041021276</Number></Dial></Response>
+<br/>-----------------------------------------------------------------------------------------------------------ringing<br/>-----------------------------------------------------------------------------------------------------------Array
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:213_twilio
+    [CallStatus] => ringing
+    [CallSid] => CAd3fd04ef9fd98fbfafa84b25bc766108
+    [To] => +919041021276
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<br/>-----------------------------------------------------------------------------------------------------------<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.mobilytedev.com/deziNow/logs/logfile.php?fromNo=+16507535036&amp;toNo=+919041021276"><Number>+919041021276</Number></Dial></Response>
+<br/>-----------------------------------------------------------------------------------------------------------ringing<br/>-----------------------------------------------------------------------------------------------------------Array
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:213_twilio
+    [CallStatus] => ringing
+    [CallSid] => CAdd1ea30a678e2fa57dc16f137edd9e72
+    [To] => +919041021276
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<br/>-----------------------------------------------------------------------------------------------------------<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.mobilytedev.com/deziNow/logs/logfile.php?fromNo=+16507535036&amp;toNo=+919041021276"><Number>+919041021276</Number></Dial></Response>
+<br/>-----------------------------------------------------------------------------------------------------------ringing<br/>-----------------------------------------------------------------------------------------------------------Array
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:213_twilio
+    [CallStatus] => ringing
+    [CallSid] => CAc6d67edc7ad06fc456e7f9f819eb6740
+    [To] => +919041021276
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<br/>-----------------------------------------------------------------------------------------------------------<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.mobilytedev.com/deziNow/logs/logfile.php?fromNo=+16507535036&amp;toNo=+919041021276"><Number>+919041021276</Number></Dial></Response>
+<br/>-----------------------------------------------------------------------------------------------------------ringing<br/>-----------------------------------------------------------------------------------------------------------Array
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:213_twilio
+    [CallStatus] => ringing
+    [CallSid] => CA8e0cac3d40af45308dccb9bac4b775b9
+    [To] => +918699419402
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="www.mobilytedev.com/deziNow/logs/logfile.php?fromNo=+16507535036&amp;toNo=+918699419402"><Number>+918699419402</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:213_twilio
+    [CallStatus] => ringing
+    [CallSid] => CA937d8fa7d546f7096b8f606bdc8d6922
+    [To] => +919041021276
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.mobilytedev.com/deziNow/logs/logfile.php?fromNo=+16507535036&amp;toNo=+919041021276"><Number>+919041021276</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:456_twilio
+    [CallStatus] => ringing
+    [CallSid] => CA5c7d00c45af560b99e8f15b4c958f93c
+    [To] => +919569556121
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com//logs/logfile.php?fromNo=+16507535036&amp;toNo=+919569556121"><Number>+919569556121</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:456_twilio
+    [CallStatus] => ringing
+    [CallSid] => CA7eef63b1e47a571ff442341c656fd4bb
+    [To] => +919569556121
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com//logs/logfile.php?fromNo=+16507535036&amp;toNo=+919569556121"><Number>+919569556121</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:456_twilio
+    [CallStatus] => ringing
+    [CallSid] => CAf1dcda691872c23b3b6be989e327b4a5
+    [To] => +919569556121
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com//logs/logfile.php?fromNo=+16507535036&amp;toNo=+919569556121"><Number>+919569556121</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:456_twilio
+    [CallStatus] => ringing
+    [CallSid] => CA10f5207fde75edd15819ed95863b1b4f
+    [To] => +919569556121
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com//logs/logfile.php?fromNo=+16507535036&amp;toNo=+919569556121"><Number>+919569556121</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:456_twilio
+    [CallStatus] => ringing
+    [CallSid] => CA886983adfabb93be08289c54d9199f8f
+    [To] => 5465464646
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com//logs/logfile.php?fromNo=+16507535036&amp;toNo=5465464646"><Number>5465464646</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:326_twilio
+    [CallStatus] => ringing
+    [CallSid] => CAb22fc8fc488568272c6fc218ecc06c4d
+    [To] => +15108129747
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+15108129747"><Number>+15108129747</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:462_twilio
+    [CallStatus] => ringing
+    [CallSid] => CA612bd6726d7589859b16ab02d0cb22fa
+    [To] => +16477495312
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+16477495312"><Number>+16477495312</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:481_twilio
+    [CallStatus] => ringing
+    [CallSid] => CAc2c0bec90152053011f40bb7763b271c
+    [To] => +12266462280
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+12266462280"><Number>+12266462280</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:481_twilio
+    [CallStatus] => ringing
+    [CallSid] => CA46d90ceca2f1de9782e04ee350372ed0
+    [To] => +12266462280
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+12266462280"><Number>+12266462280</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:456_twilio
+    [CallStatus] => ringing
+    [CallSid] => CA45001d8177265f9709a8d29e553686fa
+    [To] => +91
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+91"><Number>+91</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:456_twilio
+    [CallStatus] => ringing
+    [CallSid] => CAa11451918707fe8595dae25a7fd153f5
+    [To] => +91
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+91"><Number>+91</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:456_twilio
+    [CallStatus] => ringing
+    [CallSid] => CA89fd984e33343f0fbe856155bbfb4cec
+    [To] => +91
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+91"><Number>+91</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:525_twilio
+    [CallStatus] => ringing
+    [CallSid] => CA780504a009d9cb584a0cedfce0181d52
+    [To] => +15084699934
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+15084699934"><Number>+15084699934</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:456_twilio
+    [CallStatus] => ringing
+    [CallSid] => CAa9b3a47fb8aea77c868a16765f228c7b
+    [To] => +91
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+91"><Number>+91</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:456_twilio
+    [CallStatus] => ringing
+    [CallSid] => CA613dd4e80c8a219aa02bed1a32a2e2a6
+    [To] => +91
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+91"><Number>+91</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:456_twilio
+    [CallStatus] => ringing
+    [CallSid] => CAc08625b53e6c2d39bc8e42f3bea92012
+    [To] => +91
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+91"><Number>+91</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:456_twilio
+    [CallStatus] => ringing
+    [CallSid] => CA71dedab7965dbd3887e4247d3746fc28
+    [To] => +91
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+91"><Number>+91</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:505_twilio
+    [CallStatus] => ringing
+    [CallSid] => CA0b1fd71fe94d913ad7de0027f623fbef
+    [To] => +16477495362
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+16477495362"><Number>+16477495362</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:530_twilio
+    [CallStatus] => ringing
+    [CallSid] => CAa82b555392ca8c29de7a2a3dc7d994a3
+    [To] => +917895361900
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+917895361900"><Number>+917895361900</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:530_twilio
+    [CallStatus] => ringing
+    [CallSid] => CA0a1740140b9bccd3baceca88de813b48
+    [To] => +917895361900
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://www.dezinow.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+917895361900"><Number>+917895361900</Number></Dial></Response>
+ringingArray
+(
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="" action="http://dezinowdev.mobilytedev.com/logs/logfile.php?fromNo=&amp;toNo="><Number/></Dial></Response>
+Array
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:855_twilio
+    [CallStatus] => ringing
+    [CallSid] => CA10adb36454cffa7045ea797dde185090
+    [To] => +917087295868
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://dezinowdev.mobilytedev.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+917087295868"><Number>+917087295868</Number></Dial></Response>
+ringingArray
+(
+    [Called] => +16507535036
+    [ToState] => CA
+    [CallerCountry] => US
+    [Direction] => inbound
+    [CallerState] => OR
+    [ToZip] => 
+    [CallSid] => CA8a65acdb7241b73109f0d897cc2b66eb
+    [To] => +16507535036
+    [CallerZip] => 97218
+    [ToCountry] => US
+    [ApiVersion] => 2010-04-01
+    [CalledZip] => 
+    [CalledCity] => 
+    [CallStatus] => ringing
+    [From] => +15034008999
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+    [CalledCountry] => US
+    [CallerCity] => PORTLAND
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [Caller] => +15034008999
+    [FromCountry] => US
+    [ToCity] => 
+    [FromCity] => PORTLAND
+    [CalledState] => CA
+    [FromZip] => 97218
+    [FromState] => OR
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+15034008999" action="http://dezinowdev.mobilytedev.com/logs/logfile.php?fromNo=+15034008999&amp;toNo=+16507535036"><Number>+16507535036</Number></Dial></Response>
+ringingArray
+(
+    [Called] => +16507535036
+    [ToState] => CA
+    [CallerCountry] => US
+    [Direction] => inbound
+    [CallerState] => OR
+    [ToZip] => 
+    [CallSid] => CA63e7e367bae822a3c77b8ff8fc564e57
+    [To] => +16507535036
+    [CallerZip] => 97218
+    [ToCountry] => US
+    [ApiVersion] => 2010-04-01
+    [CalledZip] => 
+    [CalledCity] => 
+    [CallStatus] => ringing
+    [From] => +15034008999
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+    [CalledCountry] => US
+    [CallerCity] => PORTLAND
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [Caller] => +15034008999
+    [FromCountry] => US
+    [ToCity] => 
+    [FromCity] => PORTLAND
+    [CalledState] => CA
+    [FromZip] => 97218
+    [FromState] => OR
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+15034008999" action="http://dezinowdev.mobilytedev.com/logs/logfile.php?fromNo=+15034008999&amp;toNo=+16507535036"><Number>+16507535036</Number></Dial></Response>
+ringingArray
+(
+    [Called] => +16507535036
+    [ToState] => CA
+    [CallerCountry] => US
+    [Direction] => inbound
+    [CallerState] => OR
+    [ToZip] => 
+    [CallSid] => CAd03e7d880c5c8c74fcdd784f08776478
+    [To] => +16507535036
+    [CallerZip] => 97218
+    [ToCountry] => US
+    [ApiVersion] => 2010-04-01
+    [CalledZip] => 
+    [CalledCity] => 
+    [CallStatus] => ringing
+    [From] => +15034008999
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+    [CalledCountry] => US
+    [CallerCity] => PORTLAND
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [Caller] => +15034008999
+    [FromCountry] => US
+    [ToCity] => 
+    [FromCity] => PORTLAND
+    [CalledState] => CA
+    [FromZip] => 97218
+    [FromState] => OR
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+15034008999" action="http://dezinowdev.mobilytedev.com/logs/logfile.php?fromNo=+15034008999&amp;toNo=+16507535036"><Number>+16507535036</Number></Dial></Response>
+ringingArray
+(
+    [Called] => +16507535036
+    [ToState] => CA
+    [CallerCountry] => US
+    [Direction] => inbound
+    [CallerState] => OR
+    [ToZip] => 
+    [CallSid] => CA31ec99902ada00e2bd014a606f471d9b
+    [To] => +16507535036
+    [CallerZip] => 97218
+    [ToCountry] => US
+    [ApiVersion] => 2010-04-01
+    [CalledZip] => 
+    [CalledCity] => 
+    [CallStatus] => ringing
+    [From] => +15034008999
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+    [CalledCountry] => US
+    [CallerCity] => PORTLAND
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [Caller] => +15034008999
+    [FromCountry] => US
+    [ToCity] => 
+    [FromCity] => PORTLAND
+    [CalledState] => CA
+    [FromZip] => 97218
+    [FromState] => OR
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+15034008999" action="http://dezinowdev.mobilytedev.com/logs/logfile.php?fromNo=+15034008999&amp;toNo=+16507535036"><Number>+16507535036</Number></Dial></Response>
+ringingArray
+(
+    [Called] => +16507535036
+    [ToState] => CA
+    [CallerCountry] => US
+    [Direction] => inbound
+    [CallerState] => OR
+    [ToZip] => 
+    [CallSid] => CA9eb53b1c6d03b090a553245b903a9b68
+    [To] => +16507535036
+    [CallerZip] => 97218
+    [ToCountry] => US
+    [ApiVersion] => 2010-04-01
+    [CalledZip] => 
+    [CalledCity] => 
+    [CallStatus] => ringing
+    [From] => +15034008999
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+    [CalledCountry] => US
+    [CallerCity] => PORTLAND
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [Caller] => +15034008999
+    [FromCountry] => US
+    [ToCity] => 
+    [FromCity] => PORTLAND
+    [CalledState] => CA
+    [FromZip] => 97218
+    [FromState] => OR
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+15034008999" action="http://dezinowdev.mobilytedev.com/logs/logfile.php?fromNo=+15034008999&amp;toNo=+16507535036"><Number>+16507535036</Number></Dial></Response>
+ringingArray
+(
+    [Called] => +16507535036
+    [ToState] => CA
+    [CallerCountry] => US
+    [Direction] => inbound
+    [CallerState] => OR
+    [ToZip] => 
+    [CallSid] => CAb622bf3d83308976d30ff46895d14c68
+    [To] => +16507535036
+    [CallerZip] => 97218
+    [ToCountry] => US
+    [ApiVersion] => 2010-04-01
+    [CalledZip] => 
+    [CalledCity] => 
+    [CallStatus] => ringing
+    [From] => +15034008999
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+    [CalledCountry] => US
+    [CallerCity] => PORTLAND
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [Caller] => +15034008999
+    [FromCountry] => US
+    [ToCity] => 
+    [FromCity] => PORTLAND
+    [CalledState] => CA
+    [FromZip] => 97218
+    [FromState] => OR
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+15034008999" action="http://dezinowdev.mobilytedev.com/logs/logfile.php?fromNo=+15034008999&amp;toNo=+16507535036"><Number>+16507535036</Number></Dial></Response>
+ringingArray
+(
+    [Called] => +16507535036
+    [ToState] => CA
+    [CallerCountry] => US
+    [Direction] => inbound
+    [CallerState] => OR
+    [ToZip] => 
+    [CallSid] => CA46e9b0bcc5a6d9d2e1eb473c148b7ff2
+    [To] => +16507535036
+    [CallerZip] => 97218
+    [ToCountry] => US
+    [ApiVersion] => 2010-04-01
+    [CalledZip] => 
+    [CalledCity] => 
+    [CallStatus] => ringing
+    [From] => +15034008999
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+    [CalledCountry] => US
+    [CallerCity] => PORTLAND
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [Caller] => +15034008999
+    [FromCountry] => US
+    [ToCity] => 
+    [FromCity] => PORTLAND
+    [CalledState] => CA
+    [FromZip] => 97218
+    [FromState] => OR
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+15034008999" action="http://dezinowdev.mobilytedev.com/logs/logfile.php?fromNo=+15034008999&amp;toNo=+16507535036"><Number>+16507535036</Number></Dial></Response>
+ringingArray
+(
+    [Called] => +16507535036
+    [ToState] => CA
+    [CallerCountry] => US
+    [Direction] => inbound
+    [CallerState] => OR
+    [ToZip] => 
+    [CallSid] => CA03a18e50abf39ead299d7680d6306fa3
+    [To] => +16507535036
+    [CallerZip] => 97218
+    [ToCountry] => US
+    [ApiVersion] => 2010-04-01
+    [CalledZip] => 
+    [CalledCity] => 
+    [CallStatus] => ringing
+    [From] => +15034008999
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+    [CalledCountry] => US
+    [CallerCity] => PORTLAND
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [Caller] => +15034008999
+    [FromCountry] => US
+    [ToCity] => 
+    [FromCity] => PORTLAND
+    [CalledState] => CA
+    [FromZip] => 97218
+    [FromState] => OR
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+15034008999" action="http://dezinowdev.mobilytedev.com/logs/logfile.php?fromNo=+15034008999&amp;toNo=+16507535036"><Number>+16507535036</Number></Dial></Response>
+ringingArray
+(
+    [Called] => +16507535036
+    [ToState] => CA
+    [CallerCountry] => US
+    [Direction] => inbound
+    [CallerState] => OR
+    [ToZip] => 
+    [CallSid] => CAe46a59662dd3dd5e5c081fc25807a1bd
+    [To] => +16507535036
+    [CallerZip] => 97218
+    [ToCountry] => US
+    [ApiVersion] => 2010-04-01
+    [CalledZip] => 
+    [CalledCity] => 
+    [CallStatus] => ringing
+    [From] => +15034008999
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+    [CalledCountry] => US
+    [CallerCity] => PORTLAND
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [Caller] => +15034008999
+    [FromCountry] => US
+    [ToCity] => 
+    [FromCity] => PORTLAND
+    [CalledState] => CA
+    [FromZip] => 97218
+    [FromState] => OR
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+15034008999" action="http://dezinowdev.mobilytedev.com/logs/logfile.php?fromNo=+15034008999&amp;toNo=+16507535036"><Number>+16507535036</Number></Dial></Response>
+ringingArray
+(
+    [Called] => +16507535036
+    [ToState] => CA
+    [CallerCountry] => US
+    [Direction] => inbound
+    [CallerState] => OR
+    [ToZip] => 
+    [CallSid] => CA7ab69bb5ec6f53004145b0ccc9dbab11
+    [To] => +16507535036
+    [CallerZip] => 97218
+    [ToCountry] => US
+    [ApiVersion] => 2010-04-01
+    [CalledZip] => 
+    [CalledCity] => 
+    [CallStatus] => ringing
+    [From] => +15034008999
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+    [CalledCountry] => US
+    [CallerCity] => PORTLAND
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [Caller] => +15034008999
+    [FromCountry] => US
+    [ToCity] => 
+    [FromCity] => PORTLAND
+    [CalledState] => CA
+    [FromZip] => 97218
+    [FromState] => OR
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+15034008999" action="http://dezinowdev.mobilytedev.com/logs/logfile.php?fromNo=+15034008999&amp;toNo=+16507535036"><Number>+16507535036</Number></Dial></Response>
+ringingArray
+(
+    [Called] => +16507535036
+    [ToState] => CA
+    [CallerCountry] => US
+    [Direction] => inbound
+    [CallerState] => OR
+    [ToZip] => 
+    [CallSid] => CA1f925e5e04889c5c1ff41e9d843f5184
+    [To] => +16507535036
+    [CallerZip] => 97218
+    [ToCountry] => US
+    [ApiVersion] => 2010-04-01
+    [CalledZip] => 
+    [CalledCity] => 
+    [CallStatus] => ringing
+    [From] => +15034008999
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+    [CalledCountry] => US
+    [CallerCity] => PORTLAND
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [Caller] => +15034008999
+    [FromCountry] => US
+    [ToCity] => 
+    [FromCity] => PORTLAND
+    [CalledState] => CA
+    [FromZip] => 97218
+    [FromState] => OR
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+15034008999" action="http://dezinowdev.mobilytedev.com/logs/logfile.php?fromNo=+15034008999&amp;toNo=+16507535036"><Number>+16507535036</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:611_twilio
+    [CallStatus] => ringing
+    [CallSid] => CA0d4405ff8d5d89084d512e202b86a300
+    [To] => +917087295868
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://dezinowdev.mobilytedev.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+917087295868"><Number>+917087295868</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:855_twilio
+    [CallStatus] => ringing
+    [CallSid] => CAaceaf47de1bf3c95bd541f5227b52282
+    [To] => +917087295868
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://dezinowdev.mobilytedev.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+917087295868"><Number>+917087295868</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:855_twilio
+    [CallStatus] => ringing
+    [CallSid] => CA15d405118241ace01d45386e3b8e2377
+    [To] => +917087295868
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://dezinowdev.mobilytedev.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+917087295868"><Number>+917087295868</Number></Dial></Response>
+ringingArray
+(
+    [ApplicationSid] => APa414a9e28dff7d3a0962b782ef9ce053
+    [ApiVersion] => 2010-04-01
+    [Called] => 
+    [Caller] => client:634_twilio
+    [CallStatus] => ringing
+    [CallSid] => CAbfd2d4fb162dcf5fa36f1e201115aa0b
+    [To] => +18049461645
+    [From] => +16507535036
+    [Direction] => inbound
+    [AccountSid] => ACef0bc2ba66b70340468cc67fca14390d
+)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response><Dial callerId="+16507535036" action="http://dezinowdev.mobilytedev.com/logs/logfile.php?fromNo=+16507535036&amp;toNo=+18049461645"><Number>+18049461645</Number></Dial></Response>
+ringing

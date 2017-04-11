@@ -1,0 +1,569 @@
+
+
+<?php $__env->startSection('content'); ?>
+
+<div class="container-fluid no-padding" id="inner-header"> <img src="<?php echo asset('public/images/form-head.jpg'); ?>" alt="test" class="img-responsive">
+    <div class="carousel-caption"> </div>
+    <h3 class="page-heading">Driver Application Form</h3>
+</div>
+<!--  SECTION-1 -->
+<?php 
+    $id = Auth::id();
+    if(Auth::check()) {
+        $user_detail = DB::table('dn_users')->select('*')->where('id', $id)->first();
+        //print_r($user_detail);
+        $joinind_date = $user_detail->created_at;
+        $email = $user_detail->email;
+        $contact_number = $user_detail->contact_number;
+        $dob = $user_detail->dob;
+        $anniversary = $user_detail->anniversary;
+        $first_name = $user_detail->first_name;
+        $last_name = $user_detail->last_name;
+        $profile_pic = $user_detail->profile_pic;
+        $is_driver_approved = $user_detail->is_driver_approved;
+        $become_driver_request = $user_detail->become_driver_request;
+        $contact_number = $user_detail->contact_number;
+
+        $address_1=$user_detail->address_1;
+        $address_2=$user_detail->address_2;
+        $city=$user_detail->city;
+        $state=$user_detail->state;
+        $zip_code=$user_detail->zip_code;
+
+        $gender = $user_detail->gender;
+
+          if($dob ==''){
+            $newDob = '';
+          }else{
+            $origionalDob = $dob;
+            $arrBob = explode('-', $origionalDob);
+            $newDob = $arrBob[1].'/'.$arrBob[2].'/'.$arrBob[0];
+          }
+
+          if($anniversary ==''){
+            $newanniversary = '';
+          }else{
+            $origionalanniversary = $anniversary;
+            $arranniversary = explode('-', $origionalanniversary);
+            $newanniversary = $arranniversary[1].'/'.$arranniversary[2].'/'.$arranniversary[0];
+          }
+        
+        $createjoinind_date = new DateTime($joinind_date);
+        $newjoinind_date = $createjoinind_date->format('m/d/Y');
+
+        $driver_detail = DB::table('dn_driver_requests')->select('*')->where('user_id', $id)->first();
+        if($driver_detail){
+            $car_transmission = $driver_detail->car_transmission;
+
+            $licence_expirationDb = $driver_detail->licence_expiration;
+            $liceexp = new DateTime($licence_expirationDb);
+            $licence_expiration = $liceexp->format('m/d/Y');
+            
+            $insurance_expirationdb = $driver_detail->insurance_expiration;
+            $insuexp = new DateTime($insurance_expirationdb);
+            $insurance_expiration = $insuexp->format('m/d/Y');
+
+            //$navigation = $driver_detail->navigation;
+            $driver_recordsdata = $driver_detail->driver_records;
+            //echo $license_verification = $driver_detail->license_verification;
+            //echo $proof_of_insurance = $driver_detail->proof_of_insurance;
+            $driver_records = json_decode($driver_recordsdata);
+        }else{
+            $car_transmission = '';
+            $licence_expiration = '';
+            $insurance_expiration = '';
+            //$navigation = '';
+            //$license_verification = '';
+            //$proof_of_insurance = '';
+            $driver_recordsdata ='[{"question":"Have you had more than one accident in the last three years?","answer":"1"},{"question":"Have you ever had more than two points on your driver’s license?","answer":"1"},{"question":"Have you ever had more than one moving violation in last two years?","answer":"1"},{"question":"Have you been ever arrested for a DUI/OVI?","answer":"1"},{"question":"Have you ever been convicted for a crime?","answer":"1"},{"question":"Have you been driving for less than 2 years?","answer":"1"},{"question":"Are you less than 21 years of age?","answer":"1"},{"question":"Can you drive a manual(stick) transmission?","answer":"1"},{"question":"Do you have a commercial driver`s license?","answer":"1"},{"question":"How did you hear about DeziNow?","answer":""}]';
+            $driver_records = json_decode($driver_recordsdata);
+        }
+
+        $dn_users_data = DB::table('dn_users_data')->select('*')->where('user_id', $id)->first();
+        
+        if($dn_users_data) {
+            $license_number = $dn_users_data->license_number;
+            $driver_profile_pic = $dn_users_data->driver_profile_pic;
+            $ssn = $dn_users_data->ssn;
+        } else {
+            $license_number = '';
+            $driver_profile_pic = '';
+            $ssn = ''; }
+        
+        /*if (!empty($user_detail)) {
+         $license_number = $user_detail->license_number;
+            $ssn = $user_detail->ssn;
+        } else {
+            $license_number = '';
+            $ssn = '';
+        }*/
+?>
+<!--  SECTION-1 -->
+<section>
+  <div class="container mtop-30" id="registration-form">
+
+  <div class="col-md-2">
+  </div>
+   
+  <div class="col-md-8">
+<p class="driverRequest" style="display:none;"><?php echo $become_driver_request; ?></p>
+    <?php if($become_driver_request == '1' && $is_driver_approved =='0'){ ?>
+          <div class="confmsg">
+            <p class="alert <?php echo e(Session::get('alert-class', 'alert-info')); ?>">
+              Your form is pending for approval<br/>
+              <a class="confirmit" href="<?php echo asset('/editpassenger'); ?>">OK</a>
+            </p>
+          </div>  
+    <?php }elseif ($become_driver_request == '1' && $is_driver_approved =='1') { ?>
+          <div class="confmsg">
+            <p class="alert <?php echo e(Session::get('alert-class', 'alert-info')); ?>">
+              Your application has been approved<br/>
+              <a class="confirmit" href="<?php echo asset('/editpassenger'); ?>">OK</a>
+            </p>
+          </div> 
+    <?php }elseif ($become_driver_request == '1' && $is_driver_approved =='2'){ ?>
+          <div class="confmsg">
+            <p class="alert <?php echo e(Session::get('alert-class', 'alert-info')); ?>">
+              Your application has been rejected<br/>
+              <a class="confirmit" href="<?php echo asset('/editpassenger'); ?>">OK</a>
+            </p>
+          </div>
+    <?php } ?>  
+
+
+    <?php if(Session::has('message')): ?>
+     <div class="confmsg">
+       <p class="alert <?php echo e(Session::get('alert-class', 'alert-info')); ?>"><?php echo e(Session::get('message')); ?></p>
+      </div>
+    <?php endif; ?>
+   <!--  <div class="right-sec">
+        <a href="<?php echo asset('passenger/profile'); ?>"><button class="btn-grn edit pull-left back"><i class="fa fa-angle-left" aria-hidden="true"></i></button></a><span>New Appliction Form</span>
+    </div> -->
+<?php if($is_driver_approved !='1' && $become_driver_request !='1'){ ?>
+    <?php echo Form::open(array('url' => 'becomedriver','class' => 'form becomedriver','files' => true,'id'=>'BecomeDriver')); ?>
+
+    <div class="col-sm-12">
+      <div class="edit-user uploadProfilePic">
+        <?php if($driver_profile_pic !=''){ ?>
+            <img src="<?php echo $driver_profile_pic; ?>" class="img-responsive center-block thumbnail passengerprofile profilePic" alt="#"/>
+        <?php }else{ ?>
+            <img src="<?php echo asset('public/images/passanger.png'); ?>" class="img-responsive center-block thumbnail passengerprofile profilePic" alt="#"/>
+        <?php } ?>
+         <label for="profile_pic" class="btn img-upload"><i class="fa fa-camera" aria-hidden="true"></i></label>
+        <input type="file" id="profile_pic" name="profile_pic" class="uploadFile" data-max-size="1000000" accept="image/jpg,image/png,image/jpeg,image/gif">
+        <p class="user-profile">Change profile picture</p>        
+      </div>
+      <!--<input type="text" value="" name="driverProfilePic" class="driverProfilePic" requird style="display:none;">-->
+    </div>
+    <div class="col-sm-12">
+          <h3 class="page-heading">Profile-information</h3>       
+        <div class="col-md-6">
+        <label for="first_name">First Name:</label>
+          <fieldset class="form-group">
+            <?php echo Form::text('first_name',$first_name,array('id'=>'','class'=>'form-control','placeholder' => 'First Name','readonly' => 'readonly')); ?>
+
+          </fieldset>
+        </div>
+        <div class="col-md-6">
+        <label for="last_name">Last Name:</label>
+          <fieldset class="form-group">
+            <?php echo Form::text('last_name',$last_name,array('id'=>'','class'=>'form-control','placeholder' => 'Last Name','readonly' => 'readonly')); ?>
+
+          </fieldset>
+        </div>
+        
+        <div class="col-md-12">
+        <label for="email">Email:</label>
+          <fieldset class="form-group">
+            <?php echo Form::email('email',$email,array('id'=>'','class'=>'form-control','placeholder' => 'Email','readonly' => 'readonly')); ?>
+
+          </fieldset>
+        </div>
+
+          <div class="col-md-12">
+          <label for="license_number">Driver's License #</label>
+            <fieldset class="form-group">
+              <?php echo Form::text('license_number',$license_number,array('id'=>'','class'=>'form-control','placeholder' => 'Driver License #')); ?>
+
+            </fieldset>
+          </div>
+
+           <div class="col-md-12">
+          <label for="SSN/TIN">SSN/TIN #</label>
+            <fieldset class="form-group"  style="position: relative;">
+              <?php if($ssn): ?>
+              <?php echo Form::text('SSN',$ssn,array('id'=>'','class'=>'form-control ssnmasktop','placeholder' => 'SSN/TIN #')); ?>
+
+              <?php else: ?>
+              <?php echo Form::password('SSN',array('id'=>'ssnmask','class'=>'form-control ssnmasktop','placeholder' => 'SSN/TIN #')); ?>
+
+              <?php endif; ?>
+            </fieldset>
+          </div>
+
+          <div class="col-md-12" >
+          <label for="contact_number">Contact Number:</label>
+            <fieldset class="form-group">
+              <?php echo Form::text('contact_number',$contact_number,array('id'=>'','class'=>'form-control','placeholder' => 'Contact Number','readonly' => 'readonly')); ?>
+
+            </fieldset>
+          </div>
+              <div class="col-md-6">
+                <label for="licence_exp">License Expiration:</label>
+               <fieldset class="form-group">
+                  <div class='input-group date boder date-picker-one datePicker' id='datetimepicker5'>
+                      <?php echo Form::text('licence_exp',$licence_expiration,array('id'=>'licence_exp','class'=>'form-control','placeholder' => 'MM/DD/YYYY','required')); ?>
+
+                      <a class="input-group-addon">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                      </a>
+                  </div>
+                </fieldset>
+            </div>
+
+        <div class="col-md-6">
+        <label for="insurance_exp">Insurance Expiration:</label>
+           <fieldset class="form-group">
+              <div class='input-group date boder date-picker-two datePicker' id='datetimepicker6'>
+                  <?php echo Form::text('insurance_exp',$insurance_expiration,array('id'=>'insurance_exp','class'=>'form-control','placeholder' => 'MM/DD/YYYY','required')); ?>
+
+                  <a class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </a>
+              </div>
+            </fieldset>
+        </div>
+        <div class="col-md-6">
+          <label for="dob">Date of birth:</label>
+          <?php if($newDob ==''){ ?>
+             <fieldset class="form-group">
+                <div class='input-group date boder date-picker-three datePicker' id='datetimepicker1'>
+                    <?php echo Form::text('dob',$newDob,array('id'=>'dob','class'=>'form-control','placeholder' => 'DD/MM/YYYY', 'required' => 'true')); ?>
+
+                    
+                </div>
+              </fieldset>
+          <?php } else{ ?>
+              <fieldset class="form-group">
+                <div class='input-group date boder date-picker-three'>
+                    <?php echo Form::text('dob',$newDob,array('id'=>'dob','class'=>'form-control','placeholder' => 'DD/MM/YYYY', 'disabled'=>'disabled','required' => 'true')); ?>
+
+                    
+                </div>
+              </fieldset>
+          <?php } ?>    
+          </div>
+
+        <div class="col-md-6">
+        <label for="anniversary">Date of Anniversary:</label>
+           <fieldset class="form-group">
+              <div class='input-group date boder date-picker-two' id='datetimepicker4'>
+                  <?php echo Form::text('anniversary',$newanniversary,array('id'=>'anniversary','class'=>'form-control','placeholder' => 'MM/DD/YYYY','required')); ?>
+
+                  <a class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </a>
+              </div>
+            </fieldset>
+        </div>
+      <div class="col-md-6">
+      <label for="address_1">Address Line 1:</label>
+            <fieldset class="form-group">
+              <?php echo Form::text('address_1',$address_1,array('id'=>'','class'=>'form-control','placeholder' => 'Addess-1')); ?>
+
+            </fieldset>
+          </div>
+          <div class="col-md-6">
+          <label for="address_2">Address Line 2:</label>
+            <fieldset class="form-group">
+              <?php echo Form::text('address_2',$address_2,array('id'=>'','class'=>'form-control','placeholder' => 'Addess-2')); ?>
+
+            </fieldset>
+          </div>
+       
+	  <div class="col-md-6">
+	  <label for="state">State:</label>
+		<fieldset class="form-group">
+		<select id="stateIds" name="state" class="form-control"> 
+					<option value="">---State---</option>
+					<?php foreach($states as $state): ?>
+					<option  value="<?php echo e($state->state_code); ?>"> <?php echo e($state->state); ?></option>
+					<?php endforeach; ?>
+		</select>
+		  
+		</fieldset>
+	  </div>
+		<div class="col-md-6">
+			<label for="city">City:</label>
+			<fieldset class="form-group">
+				<select id="cityIds" name="city" class="form-control"> 
+					<option value="">---City---</option>
+				</select> 
+			</fieldset>
+		</div>
+		<div class="col-md-6">
+			<label for="zip_code">Zip Code:</label>
+			<fieldset class="form-group">
+			<?php echo Form::text('zip_code',$zip_code,array('id'=>'','class'=>'form-control','placeholder' => 'Zip')); ?>
+
+			</fieldset>
+		</div>
+		
+        <div class="col-md-12">
+			<label for="Referral">Referral Code:</label>
+			<fieldset class="form-group">
+				<input  class="form-control" placeholder="Referral Code" id="referral_code" name="referral_code" value="" type="text" />
+			</fieldset>
+		</div>
+		
+		<div class="col-md-6">
+			<div class="radio">
+				<label for="gender">Gender:</label>
+				<?php if ($gender=="male") { ?>
+				
+					<label class="radio-inline">
+						<input type="radio" name="gender" checked value="male">Male
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="gender" value="female">Female
+					</label> 
+
+				<?php } elseif($gender=="female"){ ?>
+
+					<label class="radio-inline">
+						<input type="radio" name="gender" value="male">Male
+					</label>
+
+					<label class="radio-inline">
+						<input type="radio" name="gender" checked value="female">Female
+					</label>  
+
+				<?php }elseif($gender==""){ ?>
+
+					<label class="radio-inline">
+						<input type="radio" name="gender" checked value="male">Male
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="gender" value="female">Female
+					</label>
+
+				<?php } ?>
+			</div>
+		</div>
+          
+          <div class="col-md-6">
+            <div class="radio">
+              <label for="cartransmission">Car Transmission Preference:</label>
+                <?php if ($car_transmission=="automatic") { ?>
+
+                 <label class="radio-inline">
+                      <input type="radio" name="car_transmission" checked value="automatic">Automatic
+                  </label>
+                  <label class="radio-inline">
+                      <input type="radio" name="car_transmission" value="manual">Manual
+                 </label>
+                  <label class="radio-inline">
+                      <input type="radio" name="car_transmission" value="both">Both
+                 </label>
+
+                <?php } elseif($car_transmission=="manual"){ ?>
+
+                  <label class="radio-inline">
+                      <input type="radio" name="car_transmission" value="automatic">Automatic
+                  </label>
+                  <label class="radio-inline">
+                      <input type="radio" name="car_transmission" checked value="manual">Manual
+                 </label> 
+
+                  <label class="radio-inline">
+                      <input type="radio" name="car_transmission" value="both">Both
+                 </label>
+
+                <?php }elseif($car_transmission=="both"){ ?>
+
+                  <label class="radio-inline">
+                      <input type="radio" name="car_transmission" value="automatic">Automatic
+                  </label>
+                  <label class="radio-inline">
+                      <input type="radio" name="car_transmission" value="manual">Manual
+                 </label>
+                  <label class="radio-inline">
+                      <input type="radio" name="car_transmission" checked value="both">Both
+                 </label>
+
+                <?php }elseif($car_transmission==""){ ?>
+
+                  <label class="radio-inline">
+                      <input type="radio" name="car_transmission" checked value="automatic">Automatic
+                  </label>
+                  <label class="radio-inline">
+                      <input type="radio" name="car_transmission" value="manual">Manual
+                 </label>
+                  <label class="radio-inline">
+                      <input type="radio" name="car_transmission" value="both">Both
+                 </label>
+
+                <?php }  ?>
+            </div>
+          </div>
+            
+          <div class="col-md-12">
+            <h2 class='user-profile'>Verification</h2>
+            <div class="row">
+              <div class="col-md-6">
+              <label for="license_verification">Driver License:</label>
+                <div class="form-group browsefile">
+                  <div class="input-group col-xs-12">
+                    <input type="text" name="licVer" readonly  class="form-control input-lg DriverLicense" value="" placeholder="Driver License">
+                    <label for="license_verification" class="btn uploadBtn">Upload</label>
+                    <input type="file" style="visibility:hidden;" name="license_verification" id="license_verification" class="license_verification uploadFile" data-max-size="4000000">
+                  </div>
+                </div>
+                <!--//-->
+                <p id="myBar"></p>
+                <!--//-->
+              </div>
+              <div class="col-md-6">
+              <label for="proof_of_insurance">Proof Of Insurance:</label>
+                <div class="form-group browsefile">
+                  <div class="input-group col-xs-12">
+                    <input type="text" name="proofins" readonly class="form-control input-lg ProofOfInsurance" placeholder="Proof Of Insurance">
+                    <label for="proof_of_insurance" class="btn uploadBtn">Upload</label>
+                    <input type="file" style="visibility:hidden;" id="proof_of_insurance" name="proof_of_insurance" class="proof_of_insurance uploadFile" data-max-size="4000000">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-12">
+			<h2 class="user-profile"> Your Records</h2>
+			</div>
+        <?php
+          $count = '0';
+          $quest = '1';
+          foreach ($driver_records as $value) {
+          $question = $value->question;
+          $answer = $value->answer;
+          if (is_numeric($answer)){
+        ?>
+              <div class="col-md-12 driver_question_answer">
+                <h4 class="txt-grn"> Q<?php echo $quest; ?>. <span class="radioquestion"><?php echo $question; ?></span></h4>
+                <div class="radio">
+                  <label class="radio-inline">
+                    <input type="radio" name="driver_records_<?php echo $count; ?>" <?php if ($answer=="1") echo "checked";?> value="1">Yes
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="driver_records_<?php echo $count; ?>" <?php if ($answer=="0") echo "checked";?> value="0">No
+                  </label>
+                </div>
+              </div>
+      <?php }elseif($answer ==''){ ?>
+              <div class="col-md-12 clearfix driver_question_answertext">
+                <h4 class="txt-grn">Q10. <span class="textquestion"><?php echo $question; ?></span></h4>
+                <div class="input-group">
+                  <?php echo Form::textarea('driver_records_9',$answer,array('id'=>'','rows' => '5', 'cols' => '100', 'class'=>'form-control','placeholder' => 'Describe here..')); ?>
+
+              </div>
+        <?php } $count++;$quest++; }  ?>
+        <div class="col-md-12">
+          <div class="checkbox mar_lft" id="termCondition">
+              <!-- <input type="checkbox" value="1" name="terms"> -->
+              <input type="checkbox" id="termsConditions" name="termsConditions"/>
+              <a target="_blank" href="<?php echo asset('public/driver-terms-service-agreement.pdf'); ?>">Agree to terms and conditions</a>
+          </div>
+        </div>      
+      <div class="submit-btn">
+        <div class="lodingDiv" style="display:none;margin-top: 8%;margin-left: 15%;">
+          <img src="<?php echo asset('public/img/loader.gif'); ?>" alt="test" class="img-responsive lodingImg">
+        </div>
+        <?php if($become_driver_request !='1'){ ?>
+            <?php echo Form::submit('Submit', array('class'=>'btn btn-primary green-btn-s becomedriveredit')); ?>
+
+        <?php }else{ ?>
+
+        <?php } ?>
+        <a href="<?php echo asset('/passenger/profile'); ?>" class="btn btn-primary green-btn-s">Cancel</a>
+      </div>
+  </div>
+  <?php echo Form::close(); ?>
+
+ <?php } ?> 
+    </div>    
+  </div>
+   <div class="col-md-2">
+   </div>
+</div>
+<?php }else{ ?>
+  <div class="container mtop-30" id="driverprofileedit">
+    <div class="col-md-6 col-sm-offset-3"> 
+      <p class="alert <?php echo e(Session::get('alert-class', 'alert-info')); ?>">Login First To Edit Your Profile !!</p><br/>
+    </div>
+</div>
+<?php } ?>
+</section>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('customjavascript'); ?>
+
+<script type="text/javascript">
+
+var getcityurl= "<?php echo route('getcity'); ?>";
+var CSRF_TOKEN= "<?php echo csrf_token(); ?>";
+ //validateDateRange("dob", "anniversary");
+  function cityCode(stateCode){ 
+      console.log(stateCode);
+      $.ajax({
+         type:'post',
+         url:getcityurl,
+         data:'stateCode='+stateCode+'&_token='+CSRF_TOKEN,
+         beforeSend: function( xhr ) {
+          $('body').append('<div id="divLoading" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.8;"><p style="position: absolute; color: White; top: 50%; left: 45%;">Loading, please wait...<img src="http://pulse.sindlab.com.pk//images/ajax-loading.gif"></p></div>');
+        },
+         success:function(returnData)
+         {
+          $('#divLoading').remove();
+          // console.log(returnData);
+          // var parsedJson=$.parseJSON(returnData);
+          $( "#cityIds" ).html(returnData);
+
+         }
+      });
+  }
+	$( document ).on( "change", "#stateIds", function(){
+     var stateCode= $(this).val();
+     alert("statecode");
+	 cityCode(stateCode);
+    
+    });
+	
+if('<?php echo e($user_detail->state); ?>'!=''){
+		var stateCode= '<?php echo e($user_detail->state); ?>';
+		$("#stateIds option[value='"+stateCode+"']").attr('selected', 'selected');
+		cityCode(stateCode);
+		var cityId='<?php echo e($user_detail->city); ?>';
+		console.log(cityId);
+		//$.each(console.log($('#cityIds option').val()));
+		setTimeout(function(){
+			//$('#cityIds').val(cityId);
+			$("#cityIds option[value='"+cityId+"']").attr('selected', 'selected');
+		},1000);
+		
+}
+</script>
+
+
+<script type="text/javascript">
+
+    $('#ssnmask').keypress(function(key) {
+        if(key.charCode < 48 || key.charCode > 57){
+             if(key.charCode ==0){
+                return true;
+             }else{return false;}
+        }
+    });
+</script>
+
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('frontend.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

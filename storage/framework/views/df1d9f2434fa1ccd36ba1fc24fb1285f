@@ -1,0 +1,113 @@
+<?php $__env->startSection('resendotp'); ?>
+  <?php echo HTML::script('public/js/framework/resendotp.js');; ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('phonecodecss'); ?>
+  <?php echo HTML::style('public/css/libs/prism.css'); ?>
+
+  <?php echo HTML::style('public/css/libs/intlTelInput.css'); ?>
+
+  <?php echo HTML::style('public/css/libs/demo.css'); ?>
+
+  <?php echo HTML::style('public/css/libs/isValidNumber.css'); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('phonecodejs'); ?>
+  <?php echo HTML::script('public/js/framework/prism.js');; ?>
+
+  <?php echo HTML::script('public/js/framework/intlTelInput.js');; ?>
+
+  <?php echo HTML::script('public/js/framework/isValidNumber.js');; ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+<div class="container-fluid no-padding" id="inner-header"> <img src="<?php echo asset('public/images/form-head.jpg'); ?>" alt="test" class="img-responsive">
+    <div class="carousel-caption"> </div>
+  <h3 class="page-heading">PHONE VERIFICATION</h3>
+</div>
+<!--  SECTION-1 -->
+<!--  SECTION-1 -->
+<section>
+  <div class="container phone-verification" id="forgot-pass">   
+        <div class="row">
+            <div class="center col-sm-5 top-space">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="text-center">
+                          <?php if(Session::has('registerConfirm')): ?>
+                              <p class="alert <?php echo e(Session::get('alert-class', 'alert-info')); ?>"><?php echo e(Session::get('registerConfirm')); ?></p>
+                          <?php endif; ?>
+                          <p>Enter your phone number for verification</p>
+                            <div class="panel-body">                              
+                              <?php echo Form::open(array('url' => 'phoneverification','class' => 'form','id'=>'PhoneVerification')); ?>
+
+                                <fieldset>
+                                  <?php
+                                    $phone_code = Session::get('phone_code');
+                                    $phone_num = Session::get('phone_num');
+                                  ?>
+                                  <div class="form-group">
+                                    <div id="result">
+                                        <input id="phone" value="<?php echo $phone_num ?>" type="text" name="phone_number" placeholder="Mobile Number" class="form-control span6">
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <input id="phonecode" name="phonecode" type="hidden" value="+1">
+                                    <!--data hidden for resend verification code-->
+                                      <input type="hidden" value="<?php echo $phone_code; ?>" id="phone_code_resend">
+                                      <input type="hidden" value="<?php echo $phone_num; ?>" id="phone_num_resend">
+                                    <!--//data hidden for resend verification code-->
+
+                                    <?php echo Form::hidden('phoneverification','1',array('id'=>'','class'=>'form-control')); ?>
+
+                                    <?php if($phone_num !=''){ ?>
+                                      <?php echo Form::submit('Re-Send verification code', array('class'=>'btn btn-lg btn-primary btn-block GRN phoneverified')); ?>
+
+                                    <?php }else{ ?>
+                                      <?php echo Form::submit('Send verification code', array('class'=>'btn btn-lg btn-primary btn-block GRN phoneverified')); ?>
+
+                                    <?php } ?>
+                                  </div>
+                                </fieldset>
+                              <?php echo Form::close(); ?> 
+                                <?php if(Session::has('message')): ?>
+                                    <p class="alert <?php echo e(Session::get('alert-class', 'alert-info')); ?>"><?php echo e(Session::get('message')); ?></p>
+                                <?php endif; ?>            
+                              <hr/>               
+                              <?php echo Form::open(array('url' => 'phoneverification','class' => 'form code','id'=>'PhoneCodeConfirm')); ?>
+
+                                <fieldset>
+                                  <div class="form-group">
+                                    <div class="verification_code">
+                                      <p>Enter verification code</p>
+                                      <?php echo Form::text('opt','',array('id'=>'','class'=>'form-control')); ?>
+
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <?php echo Form::submit('Confirm', array('class'=>'btn btn-lg btn-primary btn-block')); ?>
+
+                                  </div>
+                                </fieldset>
+                             <?php echo Form::close(); ?>
+
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+
+
+    
+  </div>
+</section>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,5 @@
+<h2>Hi, <?php echo e($name); ?>!</h2>
+
+<h2 style='color: rgba(0,224,0,0.7);'><?php echo e($notification_message); ?></h2>
+
+

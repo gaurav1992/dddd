@@ -1,0 +1,99 @@
+
+
+<?php $__env->startSection('content'); ?>
+<div class="container-fluid no-padding" id="inner-header"> <img src="<?php echo asset('public/images/form-head.jpg'); ?>" alt="test" class="img-responsive">
+	<div class="carousel-caption"> </div>
+	<h3 class="page-heading">CONTACT US</h3>
+</div>
+
+<!--  SECTION-1 -->
+<section>
+
+	<div class="container" id="contact-us">  
+		<div class="col-sm-6 center-aline padzero">
+			<?php if(Session::has('message')): ?>
+	          <p class="alert <?php echo e(Session::get('alert-class', 'alert-info')); ?>"><?php echo e(Session::get('message')); ?></p>
+	      	<?php endif; ?>	      	
+			<?php echo Form::open(array('url' => 'contact','class' => 'form','id'=>'ContactForm')); ?>
+
+			<input type="hidden" name="_token" value='<?php echo csrf_token(); ?>'>
+				<div class="col-sm-12 padleftzero">
+                	<div class="tittle2">
+                		<h3>Get in touch with us</h3>
+                    </div>
+					
+					<?php 
+						if(Auth::check()){ 
+						$email = Auth::user()->email;
+					   $first_name = Auth::user()->first_name;
+					  $last_name = Auth::user()->last_name;
+					?>
+					    <?php echo Form::text('first_name',$first_name,array('id'=>'','class'=>'','placeholder' => 'First Name')); ?>
+
+					    <?php echo Form::text('last_name',$last_name,array('id'=>'','class'=>'','placeholder' => 'Last Name')); ?>
+
+						<?php echo Form::email('email',$email,array('id'=>'','class'=>'','placeholder' => 'Email')); ?>
+
+					<?php }else{ ?>
+					   <?php echo Form::text('first_name','',array('id'=>'','class'=>'','placeholder' => 'First Name')); ?>
+
+						<?php echo Form::text('last_name','',array('id'=>'','class'=>'','placeholder' => 'Last Name')); ?>
+
+						<?php echo Form::email('email','',array('id'=>'','class'=>'','placeholder' => 'Email')); ?>
+
+					<?php } ?>
+					<?php echo Form::textarea('message','',array('rows' => '1','placeholder' => 'Message')); ?>
+
+				</div>
+				
+				<div class="col-sm-12 padleftzero">
+					<!--google re-captcha detail-->
+					<!--
+					site key : 6LfnDCUTAAAAAFJQkO8CtMClK_P1GFysru7XtIMd
+					secret key : 6LfnDCUTAAAAAPVQw225Xe3bFulIeB1eb5Q05WAG
+					-->
+					<script src='https://www.google.com/recaptcha/api.js'></script>
+					<div class="g-recaptcha" data-sitekey="6Lf9FwoUAAAAADnH4We8r9Qh1Kh1YsCL8NjrF-h9"></div>
+					<!-- <img class="img-responsive" src="<?php echo asset('public/images/captcha.jpg'); ?>" alt="#"/> -->
+					<button class="btn btn-primary green-btn-s submitContactForm" type="submit">Submit</button>
+				</div>
+			<?php echo Form::close(); ?>
+
+
+		</div>
+
+		<div class="col-sm-6 padrightzero smallScreen_padzero">
+			<div class="col-sm-12 address2 padrightzero">
+				<h4 class="bottom-border">
+					<i class="fa fa-envelope-square" aria-hidden="true"></i> Customer Service
+				</h4>
+				
+				<div class="cont-info">					
+					<p class="ml25"><a target="blank_self" href="mailto:info@dezinow.com">info@dezinow.com</a></p>
+				</div>
+				
+				<h4 class="bottom-border">
+					<i class="fa fa-phone-square" aria-hidden="true"></i> Contact Number
+				</h4>
+				<div class="cont-info">					
+					<p class="ml25">415-735-7008</p>
+				</div>
+				
+				<h4 class="bottom-border2">
+					<i class="fa fa-clock-o" aria-hidden="true"></i> Service availability and requests
+				</h4>
+				<div class="cont-info">					
+					<p class="ml25">Service is available 24/7. DeziNow app will be available for download soon in the app and google play store. </p>					
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</section>
+
+<?php $__env->stopSection(); ?>
+<style>
+.ml25{margin-left:25px}
+</style>
+
+<?php echo $__env->make('frontend.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
